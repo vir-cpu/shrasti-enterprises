@@ -16,57 +16,57 @@ import {
 // THEME TOKENS
 // ─────────────────────────────────────────────────────────────
 const T = {
-  bg:          "#F7F4EE",
-  bgSection:   "#FFFFFF",
-  bgAlt:       "#EFF0F4",
-  navy:        "#0D1F4E",
-  navyLight:   "#1A3070",
-  blue:        "#1A52D4",
-  blueLight:   "#4A7DE8",
-  gold:        "#C9A028",
-  goldLight:   "#E8C84A",
+  bg:          "#F7F4EE",   // warm cream page background
+  bgSection:   "#FFFFFF",   // section/card white
+  bgAlt:       "#EFF0F4",   // alternating section tint
+  navy:        "#0D1F4E",   // primary text / dark elements
+  navyLight:   "#1A3070",   // slightly lighter navy
+  blue:        "#1A52D4",   // brand blue
+  blueLight:   "#4A7DE8",   // lighter blue for gradients
+  gold:        "#C9A028",   // gold accent
+  goldLight:   "#E8C84A",   // lighter gold
   goldGlow:    "rgba(201,160,40,0.35)",
   blueGlow:    "rgba(26,82,212,0.18)",
-  text:        "#0D1F4E",
-  textMid:     "#3D4F72",
-  textSoft:    "#6B7A99",
-  border:      "#DDD8CE",
-  divider:     "#E8E2D6",
-  footerBg:    "#0D1F4E",
-  footerText:  "#C8D0E4",
+  text:        "#0D1F4E",   // body text (navy)
+  textMid:     "#3D4F72",   // secondary text
+  textSoft:    "#6B7A99",   // tertiary / captions
+  border:      "#DDD8CE",   // card borders at rest
+  divider:     "#E8E2D6",   // section dividers
+  footerBg:    "#0D1F4E",   // footer navy background
+  footerText:  "#C8D0E4",   // footer body text
 };
 
 // ─────────────────────────────────────────────────────────────
 // DATA
 // ─────────────────────────────────────────────────────────────
 const productSolutions = [
-  { id: "bopp",      title: "BOPP Tapes",       tag: "High-Strength Acrylic",         spec: "45–65 Micron",             category: "Adhesive Tapes",     features: ["Instant surface adhesion", "High shear resistance", "Excellent aging characteristics"],       desc: "Premium high-tensile biaxially oriented polypropylene film coated with custom high-grade acrylic emulsion. Specially formulated to prevent tearing during high-speed automated packaging runs.", image: "/products/bopp-tapes.jpg" },
-  { id: "printed",   title: "Printed Tapes",    tag: "Brand Identity & Security",     spec: "4-Color Flexographic",     category: "Adhesive Tapes",     features: ["Sharp logo reproduction", "Tamper-evident security", "Weatherproof surface ink"],              desc: "Custom printed security tapes featuring clear typography and high-definition company logos. Serves as a visible anti-tampering seal across complex wholesale transport networks.", image: "/products/printed-tapes.jpg" },
-  { id: "stretch",   title: "Stretch Films",    tag: "Pallet Stabilization Matrix",   spec: "23–50 Micron Hi-Stretch",  category: "Industrial Films",   features: ["Up to 300% elongation", "High double-sided cling", "Excellent dust isolation layer"],         desc: "Multi-layer co-extruded linear low-density stretch wrap material. Calibrated with high puncture resistance and excellent stretch memory to bind heavy pallets safely.", image: "/products/stretch-films.jpg" },
-  { id: "strapping", title: "Strapping Rolls",  tag: "Heavy-Duty Structural Binding", spec: "PP / Polyester PET",       category: "Logistics Materials", features: ["High split resistance", "Consistent width parameters", "Manual & auto compatible"],           desc: "Heavy-duty binding straps engineered to maintain tight surface tension over long cargo hauls. Resistant to sharp corners and high shock vibrations.", image: "/products/strapping-rolls.jpg" },
-  { id: "shrink",    title: "Shrink Sleeves",   tag: "Thermal Product Contouring",    spec: "PVC / PETG Blend",         category: "Product Labels",     features: ["Uniform 360° shrinkage", "Moisture & scratch protection", "Vibrant color layers"],             desc: "Advanced heat-sensitive shrink labels offering seamless product contouring. Provides uniform moisture isolation and pristine clear text display.", image: "/products/shrink-sleeves.jpg" },
-  { id: "ldpoly",    title: "LD Poly Bags",     tag: "Industrial Moisture Barriers",  spec: "Custom Gauge Multi-Layer", category: "Poly Enclosures",    features: ["Excellent bottom-seal strength", "High transparency grades", "Waterproof containment"],       desc: "Low-Density Polyethylene commercial liners manufactured using advanced blown-film processes. Built to withstand significant weight without tearing.", image: "/products/ld-poly-bags.jpg" },
-  { id: "ldrolls",   title: "LD Rolls",         tag: "Continuous Material Sheeting",  spec: "Heavy Industrial Grade",   category: "Industrial Films",   features: ["Extra wide layout formats", "Consistent gauge across run", "Excellent chemical inertness"],   desc: "Continuous-feed raw polyethylene roll shielding for heavy-duty waterproofing, construction site lining, and raw machinery warehouse storage protection.", image: "/products/ld-rolls.jpg" },
-  { id: "zipper",    title: "Zipper Lock Bags", tag: "Reclosable Component Pouches",  spec: "Double Track Profiles",    category: "Poly Enclosures",    features: ["Airproof track alignment", "Reinforced side border seals", "Highly reusable film"],           desc: "Heavy-duty transparent storage bags featuring interlocking track profiles. Perfect for organizing small parts and preventing dust accumulation.", image: "/products/zipper-lock-bags.jpg" },
-  { id: "garbage",   title: "Garbage Bags",     tag: "High-Payload Waste Liners",     spec: "Super-Durable Heavy Gauge",category: "Logistics Materials", features: ["Leakproof bottom configuration", "High puncture resistance", "Bulk dispenser layout"],       desc: "Industrial grade trash containment bags made to withstand sharp corners, liquid contents, and substantial weight loads without breaking.", image: "/products/garbage-bags.jpg" },
-  { id: "measuring", title: "Measuring Caps",   tag: "Volumetric Polymer Molds",      spec: "Injection-Molded PP",      category: "Custom Molds",       features: ["Clear molded measurement marks", "Chemical-resistant polymer", "Smooth screw-thread config"], desc: "Meticulously calibrated plastic fluid measurement caps produced via precision injection molding to ensure highly accurate dosing marks.", image: "/products/measuring-caps.jpg" },
-  { id: "lockties",  title: "Lock Ties",        tag: "High-Tensile Fastening Bands",  spec: "Self-Locking Nylon",       category: "Logistics Materials", features: ["Permanent self-locking track", "High UV & heat tolerance", "Extreme load-bearing"],          desc: "Heavy-duty industrial cable ties engineered with a permanent secure locking teeth mechanism for organizing wiring systems and shipping bundles.", image: "/products/lock-ties.jpg" },
+  { id: "bopp",      title: "BOPP Tapes",       tag: "High-Strength Acrylic",         spec: "45–65 Micron",             category: "Adhesive Tapes",    features: ["Instant surface adhesion", "High shear resistance", "Excellent aging characteristics"],       desc: "Premium high-tensile biaxially oriented polypropylene film coated with custom high-grade acrylic emulsion. Specially formulated to prevent tearing during high-speed automated packaging runs.", image: "/products/product-bopp-tapes.jpg" },
+  { id: "printed",   title: "Printed Tapes",    tag: "Brand Identity & Security",     spec: "4-Color Flexographic",     category: "Adhesive Tapes",    features: ["Sharp logo reproduction", "Tamper-evident security", "Weatherproof surface ink"],              desc: "Custom printed security tapes featuring clear typography and high-definition company logos. Serves as a visible anti-tampering seal across complex wholesale transport networks.", image: "/products/product-printed-tapes.jpg" },
+  { id: "stretch",   title: "Stretch Films",    tag: "Pallet Stabilization Matrix",   spec: "23–50 Micron Hi-Stretch",  category: "Industrial Films",  features: ["Up to 300% elongation", "High double-sided cling", "Excellent dust isolation layer"],         desc: "Multi-layer co-extruded linear low-density stretch wrap material. Calibrated with high puncture resistance and excellent stretch memory to bind heavy pallets safely.", image: "/products/product-stretch-films.jpg" },
+  { id: "strapping", title: "Strapping Rolls",  tag: "Heavy-Duty Structural Binding", spec: "PP / Polyester PET",       category: "Logistics Materials",features: ["High split resistance", "Consistent width parameters", "Manual & auto compatible"],           desc: "Heavy-duty binding straps engineered to maintain tight surface tension over long cargo hauls. Resistant to sharp corners and high shock vibrations.", image: "/products/product-strapping-rolls.jpg" },
+  { id: "shrink",    title: "Shrink Sleeves",   tag: "Thermal Product Contouring",    spec: "PVC / PETG Blend",         category: "Product Labels",    features: ["Uniform 360° shrinkage", "Moisture & scratch protection", "Vibrant color layers"],             desc: "Advanced heat-sensitive shrink labels offering seamless product contouring. Provides uniform moisture isolation and pristine clear text display.", image: "/products/product-shrink-sleeves.jpg" },
+  { id: "ldpoly",    title: "LD Poly Bags",     tag: "Industrial Moisture Barriers",  spec: "Custom Gauge Multi-Layer", category: "Poly Enclosures",   features: ["Excellent bottom-seal strength", "High transparency grades", "Waterproof containment"],       desc: "Low-Density Polyethylene commercial liners manufactured using advanced blown-film processes. Built to withstand significant weight without tearing.", image: "/products/product-ld-poly-bags.jpg" },
+  { id: "ldrolls",   title: "LD Rolls",         tag: "Continuous Material Sheeting",  spec: "Heavy Industrial Grade",   category: "Industrial Films",  features: ["Extra wide layout formats", "Consistent gauge across run", "Excellent chemical inertness"],   desc: "Continuous-feed raw polyethylene roll shielding for heavy-duty waterproofing, construction site lining, and raw machinery warehouse storage protection.", image: "/products/product-ld-rolls.jpg" },
+  { id: "zipper",    title: "Zipper Lock Bags", tag: "Reclosable Component Pouches",  spec: "Double Track Profiles",    category: "Poly Enclosures",   features: ["Airproof track alignment", "Reinforced side border seals", "Highly reusable film"],           desc: "Heavy-duty transparent storage bags featuring interlocking track profiles. Perfect for organizing small parts and preventing dust accumulation.", image: "/products/product-zipper-lock-bags.jpg" },
+  { id: "garbage",   title: "Garbage Bags",     tag: "High-Payload Waste Liners",     spec: "Super-Durable Heavy Gauge",category: "Logistics Materials",features: ["Leakproof bottom configuration", "High puncture resistance", "Bulk dispenser layout"],       desc: "Industrial grade trash containment bags made to withstand sharp corners, liquid contents, and substantial weight loads without breaking.", image: "/products/product-garbage-bags.jpg" },
+  { id: "measuring", title: "Measuring Caps",   tag: "Volumetric Polymer Molds",      spec: "Injection-Molded PP",      category: "Custom Molds",      features: ["Clear molded measurement marks", "Chemical-resistant polymer", "Smooth screw-thread config"], desc: "Meticulously calibrated plastic fluid measurement caps produced via precision injection molding to ensure highly accurate dosing marks.", image: "/products/product-measuring-caps.jpg" },
+  { id: "lockties",  title: "Lock Ties",        tag: "High-Tensile Fastening Bands",  spec: "Self-Locking Nylon",       category: "Logistics Materials",features: ["Permanent self-locking track", "High UV & heat tolerance", "Extreme load-bearing"],          desc: "Heavy-duty industrial cable ties engineered with a permanent secure locking teeth mechanism for organizing wiring systems and shipping bundles.", image: "/products/product-lock-ties.jpg" },
 ];
 
 const distributionRoutes = [
-  { region: "Uttarakhand Hubs",     centers: "SIDCUL Haridwar, Dehradun, Pantnagar",       leadTime: "Within 12 Hours",  tier: "Primary Fleet"      },
-  { region: "Delhi NCR Network",    centers: "Noida, Ghaziabad, Gurugram, Faridabad",       leadTime: "Within 24 Hours",  tier: "Express Freight"    },
-  { region: "Uttar Pradesh Tracks", centers: "Kanpur Central, Lucknow, Meerut, Aligarh",    leadTime: "24–48 Hours",      tier: "Standard Freight"   },
-  { region: "Rajasthan Corridors",  centers: "Jaipur, Alwar, Bhiwadi, Jodhpur",             leadTime: "Within 48 Hours",  tier: "Regional Transport" },
-  { region: "Haryana Logistics",    centers: "Faridabad Industrial, Sonipat, Rohtak",        leadTime: "Within 24 Hours",  tier: "Express Freight"    },
-  { region: "Punjab Supply Lines",  centers: "Ludhiana, Amritsar, Jalandhar, Patiala",       leadTime: "36–48 Hours",      tier: "Standard Freight"   },
+  { region: "Uttarakhand Hubs",    centers: "SIDCUL Haridwar, Dehradun, Pantnagar",         leadTime: "Within 12 Hours",  tier: "Primary Fleet"      },
+  { region: "Delhi NCR Network",   centers: "Noida, Ghaziabad, Gurugram, Faridabad",         leadTime: "Within 24 Hours",  tier: "Express Freight"    },
+  { region: "Uttar Pradesh Tracks",centers: "Kanpur Central, Lucknow, Meerut, Aligarh",      leadTime: "24–48 Hours",      tier: "Standard Freight"   },
+  { region: "Rajasthan Corridors", centers: "Jaipur, Alwar, Bhiwadi, Jodhpur",               leadTime: "Within 48 Hours",  tier: "Regional Transport" },
+  { region: "Haryana Logistics",   centers: "Faridabad Industrial, Sonipat, Rohtak",          leadTime: "Within 24 Hours",  tier: "Express Freight"    },
+  { region: "Punjab Supply Lines", centers: "Ludhiana, Amritsar, Jalandhar, Patiala",         leadTime: "36–48 Hours",      tier: "Standard Freight"   },
 ];
 
 const factoryStats = [
-  { value: "24/7",   label: "Continuous Production", support: "Uninterrupted Supply Chain" },
-  { value: "100%",   label: "Micrometer Verified",   support: "Zero Gauge Deviations"      },
-  { value: "Direct", label: "Factory Pricing Model", support: "No Middleman Margins"       },
-  { value: "Bulk",   label: "Procurement Ready",     support: "High Volume Dispatch"       },
+  { value: "24/7",   label: "Continuous Production",  support: "Uninterrupted Supply Chain"  },
+  { value: "100%",   label: "Micrometer Verified",    support: "Zero Gauge Deviations"       },
+  { value: "Direct", label: "Factory Pricing Model",  support: "No Middleman Margins"        },
+  { value: "Bulk",   label: "Procurement Ready",      support: "High Volume Dispatch"        },
 ];
 
 const trustBadges = [
@@ -112,15 +112,6 @@ const productionTabs = [
   },
 ];
 
-const whyChooseUs = [
-  { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title: "ISO-Grade Quality Control", desc: "Every batch undergoes micrometer thickness validation before dispatch. Zero tolerance for gauge deviations." },
-  { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Factory-Direct Pricing", desc: "No distributors, no middlemen. You buy directly from our SIDCUL manufacturing plant at wholesale rates." },
-  { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", title: "24-Hour Dispatch Guarantee", desc: "Orders placed before 2 PM are dispatched same day. Our logistics fleet covers all major North India hubs." },
-  { icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z", title: "Dedicated Account Manager", desc: "Every bulk buyer gets a dedicated contact person for reorders, custom specs, and supply chain planning." },
-  { icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z", title: "Custom Specifications", desc: "Need a specific micron, width, or print? We manufacture to your exact specs with minimum order flexibility." },
-  { icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4", title: "Bulk Stock Always Ready", desc: "We maintain large buffer inventory of all core products. No waiting for production cycles on standard items." },
-];
-
 // ─────────────────────────────────────────────────────────────
 // ANIMATION VARIANTS
 // ─────────────────────────────────────────────────────────────
@@ -147,9 +138,9 @@ const slideIn: Variants = {
 // ─────────────────────────────────────────────────────────────
 function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg"; dark?: boolean }) {
   const s = { sm: 32, md: 44, lg: 60 }[size];
-  const wordColor = dark ? "#FFFFFF"  : T.navy;
-  const entColor  = dark ? "#C8D0E4"  : T.textSoft;
-  const lineColor = dark ? "rgba(200,208,228,0.4)" : "rgba(13,31,78,0.25)";
+  const wordColor  = dark ? "#FFFFFF"  : T.navy;
+  const entColor   = dark ? "#C8D0E4"  : T.textSoft;
+  const lineColor  = dark ? "rgba(200,208,228,0.4)" : "rgba(13,31,78,0.25)";
   return (
     <div className="flex items-center gap-3 select-none">
       <div className="relative shrink-0">
@@ -162,7 +153,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
         <span style={{ fontSize: Math.round(s * 0.17), color: entColor, lineHeight: 1 }} className="absolute -top-0.5 -right-2 font-bold tracking-tight">™</span>
       </div>
       <div className="flex flex-col leading-none">
-        <span style={{ fontSize: Math.round(s * 0.43), color: wordColor, letterSpacing: "-0.02em" }} className="font-black">SHRASTI</span>
+        <span style={{ fontSize: Math.round(s * 0.43), color: wordColor, letterSpacing: "-0.02em" }} className="font-black"  >SHRASTI</span>
         <div className="flex items-center gap-1 mt-0.5">
           <span style={{ width: 12, height: 1, background: lineColor, display: "inline-block" }} />
           <span style={{ fontSize: Math.round(s * 0.19), color: entColor, letterSpacing: "0.2em" }} className="font-semibold uppercase">ENTERPRISES</span>
@@ -185,19 +176,20 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background:    T.bgSection,
-        borderRadius:  16,
-        border:        `1.5px solid ${hovered ? T.gold : T.border}`,
-        boxShadow:     hovered
+        background:   T.bgSection,
+        borderRadius: 16,
+        border:       `1.5px solid ${hovered ? T.gold : T.border}`,
+        boxShadow:    hovered
           ? `0 0 0 3px ${T.goldGlow}, 0 20px 48px rgba(13,31,78,0.10)`
           : "0 2px 16px rgba(13,31,78,0.06)",
-        overflow:      "hidden",
-        transition:    "border-color 0.28s ease, box-shadow 0.28s ease",
-        display:       "flex",
+        overflow:     "hidden",
+        transition:   "border-color 0.28s ease, box-shadow 0.28s ease",
+        display:      "flex",
         flexDirection: "column",
       }}
     >
-      <div style={{ position: "relative", height: 280, background: "#F0EDE7", overflow: "hidden" }}>
+      {/* Image */}
+      <div style={{ position: "relative", height: 200, background: "#F0EDE7", overflow: "hidden" }}>
         <Image
           src={product.image}
           alt={product.title}
@@ -206,7 +198,9 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
           className="object-cover"
           style={{ transform: hovered ? "scale(1.06)" : "scale(1)", transition: "transform 0.55s ease" }}
         />
+        {/* Gradient overlay */}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 55%, rgba(247,244,238,0.9) 100%)", pointerEvents: "none" }} />
+        {/* Category pill */}
         <div style={{
           position: "absolute", top: 12, left: 12,
           background: T.blue, color: "#fff",
@@ -215,6 +209,7 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
         }}>
           {product.category}
         </div>
+        {/* Gold top border on hover */}
         <motion.div
           animate={{ scaleX: hovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
@@ -226,12 +221,15 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
         />
       </div>
 
+      {/* Content */}
       <div style={{ padding: "22px 24px 20px", display: "flex", flexDirection: "column", flex: 1, gap: 12 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
           <h3 style={{ fontSize: 20, fontWeight: 800, color: T.navy, lineHeight: 1.2 }}>{product.title}</h3>
           <span style={{ fontSize: 11, fontWeight: 600, color: T.textSoft, fontFamily: "monospace", marginTop: 3, whiteSpace: "nowrap" }}>{product.spec}</span>
         </div>
+
         <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.7, fontWeight: 400, flex: 1 }}>{product.desc}</p>
+
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {product.features.map((f) => (
             <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: T.textSoft, fontWeight: 500 }}>
@@ -240,6 +238,7 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
             </div>
           ))}
         </div>
+
         <div style={{ borderTop: `1px solid ${T.divider}`, paddingTop: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: T.textSoft, letterSpacing: "0.08em", textTransform: "uppercase" }}>{product.tag}</span>
           <motion.button
@@ -299,9 +298,7 @@ export default function ShrastiEnterprisesHome() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const filtered = selectedCategory === "All"
-    ? productSolutions
-    : productSolutions.filter(p => p.category === selectedCategory);
+  const filtered = selectedCategory === "All" ? productSolutions : productSolutions.filter(p => p.category === selectedCategory);
 
   const handleQuote = (title: string) => {
     setSelectedProduct(title);
@@ -318,12 +315,13 @@ export default function ShrastiEnterprisesHome() {
   };
 
   const navLinks = [
-    { href: "#about-plant",        label: "Plant Profile"  },
-    { href: "#product-matrix",     label: "Material Index" },
-    { href: "#logistics-grid",     label: "Dispatch Map"   },
-    { href: "#quote-configurator", label: "Get a Quote"    },
+    { href: "#about-plant",        label: "Plant Profile"   },
+    { href: "#product-matrix",     label: "Material Index"  },
+    { href: "#logistics-grid",     label: "Dispatch Map"    },
+    { href: "#quote-configurator", label: "Get a Quote"     },
   ];
 
+  // shared inline style helpers
   const pill = (active: boolean) => ({
     padding:       "8px 18px",
     borderRadius:  999,
@@ -344,30 +342,34 @@ export default function ShrastiEnterprisesHome() {
       onMouseMove={handleMouseMove}
       style={{ background: T.bg, color: T.text, fontFamily: "'Plus Jakarta Sans', sans-serif", minHeight: "100vh" }}
     >
+      {/* Google Font import */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
         * { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         ::selection { background: rgba(26,82,212,0.18); color: #0D1F4E; }
         input, select, textarea { font-family: 'Plus Jakarta Sans', sans-serif; }
-        @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.4)} }
       `}</style>
 
-      {/* Cursor glow */}
-      <div style={{
-        position: "fixed", pointerEvents: "none", zIndex: 0,
-        width: 500, height: 500, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(26,82,212,0.055) 0%, transparent 70%)",
-        transform: `translate(${mousePos.x - 250}px, ${mousePos.y - 250}px)`,
-        transition: "transform 0.45s ease-out",
-      }} />
+      {/* Subtle cursor glow — very light on cream bg */}
+      <div
+        style={{
+          position: "fixed", pointerEvents: "none", zIndex: 0,
+          width: 500, height: 500, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(26,82,212,0.055) 0%, transparent 70%)",
+          transform: `translate(${mousePos.x - 250}px, ${mousePos.y - 250}px)`,
+          transition: "transform 0.45s ease-out",
+        }}
+      />
 
       {/* Scroll progress bar */}
-      <motion.div style={{
-        position: "fixed", top: 0, left: 0, right: 0, height: 3, zIndex: 60,
-        scaleX: smoothProgress, transformOrigin: "left",
-        background: `linear-gradient(90deg, ${T.blue}, ${T.gold}, ${T.blue})`,
-      }} />
+      <motion.div
+        style={{
+          position: "fixed", top: 0, left: 0, right: 0, height: 3, zIndex: 60,
+          scaleX: smoothProgress, transformOrigin: "left",
+          background: `linear-gradient(90deg, ${T.blue}, ${T.gold}, ${T.blue})`,
+        }}
+      />
 
       {/* ══════════════════════════════════════════
           HEADER
@@ -378,22 +380,17 @@ export default function ShrastiEnterprisesHome() {
         borderBottom: `1px solid ${T.divider}`,
       }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <motion.a href="#">
-  <Image
-    src="/shrasti-enterprises-logo.png"
-    alt="Shrasti Enterprises"
-    width={140}
-    height={60}
-  />
-</motion.a>
+          <motion.a href="#" whileHover={{ scale: 1.02 }}><ShrastiLogo size="sm" /></motion.a>
 
+          {/* Desktop nav */}
           <nav style={{ display: "flex", alignItems: "center", gap: 36 }} className="hidden lg:flex">
             {navLinks.map(l => (
-              <a key={l.href} href={l.href}
-                style={{ fontSize: 13, fontWeight: 700, color: T.textMid, textDecoration: "none", letterSpacing: "0.06em", textTransform: "uppercase", transition: "color 0.2s" }}
+              <a key={l.href} href={l.href} style={{ fontSize: 13, fontWeight: 700, color: T.textMid, textDecoration: "none", letterSpacing: "0.06em", textTransform: "uppercase", transition: "color 0.2s", position: "relative" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = T.blue; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = T.textMid; }}
-              >{l.label}</a>
+              >
+                {l.label}
+              </a>
             ))}
           </nav>
 
@@ -413,6 +410,7 @@ export default function ShrastiEnterprisesHome() {
               Request Quote
             </motion.a>
 
+            {/* Hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden"
@@ -435,6 +433,7 @@ export default function ShrastiEnterprisesHome() {
           </div>
         </div>
 
+        {/* Mobile drawer */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -461,13 +460,11 @@ export default function ShrastiEnterprisesHome() {
       </header>
 
       {/* ══════════════════════════════════════════
-          HERO — with product image on right
+          HERO
       ══════════════════════════════════════════ */}
-      <section id="about-plant" style={{
-        position: "relative", minHeight: "100vh", display: "flex", alignItems: "center",
-        padding: "0 24px", paddingTop: 72, overflow: "hidden",
-        background: `linear-gradient(160deg, #F7F4EE 0%, #EEF2FB 55%, #F7F4EE 100%)`,
-      }}>
+      <section id="about-plant" style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", padding: "0 24px", paddingTop: 72, overflow: "hidden",
+        background: `linear-gradient(160deg, #F7F4EE 0%, #EEF2FB 55%, #F7F4EE 100%)` }}>
+
         {/* Subtle grid */}
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
@@ -475,19 +472,12 @@ export default function ShrastiEnterprisesHome() {
           backgroundSize: "52px 52px",
         }} />
         {/* Gold diagonal line */}
-        <div style={{ position: "absolute", top: 0, bottom: 0, right: "38%", width: 1.5, background: `linear-gradient(180deg, transparent, ${T.gold}55, transparent)`, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, bottom: 0, right: "30%", width: 1.5, background: `linear-gradient(180deg, transparent, ${T.gold}55, transparent)`, pointerEvents: "none" }} />
 
         <motion.div style={{ y: heroY, opacity: heroOpacity, maxWidth: 1280, margin: "0 auto", width: "100%", position: "relative", zIndex: 2, paddingTop: 80, paddingBottom: 80 }}>
-          <div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: 32,
-    alignItems: "flex-start"
-  }}
->
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 40, alignItems: "center" }} className="lg:grid-cols-[1fr_420px]">
 
-            {/* ── Left column: text ── */}
+            {/* Left */}
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
                 style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "8px 18px", borderRadius: 999, border: `1px solid ${T.gold}88`, background: `${T.gold}14`, color: T.gold, fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", width: "fit-content" }}>
@@ -496,69 +486,15 @@ export default function ShrastiEnterprisesHome() {
               </motion.div>
 
               <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, type: "spring", stiffness: 65 }}
-                style={{ fontSize: "clamp(48px, 6vw, 84px)", fontWeight: 900, lineHeight: 0.93, color: T.navy, letterSpacing: "-0.03em", margin: 0 }}>
+                style={{ fontSize: "clamp(48px, 7vw, 92px)", fontWeight: 900, lineHeight: 0.93, color: T.navy, letterSpacing: "-0.03em", margin: 0 }}>
                 Next-Gen<br />
                 <span style={{ backgroundImage: `linear-gradient(90deg, ${T.blue} 0%, ${T.blueLight} 60%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Packaging</span>
                 <br />
                 <span style={{ backgroundImage: `linear-gradient(90deg, ${T.gold} 0%, ${T.goldLight} 60%, ${T.gold} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Systems</span>
               </motion.h1>
 
-              {/* ── Right column: HERO PRODUCT IMAGE ── */}
-            <motion.div
-              initial={{ opacity: 0, x: 50, scale: 0.96 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ delay: 0.45, type: "spring", stiffness: 60, damping: 18 }}
-              className="hidden lg:block"
-              style={{ position: "relative" }}
-            >
-              {/* Glow behind image */}
-              <div style={{
-                position: "absolute", inset: -20,
-                background: `radial-gradient(ellipse at center, ${T.goldGlow} 0%, transparent 70%)`,
-                borderRadius: 32, pointerEvents: "none", zIndex: 0,
-              }} />
-
-              {/* Image frame */}
-              <div style={{
-                position: "relative", borderRadius: 24, overflow: "hidden",
-                border: `2px solid ${T.gold}55`,
-                boxShadow: `0 32px 80px rgba(13,31,78,0.14), 0 0 0 1px ${T.divider}, 0 0 40px ${T.goldGlow}`,
-                zIndex: 1,
-              }}>
-                <Image
-                  src="/hero-products.jpg"
-                  alt="Shrasti Enterprises product range"
-                  width={520}
-                  height={380}
-                  className="object-contain"
-                  priority
-                  style={{ display: "block", width: "100%", height: "auto" }}
-                />
-                {/* Gradient overlay on bottom of image */}
-                <div style={{
-                  position: "absolute", bottom: 0, left: 0, right: 0, height: "45%",
-                  background: `linear-gradient(0deg, rgba(13,31,78,0.72) 0%, transparent 100%)`,
-                  pointerEvents: "none",
-                }} />
-                {/* Caption on image */}
-                <div style={{ position: "absolute", bottom: 20, left: 20, right: 20, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-                  <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: `${T.gold}`, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 4 }}>Product Range</div>
-                    <div style={{ fontSize: 16, fontWeight: 800, color: "#fff", lineHeight: 1.2 }}>11 Industrial<br/>Packaging Solutions</div>
-                  </div>
-                  <div style={{
-                    background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`,
-                    borderRadius: 10, padding: "8px 14px", textAlign: "center",
-                  }}>
-                    <div style={{ fontSize: 18, fontWeight: 900, color: T.navy, lineHeight: 1 }}>24/7</div>
-                    <div style={{ fontSize: 9, fontWeight: 700, color: T.navy, letterSpacing: "0.1em", textTransform: "uppercase" }}>Production</div>
-                  </div>
-                </div>
-              </div>
-
-
               <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }}
-                style={{ fontSize: 18, color: T.textMid, lineHeight: 1.75, fontWeight: 400, maxWidth: 520, margin: 0 }}>
+                style={{ fontSize: 18, color: T.textMid, lineHeight: 1.75, fontWeight: 400, maxWidth: 560, margin: 0 }}>
                 We engineer high-volume structural packaging and technical films for enterprise distribution networks —
                 perfect consistency, straight from our SIDCUL industrial assembly lines.
               </motion.p>
@@ -578,6 +514,7 @@ export default function ShrastiEnterprisesHome() {
                 </motion.a>
               </motion.div>
 
+              {/* Sub-tagline */}
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
                 style={{ display: "flex", gap: 24, flexWrap: "wrap", paddingTop: 4 }}>
                 {["Factory Direct", "Bulk Supply", "Premium Quality"].map((t, i) => (
@@ -589,50 +526,28 @@ export default function ShrastiEnterprisesHome() {
               </motion.div>
             </div>
 
-            
-              {/* Floating badge — top right */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                style={{
-                  position: "absolute", top: -18, right: -18, zIndex: 2,
-                  background: T.bgSection, borderRadius: 14,
-                  border: `1.5px solid ${T.divider}`,
-                  boxShadow: `0 8px 24px rgba(13,31,78,0.12)`,
-                  padding: "12px 16px", display: "flex", alignItems: "center", gap: 10,
-                }}
-              >
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${T.blue}14`, border: `1.5px solid ${T.blue}33`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <svg width={18} height={18} fill="none" stroke={T.blue} viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                </div>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: T.navy }}>ISO Verified</div>
-                  <div style={{ fontSize: 11, color: T.textSoft, fontWeight: 500 }}>Quality Assured</div>
-                </div>
-              </motion.div>
-
-              {/* Floating badge — bottom left */}
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                style={{
-                  position: "absolute", bottom: -18, left: -18, zIndex: 2,
-                  background: T.bgSection, borderRadius: 14,
-                  border: `1.5px solid ${T.divider}`,
-                  boxShadow: `0 8px 24px rgba(13,31,78,0.12)`,
-                  padding: "12px 16px", display: "flex", alignItems: "center", gap: 10,
-                }}
-              >
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${T.gold}18`, border: `1.5px solid ${T.gold}44`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <svg width={18} height={18} fill="none" stroke={T.gold} viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
-                </div>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: T.navy }}>Factory Direct</div>
-                  <div style={{ fontSize: 11, color: T.textSoft, fontWeight: 500 }}>SIDCUL Haridwar</div>
-                </div>
-              </motion.div>
+            {/* Right card */}
+            <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, type: "spring", stiffness: 65 }}
+              className="hidden lg:block"
+              style={{ borderRadius: 20, padding: 32, background: T.bgSection, border: `1.5px solid ${T.divider}`, boxShadow: `0 20px 60px rgba(13,31,78,0.09), 0 0 0 1px ${T.divider}`, position: "relative", overflow: "hidden" }}>
+              <div style={{ position: "absolute", top: 0, right: 0, width: 120, height: 120, background: `linear-gradient(225deg, ${T.gold}22, transparent 60%)`, pointerEvents: "none" }} />
+              <div style={{ fontSize: 10, fontWeight: 800, color: T.gold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>Corporate Protocol</div>
+              <p style={{ fontSize: 22, fontWeight: 900, color: T.navy, lineHeight: 1.3, marginBottom: 20 }}>
+                "Packaging today,<br />protecting tomorrow."
+              </p>
+              <div style={{ borderTop: `1px solid ${T.divider}`, paddingTop: 18, display: "flex", flexDirection: "column", gap: 10 }}>
+                {["Automated micrometer testing", "100% capacity scaling", "Regional routing secured"].map(item => (
+                  <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: T.textMid, fontWeight: 500 }}>
+                    <span style={{ width: 18, height: 18, borderRadius: "50%", background: `${T.gold}20`, border: `1px solid ${T.gold}66`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: T.gold, fontWeight: 900, flexShrink: 0 }}>✓</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+              {/* Logo watermark */}
+              <div style={{ position: "absolute", bottom: 16, right: 16, opacity: 0.05 }}>
+                <ShrastiLogo size="lg" />
+              </div>
             </motion.div>
-
           </div>
         </motion.div>
 
@@ -687,49 +602,12 @@ export default function ShrastiEnterprisesHome() {
       </section>
 
       {/* ══════════════════════════════════════════
-          WHY CHOOSE US
-      ══════════════════════════════════════════ */}
-      <section style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52, textAlign: "center" }}>
-            <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
-              Why Partner With Us
-            </div>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
-              Built for Industrial Buyers
-            </h2>
-            <p style={{ fontSize: 17, color: T.textMid, maxWidth: 540, margin: "0 auto", lineHeight: 1.7, fontWeight: 400 }}>
-              Every system we run is designed for one thing — getting the right material to your warehouse, on time, every time.
-            </p>
-          </motion.div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 22 }}>
-            {whyChooseUs.map((item, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, type: "spring", stiffness: 70 }}
-                whileHover={{ y: -6, boxShadow: `0 20px 48px rgba(13,31,78,0.10), 0 0 0 2px ${T.gold}44` }}
-                style={{ background: T.bgSection, borderRadius: 16, padding: "28px 26px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.28s ease", cursor: "default" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = T.gold; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = T.divider; }}
-              >
-                <div style={{ width: 48, height: 48, borderRadius: 12, background: `${T.blue}10`, border: `1.5px solid ${T.blue}22`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
-                  <svg width={22} height={22} fill="none" stroke={T.blue} viewBox="0 0 24 24" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d={item.icon} /></svg>
-                </div>
-                <h3 style={{ fontSize: 17, fontWeight: 800, color: T.navy, marginBottom: 10, lineHeight: 1.3 }}>{item.title}</h3>
-                <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75, fontWeight: 400, margin: 0 }}>{item.desc}</p>
-                <div style={{ marginTop: 18, height: 2, borderRadius: 1, background: `linear-gradient(90deg, ${T.gold}, transparent)`, width: "35%" }} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
           PRODUCT CATALOG
       ══════════════════════════════════════════ */}
-      <section id="product-matrix" style={{ background: T.bgAlt, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="product-matrix" style={{ background: T.bg, padding: "80px 24px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
 
+          {/* Header row */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 20, marginBottom: 36 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -741,7 +619,7 @@ export default function ShrastiEnterprisesHome() {
               </p>
             </motion.div>
 
-            <div style={{ display: "flex", gap: 6, padding: 5, borderRadius: 10, background: T.bg, border: `1px solid ${T.divider}` }}>
+            <div style={{ display: "flex", gap: 6, padding: 5, borderRadius: 10, background: T.bgAlt, border: `1px solid ${T.divider}` }}>
               {(["grid", "list"] as const).map(m => (
                 <button key={m} onClick={() => setLayoutMode(m)}
                   style={{ padding: "8px 18px", borderRadius: 7, border: "none", fontSize: 12, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", cursor: "pointer", transition: "all 0.2s",
@@ -755,6 +633,7 @@ export default function ShrastiEnterprisesHome() {
             </div>
           </div>
 
+          {/* Filters */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 36, paddingBottom: 28, borderBottom: `1px solid ${T.divider}` }}>
             {categories.map(cat => (
               <motion.button key={cat} onClick={() => setSelectedCategory(cat)} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} style={pill(selectedCategory === cat)}>
@@ -763,6 +642,7 @@ export default function ShrastiEnterprisesHome() {
             ))}
           </div>
 
+          {/* Grid / List */}
           <AnimatePresence mode="wait">
             {layoutMode === "grid" ? (
               <motion.div key="grid" variants={stagger} initial="hidden" animate="visible" exit={{ opacity: 0 }}
@@ -772,31 +652,152 @@ export default function ShrastiEnterprisesHome() {
             ) : (
               <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {filtered.map((p, i) => (
-                  <motion.div key={p.id} layout
-                    initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
-                    transition={{ delay: i * 0.05 }}
-                    style={{ background: T.bgSection, borderRadius: 18, border: `1.5px solid ${T.border}`, overflow: "hidden", display: "flex", transition: "all 0.3s ease" }}
-                    onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.gold; el.style.boxShadow = `0 0 0 3px ${T.goldGlow}, 0 12px 36px rgba(13,31,78,0.12)`; el.style.transform = "translateY(-4px)"; }}
-                    onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.border; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}
-                  >
-                    <div style={{ position: "relative", width: 180, minHeight: 140, flexShrink: 0, overflow: "hidden" }}>
-                      <Image src={p.image} alt={p.title} fill className="object-contain" sizes="180px" />
-                    </div>
-                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", flex: 1, padding: "24px 28px", gap: 18 }}>
-                      <div style={{ minWidth: 220 }}>
-                        <span style={{ fontSize: 15, fontWeight: 800, color: T.gold, letterSpacing: "0.18em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>{p.category}</span>
-                        <h3 style={{ fontSize: 30, fontWeight: 900, color: T.navy, margin: 0, lineHeight: 1.2 }}>{p.title}</h3>
-                      </div>
-                      <p style={{ fontSize: 16, color: T.textMid, flex: 1, minWidth: 220, lineHeight: 1.8, margin: 0 }}>{p.desc}</p>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12, flexShrink: 0 }}>
-                        <span style={{ fontSize: 12, fontWeight: 700, color: T.textSoft, fontFamily: "monospace", letterSpacing: "0.08em" }}>{p.spec}</span>
-                        <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} onClick={() => handleQuote(p.title)}
-                          style={{ padding: "12px 26px", borderRadius: 12, border: "none", background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontSize: 15, fontWeight: 900, letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", boxShadow: `0 6px 20px ${T.goldGlow}` }}>
-                          Request Quote
-                        </motion.button>
-                      </div>
-                    </div>
-                  </motion.div>
+                  <motion.div
+  key={p.id}
+  layout
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  exit={{ opacity: 0, x: 20 }}
+  transition={{ delay: i * 0.05 }}
+  style={{
+    background: T.bgSection,
+    borderRadius: 18,
+    border: `1.5px solid ${T.border}`,
+    overflow: "hidden",
+    display: "flex",
+    transition: "all 0.3s ease",
+  }}
+  onMouseEnter={(e) => {
+    const el = e.currentTarget as HTMLElement;
+    el.style.borderColor = T.gold;
+    el.style.boxShadow = `0 0 0 3px ${T.goldGlow}, 0 12px 36px rgba(13,31,78,0.12)`;
+    el.style.transform = "translateY(-4px)";
+  }}
+  onMouseLeave={(e) => {
+    const el = e.currentTarget as HTMLElement;
+    el.style.borderColor = T.border;
+    el.style.boxShadow = "none";
+    el.style.transform = "translateY(0)";
+  }}
+>
+  {/* Product Image */}
+  <div
+    style={{
+      position: "relative",
+      width: 180,
+      minHeight: 140,
+      flexShrink: 0,
+      overflow: "hidden",
+    }}
+  >
+    <Image
+      src={p.image}
+      alt={p.title}
+      fill
+      className="object-cover"
+      sizes="180px"
+    />
+  </div>
+
+  {/* Product Content */}
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      flex: 1,
+      padding: "24px 28px",
+      gap: 18,
+    }}
+  >
+    {/* Category + Title */}
+    <div style={{ minWidth: 220 }}>
+      <span
+        style={{
+          fontSize: 15,
+          fontWeight: 800,
+          color: T.gold,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          display: "block",
+          marginBottom: 8,
+        }}
+      >
+        {p.category}
+      </span>
+
+      <h3
+        style={{
+          fontSize: 30,
+          fontWeight: 900,
+          color: T.navy,
+          margin: 0,
+          lineHeight: 1.2,
+        }}
+      >
+        {p.title}
+      </h3>
+    </div>
+
+    {/* Description */}
+    <p
+      style={{
+        fontSize: 16,
+        color: T.textMid,
+        flex: 1,
+        minWidth: 220,
+        lineHeight: 1.8,
+        margin: 0,
+      }}
+    >
+      {p.desc}
+    </p>
+
+    {/* Specs + CTA */}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        gap: 12,
+        flexShrink: 0,
+      }}
+    >
+      <span
+        style={{
+          fontSize: 12,
+          fontWeight: 700,
+          color: T.textSoft,
+          fontFamily: "monospace",
+          letterSpacing: "0.08em",
+        }}
+      >
+        {p.spec}
+      </span>
+
+      <motion.button
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => handleQuote(p.title)}
+        style={{
+          padding: "12px 26px",
+          borderRadius: 12,
+          border: "none",
+          background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`,
+          color: T.navy,
+          fontSize: 15,
+          fontWeight: 900,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          cursor: "pointer",
+          boxShadow: `0 6px 20px ${T.goldGlow}`,
+        }}
+      >
+        Request Quote
+      </motion.button>
+    </div>
+  </div>
+</motion.div>
                 ))}
               </motion.div>
             )}
@@ -807,7 +808,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           PRODUCTION TABS
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}`, borderBottom: `1px solid ${T.divider}` }}>
+      <section style={{ background: T.bgAlt, padding: "80px 24px", borderTop: `1px solid ${T.divider}`, borderBottom: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr", gap: 40, alignItems: "start" }} className="lg:grid-cols-[360px_1fr]">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -853,7 +854,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
       ══════════════════════════════════════════ */}
-      <section id="logistics-grid" style={{ background: T.bgAlt, padding: "80px 24px" }}>
+      <section id="logistics-grid" style={{ background: T.bg, padding: "80px 24px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -890,42 +891,6 @@ export default function ShrastiEnterprisesHome() {
       </section>
 
       {/* ══════════════════════════════════════════
-          CTA BANNER
-      ══════════════════════════════════════════ */}
-      <section style={{ background: T.navy, padding: "72px 24px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${T.gold}08 1px, transparent 1px), linear-gradient(to right, ${T.gold}08 1px, transparent 1px)`, backgroundSize: "48px 48px", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${T.gold}66, transparent)` }} />
-
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
-          <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}20`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 20 }}>
-            Ready to Order?
-          </div>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 900, color: "#fff", letterSpacing: "-0.02em", marginBottom: 16, lineHeight: 1.1 }}>
-            Get Factory-Direct Pricing<br />
-            <span style={{ backgroundImage: `linear-gradient(90deg, ${T.gold}, ${T.goldLight})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>for Your Next Bulk Order</span>
-          </h2>
-          <p style={{ fontSize: 18, color: T.footerText, lineHeight: 1.7, marginBottom: 36, fontWeight: 400 }}>
-            Talk directly to our manufacturing team. No brokers, no delays — just honest pricing and fast dispatch from Haridwar.
-          </p>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}
-              href="#quote-configurator"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 36px", borderRadius: 12, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 8px 32px ${T.goldGlow}` }}>
-              Configure a Quote →
-            </motion.a>
-            <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}
-              href="tel:+918449350005"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 36px", borderRadius: 12, border: "2px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.07)", color: "#fff", fontWeight: 800, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none" }}>
-              <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              Call +91 84493 50005
-            </motion.a>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ══════════════════════════════════════════
           RFQ FORM
       ══════════════════════════════════════════ */}
       <section id="quote-configurator" style={{ background: T.bgAlt, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
@@ -933,6 +898,7 @@ export default function ShrastiEnterprisesHome() {
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             style={{ background: T.bgSection, borderRadius: 20, padding: "clamp(28px,5vw,52px)", border: `1.5px solid ${T.divider}`, boxShadow: "0 8px 48px rgba(13,31,78,0.08)" }}>
 
+            {/* Header */}
             <div style={{ borderBottom: `1px solid ${T.divider}`, paddingBottom: 24, marginBottom: 28 }}>
               <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
                 Procurement Desk
@@ -941,6 +907,7 @@ export default function ShrastiEnterprisesHome() {
               <p style={{ fontSize: 16, color: T.textMid, margin: 0, fontWeight: 400 }}>Configure your requirements to receive direct factory pricing.</p>
             </div>
 
+            {/* Step bar */}
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32, fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
               {[{ n: 1, label: "Material" }, { n: 2, label: "Volume & Contact" }].map((s, i) => (
                 <div key={s.n} style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -970,21 +937,19 @@ export default function ShrastiEnterprisesHome() {
                     </select>
                   </div>
 
-                  {(() => {
-                    const p = productSolutions.find(x => x.title === selectedProduct);
-                    return p ? (
-                      <div style={{ display: "flex", gap: 14, padding: 14, borderRadius: 12, background: T.bgAlt, border: `1.5px solid ${T.divider}` }}>
-                        <div style={{ position: "relative", width: 64, height: 64, borderRadius: 8, overflow: "hidden", flexShrink: 0 }}>
-                          <Image src={p.image} alt={p.title} fill className="object-contain" sizes="64px" />
-                        </div>
-                        <div>
-                          <div style={{ fontSize: 15, fontWeight: 800, color: T.navy }}>{p.title}</div>
-                          <div style={{ fontSize: 12, color: T.textSoft, marginTop: 2 }}>{p.tag}</div>
-                          <div style={{ fontSize: 12, fontWeight: 700, color: T.blue, marginTop: 3 }}>{p.spec}</div>
-                        </div>
+                  {/* Product preview */}
+                  {(() => { const p = productSolutions.find(x => x.title === selectedProduct); return p ? (
+                    <div style={{ display: "flex", gap: 14, padding: 14, borderRadius: 12, background: T.bgAlt, border: `1.5px solid ${T.divider}` }}>
+                      <div style={{ position: "relative", width: 64, height: 64, borderRadius: 8, overflow: "hidden", flexShrink: 0 }}>
+                        <Image src={p.image} alt={p.title} fill className="object-cover" sizes="64px" />
                       </div>
-                    ) : null;
-                  })()}
+                      <div>
+                        <div style={{ fontSize: 15, fontWeight: 800, color: T.navy }}>{p.title}</div>
+                        <div style={{ fontSize: 12, color: T.textSoft, marginTop: 2 }}>{p.tag}</div>
+                        <div style={{ fontSize: 12, fontWeight: 700, color: T.blue, marginTop: 3 }}>{p.spec}</div>
+                      </div>
+                    </div>
+                  ) : null; })()}
 
                   <p style={{ fontSize: 14, color: T.textSoft, fontWeight: 400, lineHeight: 1.6 }}>
                     Selected material parameters will configure our manufacturing cycles to match your supply chain needs.
@@ -1005,17 +970,17 @@ export default function ShrastiEnterprisesHome() {
 
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
                     {[
-                      { label: "Est. Monthly Volume",  val: volume,       set: setVolume,       ph: "e.g. 500 Boxes / 5 Tons"     },
-                      { label: "Delivery Hub / City",  val: deliveryHub,  set: setDeliveryHub,  ph: "e.g. SIDCUL Haridwar"         },
-                      { label: "Your Name / Company",  val: contactName,  set: setContactName,  ph: "e.g. Rajesh Kumar / XYZ Ltd." },
-                      { label: "Contact Phone",        val: contactPhone, set: setContactPhone, ph: "e.g. +91 98765 43210"         },
+                      { label: "Est. Monthly Volume",    val: volume,       set: setVolume,       ph: "e.g. 500 Boxes / 5 Tons"     },
+                      { label: "Delivery Hub / City",    val: deliveryHub,  set: setDeliveryHub,  ph: "e.g. SIDCUL Haridwar"         },
+                      { label: "Your Name / Company",    val: contactName,  set: setContactName,  ph: "e.g. Rajesh Kumar / XYZ Ltd." },
+                      { label: "Contact Phone",          val: contactPhone, set: setContactPhone, ph: "e.g. +91 98765 43210"         },
                     ].map(f => (
                       <div key={f.label}>
                         <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>{f.label}</label>
                         <input type="text" value={f.val} onChange={e => f.set(e.target.value)} placeholder={f.ph}
                           style={{ width: "100%", padding: "13px 15px", borderRadius: 10, border: `1.5px solid ${T.divider}`, background: T.bg, color: T.navy, fontSize: 14, fontWeight: 500, outline: "none", transition: "border-color 0.2s" }}
-                          onFocus={e  => { e.currentTarget.style.borderColor = T.blue; }}
-                          onBlur={e   => { e.currentTarget.style.borderColor = T.divider; }}
+                          onFocus={e => { e.currentTarget.style.borderColor = T.blue; }}
+                          onBlur={e  => { e.currentTarget.style.borderColor = T.divider; }}
                         />
                       </div>
                     ))}
@@ -1043,12 +1008,15 @@ export default function ShrastiEnterprisesHome() {
           FOOTER
       ══════════════════════════════════════════ */}
       <footer style={{ background: T.footerBg, padding: "64px 24px 28px", position: "relative", overflow: "hidden" }}>
+        {/* Gold top rule */}
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
+        {/* Subtle watermark */}
         <div style={{ position: "absolute", right: -40, bottom: -40, opacity: 0.04, pointerEvents: "none" }}>
           <ShrastiLogo size="lg" dark />
         </div>
 
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 40, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+          {/* Brand */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <ShrastiLogo size="md" dark />
             <p style={{ fontSize: 14, color: T.footerText, lineHeight: 1.75, fontWeight: 400 }}>
@@ -1060,7 +1028,7 @@ export default function ShrastiEnterprisesHome() {
                 { href: "mailto:contact@shrastienterprises.com", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "Email Us" },
               ].map(c => (
                 <a key={c.href} href={c.href}
-                  style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 14px", borderRadius: 8, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", color: T.footerText, fontSize: 12, fontWeight: 600, textDecoration: "none", transition: "all 0.2s" }}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 14px", borderRadius: 8, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", color: T.footerText, fontSize: 12, fontWeight: 600, textDecoration: "none", transition: "background 0.2s" }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = `${T.gold}22`; (e.currentTarget as HTMLElement).style.color = T.gold; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)"; (e.currentTarget as HTMLElement).style.color = T.footerText; }}
                 >
@@ -1071,6 +1039,7 @@ export default function ShrastiEnterprisesHome() {
             </div>
           </div>
 
+          {/* Office */}
           <div>
             <h4 style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 14 }}>Administrative HQ</h4>
             <p style={{ fontSize: 14, color: T.footerText, lineHeight: 1.8, fontWeight: 400 }}>
@@ -1080,6 +1049,7 @@ export default function ShrastiEnterprisesHome() {
             </p>
           </div>
 
+          {/* Factory */}
           <div>
             <h4 style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 14 }}>Manufacturing Center</h4>
             <p style={{ fontSize: 14, color: T.footerText, lineHeight: 1.8, fontWeight: 400 }}>
@@ -1089,6 +1059,7 @@ export default function ShrastiEnterprisesHome() {
             </p>
           </div>
 
+          {/* Quick links */}
           <div>
             <h4 style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 14 }}>Quick Links</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
