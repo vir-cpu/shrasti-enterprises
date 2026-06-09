@@ -197,14 +197,15 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
         flexDirection: "column",
       }}
     >
-      <div style={{ position: "relative", height: 200, background: "#F0EDE7", overflow: "hidden" }}>
+      <div style={{ position: "relative", height: 280, background: "#F0EDE7", overflow: "hidden" }}>
         <Image
           src={product.image}
           alt={product.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-contain"
-          style={{ transform: hovered ? "scale(1.06)" : "scale(1)", transition: "transform 0.55s ease" }}
+          style={{ padding: "20px",
+    transform: hovered ? "scale(1.03)" : "scale(1)", transition: "transform 0.55s ease" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 55%, rgba(247,244,238,0.9) 100%)", pointerEvents: "none" }} />
         <div style={{
