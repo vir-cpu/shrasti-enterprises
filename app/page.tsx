@@ -203,7 +203,7 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
           alt={product.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
+          className="object-contain"
           style={{ transform: hovered ? "scale(1.06)" : "scale(1)", transition: "transform 0.55s ease" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 55%, rgba(247,244,238,0.9) 100%)", pointerEvents: "none" }} />
@@ -378,7 +378,14 @@ export default function ShrastiEnterprisesHome() {
         borderBottom: `1px solid ${T.divider}`,
       }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <motion.a href="#" whileHover={{ scale: 1.02 }}><ShrastiLogo size="sm" /></motion.a>
+          <motion.a href="#">
+  <Image
+    src="/logo.png"
+    alt="Shrasti Enterprises"
+    width={140}
+    height={60}
+  />
+</motion.a>
 
           <nav style={{ display: "flex", alignItems: "center", gap: 36 }} className="hidden lg:flex">
             {navLinks.map(l => (
@@ -548,7 +555,7 @@ export default function ShrastiEnterprisesHome() {
                   alt="Shrasti Enterprises product range"
                   width={520}
                   height={380}
-                  className="object-cover"
+                  className="object-contain"
                   priority
                   style={{ display: "block", width: "100%", height: "auto" }}
                 />
@@ -764,7 +771,7 @@ export default function ShrastiEnterprisesHome() {
                     onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.border; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}
                   >
                     <div style={{ position: "relative", width: 180, minHeight: 140, flexShrink: 0, overflow: "hidden" }}>
-                      <Image src={p.image} alt={p.title} fill className="object-cover" sizes="180px" />
+                      <Image src={p.image} alt={p.title} fill className="object-contain" sizes="180px" />
                     </div>
                     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", flex: 1, padding: "24px 28px", gap: 18 }}>
                       <div style={{ minWidth: 220 }}>
@@ -959,7 +966,7 @@ export default function ShrastiEnterprisesHome() {
                     return p ? (
                       <div style={{ display: "flex", gap: 14, padding: 14, borderRadius: 12, background: T.bgAlt, border: `1.5px solid ${T.divider}` }}>
                         <div style={{ position: "relative", width: 64, height: 64, borderRadius: 8, overflow: "hidden", flexShrink: 0 }}>
-                          <Image src={p.image} alt={p.title} fill className="object-cover" sizes="64px" />
+                          <Image src={p.image} alt={p.title} fill className="object-contain" sizes="64px" />
                         </div>
                         <div>
                           <div style={{ fontSize: 15, fontWeight: 800, color: T.navy }}>{p.title}</div>
