@@ -380,7 +380,7 @@ export default function ShrastiEnterprisesHome() {
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <motion.a href="#">
   <Image
-    src="/logo.png"
+    src="/products/shrasti-enterprises-logo.png"
     alt="Shrasti Enterprises"
     width={140}
     height={60}
