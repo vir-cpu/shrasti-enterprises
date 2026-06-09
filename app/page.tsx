@@ -204,7 +204,7 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-contain"
-          style={{ padding: "20px",
+          style={{ padding: "04px",
     transform: hovered ? "scale(1.03)" : "scale(1)", transition: "transform 0.55s ease" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 55%, rgba(247,244,238,0.9) 100%)", pointerEvents: "none" }} />
