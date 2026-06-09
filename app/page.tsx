@@ -478,7 +478,14 @@ export default function ShrastiEnterprisesHome() {
         <div style={{ position: "absolute", top: 0, bottom: 0, right: "38%", width: 1.5, background: `linear-gradient(180deg, transparent, ${T.gold}55, transparent)`, pointerEvents: "none" }} />
 
         <motion.div style={{ y: heroY, opacity: heroOpacity, maxWidth: 1280, margin: "0 auto", width: "100%", position: "relative", zIndex: 2, paddingTop: 80, paddingBottom: 80 }}>
-          <div style={{ display: "grid", gap: 48, alignItems: "center" }} className="lg:grid-cols-[1fr_520px]">
+          <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: 32,
+    alignItems: "flex-start"
+  }}
+>
 
             {/* ── Left column: text ── */}
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
@@ -496,39 +503,7 @@ export default function ShrastiEnterprisesHome() {
                 <span style={{ backgroundImage: `linear-gradient(90deg, ${T.gold} 0%, ${T.goldLight} 60%, ${T.gold} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Systems</span>
               </motion.h1>
 
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }}
-                style={{ fontSize: 18, color: T.textMid, lineHeight: 1.75, fontWeight: 400, maxWidth: 520, margin: 0 }}>
-                We engineer high-volume structural packaging and technical films for enterprise distribution networks —
-                perfect consistency, straight from our SIDCUL industrial assembly lines.
-              </motion.p>
-
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.42 }}
-                style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
-                <motion.a whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
-                  href="#product-matrix"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 34px", borderRadius: 10, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 6px 28px ${T.goldGlow}` }}>
-                  Explore Inventory <span>→</span>
-                </motion.a>
-                <motion.a whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
-                  href="tel:+918449350005"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 34px", borderRadius: 10, border: `2px solid ${T.blue}55`, background: `${T.blue}0D`, color: T.blue, fontWeight: 800, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none" }}>
-                  <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                  Call the Plant
-                </motion.a>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
-                style={{ display: "flex", gap: 24, flexWrap: "wrap", paddingTop: 4 }}>
-                {["Factory Direct", "Bulk Supply", "Premium Quality"].map((t, i) => (
-                  <span key={t} style={{ fontSize: 12, fontWeight: 700, color: T.textSoft, letterSpacing: "0.14em", textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
-                    {i > 0 && <span style={{ color: T.gold }}>|</span>}
-                    {t}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* ── Right column: HERO PRODUCT IMAGE ── */}
+              {/* ── Right column: HERO PRODUCT IMAGE ── */}
             <motion.div
               initial={{ opacity: 0, x: 50, scale: 0.96 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -581,6 +556,40 @@ export default function ShrastiEnterprisesHome() {
                 </div>
               </div>
 
+
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }}
+                style={{ fontSize: 18, color: T.textMid, lineHeight: 1.75, fontWeight: 400, maxWidth: 520, margin: 0 }}>
+                We engineer high-volume structural packaging and technical films for enterprise distribution networks —
+                perfect consistency, straight from our SIDCUL industrial assembly lines.
+              </motion.p>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.42 }}
+                style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+                <motion.a whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
+                  href="#product-matrix"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 34px", borderRadius: 10, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 6px 28px ${T.goldGlow}` }}>
+                  Explore Inventory <span>→</span>
+                </motion.a>
+                <motion.a whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
+                  href="tel:+918449350005"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "15px 34px", borderRadius: 10, border: `2px solid ${T.blue}55`, background: `${T.blue}0D`, color: T.blue, fontWeight: 800, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none" }}>
+                  <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                  Call the Plant
+                </motion.a>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
+                style={{ display: "flex", gap: 24, flexWrap: "wrap", paddingTop: 4 }}>
+                {["Factory Direct", "Bulk Supply", "Premium Quality"].map((t, i) => (
+                  <span key={t} style={{ fontSize: 12, fontWeight: 700, color: T.textSoft, letterSpacing: "0.14em", textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
+                    {i > 0 && <span style={{ color: T.gold }}>|</span>}
+                    {t}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+
+            
               {/* Floating badge — top right */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
