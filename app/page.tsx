@@ -454,26 +454,30 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           HERO — with product image on right
       ══════════════════════════════════════════ */}
-      <section id="about-plant" style={{
-        position: "relative", minHeight: "calc(100vh - 56px)", display: "flex", alignItems: "center",
-        padding: "0 24px", paddingTop: 72, overflow: "hidden",
-        background: `linear-gradient(160deg, #F7F4EE 0%, #EEF2FB 55%, #F7F4EE 100%)`,
-      }}>
-        <div style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage: `linear-gradient(${T.blue}0A 1px, transparent 1px), linear-gradient(to right, ${T.blue}0A 1px, transparent 1px)`,
-          backgroundSize: "52px 52px",
-        }} />
-
+      <section
+  id="about-plant"
+  style={{
+    position: "relative",
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+    overflow: "hidden",
+    padding: "0",
+    background: "#F7F4EE",
+  }}
+>
         <motion.div style={{ y: heroY, opacity: heroOpacity, maxWidth: 1120, margin: "0 auto", width: "100%", position: "relative", zIndex: 2, paddingTop: 32, paddingBottom: 48 }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 18 }}>
+          <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    alignItems: "center",
+    gap: "60px",
+    minHeight: "85vh",
+  }}
+>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 }}>
               <ShrastiLogo size="lg" />
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 }}
-              style={{ fontSize: "clamp(24px, 3vw, 38px)", fontWeight: 900, color: T.navy, lineHeight: 1.05, letterSpacing: 0 }}>
-              Shrasti Enterprises
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
@@ -482,8 +486,13 @@ export default function ShrastiEnterprisesHome() {
               Haridwar Factory Direct - SIDCUL Industrial Zone
             </motion.div>
 
+            <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }}
+              style={{ fontSize: "clamp(18px, 2vw, 23px)", color: T.textMid, lineHeight: 1.65, fontWeight: 500, maxWidth: 860, margin: 0 }}>
+              Shrasti Enterprises manufactures BOPP tapes, stretch films, shrink sleeves, poly bags, strapping rolls, and industrial packaging materials for bulk buyers across North India, with consistent quality straight from our SIDCUL Haridwar assembly lines.
+            </motion.p>
+
             <motion.h1 initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 20, mass: 0.7 }}
-              style={{ fontSize: "clamp(40px, 5.6vw, 72px)", fontWeight: 900, lineHeight: 1.02, color: T.navy, letterSpacing: 0, margin: 0, maxWidth: 960 }}>
+              style={{ fontSize: "clamp(54px, 7vw, 96px)", fontWeight: 900, lineHeight: 1.02, color: T.navy, letterSpacing: 0, margin: 0, maxWidth: 960 }}>
               <span>Next-Gen </span>
               <span style={{ backgroundImage: `linear-gradient(90deg, ${T.blue} 0%, ${T.blueLight} 60%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Packaging </span>
               <span style={{ backgroundImage: `linear-gradient(90deg, ${T.gold} 0%, ${T.goldLight} 60%, ${T.gold} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Systems</span>
@@ -493,7 +502,7 @@ export default function ShrastiEnterprisesHome() {
               initial={{ opacity: 0, y: 34, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.16, type: "spring", stiffness: 145, damping: 20, mass: 0.72 }}
-              style={{ position: "relative", width: "min(100%, 1080px)", margin: "0 auto" }}
+              style={{ position: "relative", width: "min(100%, 1400px)", margin: "0 auto" }}
             >
               <div style={{
                 position: "absolute", inset: -16,
@@ -501,7 +510,7 @@ export default function ShrastiEnterprisesHome() {
                 borderRadius: 26, pointerEvents: "none",
               }} />
               <div style={{
-                position: "relative", borderRadius: 14, overflow: "hidden", aspectRatio: "16 / 6.5",
+                position: "relative", borderRadius: 14, overflow: "hidden", aspectRatio: "16 / 8.5",
                 border: `2px solid ${T.gold}55`, background: "#F3F1EA",
                 boxShadow: `0 30px 78px rgba(13,31,78,0.14), 0 0 0 1px ${T.divider}, 0 0 38px ${T.goldGlow}`,
               }}>
@@ -521,19 +530,14 @@ export default function ShrastiEnterprisesHome() {
                     ["24/7", "Production"],
                     ["ISO", "Verified"],
                   ].map(([value, label]) => (
-                    <div key={label} style={{ borderRadius: 10, padding: "8px 12px", background: "rgba(255,255,255,0.88)", border: `1px solid ${T.divider}`, boxShadow: "0 8px 22px rgba(13,31,78,0.10)", textAlign: "left" }}>
-                      <div style={{ fontSize: 18, fontWeight: 900, color: T.navy, lineHeight: 1 }}>{value}</div>
-                      <div style={{ fontSize: 9, fontWeight: 800, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
+                    <div key={label} style={{ borderRadius: 10, padding: "clamp(4px, 1vw, 8px) clamp(8px, 1.5vw, 12px)", background: "rgba(255,255,255,0.88)", border: `1px solid ${T.divider}`, boxShadow: "0 8px 22px rgba(13,31,78,0.10)", textAlign: "left" }}>
+                      <div style={{ fontSize: "clamp(10px, 2vw, 18px)", fontWeight: 900, color: T.navy, lineHeight: 1 }}>{value}</div>
+                      <div style={{ fontSize: "clamp(6px, 1vw, 9px)", fontWeight: 800, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
                     </div>
                   ))}
                 </div>
               </div>
             </motion.div>
-
-            <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }}
-              style={{ fontSize: "clamp(18px, 2vw, 23px)", color: T.textMid, lineHeight: 1.65, fontWeight: 500, maxWidth: 860, margin: 0 }}>
-              Shrasti Enterprises manufactures BOPP tapes, stretch films, shrink sleeves, poly bags, strapping rolls, and industrial packaging materials for bulk buyers across North India, with consistent quality straight from our SIDCUL Haridwar assembly lines.
-            </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28 }}
               style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14 }}>
