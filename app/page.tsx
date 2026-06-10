@@ -271,11 +271,12 @@ export default function ShrastiEnterprisesHome() {
   const [selectedProduct,  setSelectedProduct]    = useState("BOPP Tapes");
   const [volume,           setVolume]             = useState("");
   const [deliveryHub,      setDeliveryHub]         = useState("");
-  const [contactName,      setContactName]         = useState("");
-  const [contactPhone,     setContactPhone]        = useState("");
-  const [layoutMode,       setLayoutMode]          = useState<"grid" | "list">("grid");
-  const [mobileOpen,       setMobileOpen]          = useState(false);
-  const [mousePos,         setMousePos]            = useState({ x: -2000, y: -2000 });
+  const [contactName,      setContactName]       = useState("");
+  const [contactPhone,     setContactPhone]      = useState("");
+  const [layoutMode,       setLayoutMode]        = useState<"grid" | "list">("grid");
+  const [mobileOpen,       setMobileOpen]        = useState(false);
+  const [mousePos,         setMousePos]          = useState({ x: -2000, y: -2000 });
+  const [openTerm,         setOpenTerm]          = useState<number | null>(null);
 
   const { scrollYProgress } = useScroll();
   const smoothProgress      = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -945,6 +946,82 @@ export default function ShrastiEnterprisesHome() {
       </section>
 
       {/* ══════════════════════════════════════════
+          TERMS & CONDITIONS
+      ══════════════════════════════════════════ */}
+      <section id="terms-conditions" style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48, textAlign: "center" }}>
+            <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
+              Legal
+            </div>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>Terms &amp; Conditions</h2>
+            <p style={{ fontSize: 16, color: T.textMid, maxWidth: 560, margin: "0 auto", lineHeight: 1.7, fontWeight: 400 }}>
+              Please review these terms before placing orders with Shrasti Enterprises. Continued engagement implies acceptance.
+            </p>
+          </motion.div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {[
+              {
+                title: "1. Orders &amp; Pricing",
+                body: "All prices quoted are factory-direct rates from our SIDCUL Haridwar facility. Prices are subject to change without prior notice based on raw polymer costs. An order is considered confirmed only upon receipt of a purchase order and our written acknowledgement. Minimum order quantities (MOQ) and dispatch timelines will be communicated at the time of quotation.",
+              },
+              {
+                title: "2. Payment Terms",
+                body: "For new clients, a 50% advance is required prior to production, with the balance payable before dispatch. Existing clients with approved credit limits may opt for net-15 or net-30 terms as mutually agreed. Payments must be made via bank transfer or cheque favouring 'Shrasti Enterprises'. Late payments may incur interest at 1.5% per month.",
+              },
+              {
+                title: "3. Delivery &amp; Logistics",
+                body: "Delivery timelines are estimates and subject to force majeure events including but not limited to floods, road blockages, fuel scarcity, and government regulations. We deliver across North India via our own fleet and partnered logistics providers. Risk of loss transfers to the buyer upon handover to the carrier at our factory premises.",
+              },
+              {
+                title: "4. Quality &amp; Returns",
+                body: "Every batch is micrometer-verified and meets ISO-aligned specifications. Claims for damaged or defective material must be raised in writing within 72 hours of receipt with photographic evidence. Returns are accepted only for manufacturing defects; freight-back charges and restocking fees apply. Custom-printed or specially tailored products cannot be returned unless proven defective.",
+              },
+              {
+                title: "5. Limitation of Liability",
+                body: "Shrasti Enterprises shall not be liable for any indirect, incidental, or consequential damages arising from the use or inability to use our products. Our total liability under any claim shall not exceed the purchase value of the specific goods in question. We are not liable for loss of profit, data, or production downtime at the buyer's facility.",
+              },
+              {
+                title: "6. Intellectual Property",
+                body: "All trademarks, logos, product designs, and brand content published by Shrasti Enterprises remain our exclusive property. Buyers may not reproduce, distribute, or use our branding without prior written consent. Custom printing orders delivered to clients become their property; however, we retain the right to showcase the design in our portfolio unless confidentiality is explicitly agreed in writing.",
+              },
+              {
+                title: "7. Governing Law &amp; Dispute Resolution",
+                body: "These terms are governed by the laws of India, with the courts of Haridwar, Uttarakhand holding exclusive jurisdiction. Any dispute shall first be attempted to be resolved through negotiation within 30 days. Failing resolution, disputes will proceed to arbitration under the Arbitration and Conciliation Act, 1996, with a sole arbitrator appointed by mutual agreement.",
+              },
+            ].map((item, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}
+                style={{ background: T.bgSection, borderRadius: 14, border: `1.5px solid ${T.divider}`, overflow: "hidden", transition: "all 0.16s" }}>
+                <button
+                  onClick={() => setOpenTerm(openTerm === i ? null : i)}
+                  style={{
+                    width: "100%", background: "none", border: "none", cursor: "pointer",
+                    padding: "22px 26px", display: "flex", justifyContent: "space-between", alignItems: "center",
+                    gap: 16, textAlign: "left",
+                  }}
+                >
+                  <span style={{ fontSize: 16, fontWeight: 800, color: T.navy, letterSpacing: "-0.01em" }}>{item.title}</span>
+                  <motion.span animate={{ rotate: openTerm === i ? 45 : 0 }} transition={{ duration: 0.2 }}
+                    style={{ fontSize: 22, color: T.gold, fontWeight: 700, flexShrink: 0, lineHeight: 1 }}>+</motion.span>
+                </button>
+                <AnimatePresence>
+                  {openTerm === i && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22 }}
+                      style={{ overflow: "hidden" }}>
+                      <div style={{ padding: "0 26px 24px", borderTop: `1px solid ${T.divider}` }}>
+                        <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.8, fontWeight: 500, marginTop: 18, margin: "18px 0 0" }}>{item.body}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           FOOTER
       ══════════════════════════════════════════ */}
       <footer style={{ background: T.footerBg, padding: "64px 24px 28px", position: "relative", overflow: "hidden" }}>
@@ -988,7 +1065,7 @@ export default function ShrastiEnterprisesHome() {
           <div>
             <h4 style={{ fontSize: 14, fontWeight: 900, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Manufacturing Center</h4>
             <p style={{ fontSize: 16, color: T.footerText, lineHeight: 1.8, fontWeight: 500 }}>
-              Near Prince Pipe and Fittings,<br />
+              Near Prince Pipe &amp; Fittings,<br />
               Industrial Park - 2, Denso Chowk,<br />
               SIDCUL Haridwar — 249402
             </p>
