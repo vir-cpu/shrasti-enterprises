@@ -280,8 +280,9 @@ export default function ShrastiEnterprisesHome() {
 
   const { scrollYProgress } = useScroll();
   const smoothProgress      = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const heroY               = useTransform(smoothProgress, [0, 0.3], ["0%", "10%"]);
-  const heroOpacity         = useTransform(smoothProgress, [0, 0.28], [1, 0]);
+  const heroY               = useTransform(smoothProgress, [0, 0.35], ["0%", "12%"]);
+  const heroOpacity         = useTransform(smoothProgress, [0, 0.3], [1, 0]);
+  const heroImageScale      = useTransform(smoothProgress, [0, 0.25], [1, 1.08]);
 
   const rafRef = useRef<number | null>(null);
   const handleMouseMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
@@ -484,7 +485,7 @@ export default function ShrastiEnterprisesHome() {
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 20, mass: 0.7 }}
-              style={{ fontSize: "clamp(40px, 5.6vw, 72px)", fontWeight: 900, lineHeight: 1.02, color: T.navy, letterSpacing: 0, margin: 0, maxWidth: 960 }}>
+              style={{ fontSize: "clamp(56px, 8vw, 120px)", fontWeight: 900, lineHeight: 0.98, color: T.navy, letterSpacing: "-0.02em", margin: 0, maxWidth: 1000 }}>
               <span>Next-Gen </span>
               <span style={{ backgroundImage: `linear-gradient(90deg, ${T.blue} 0%, ${T.blueLight} 60%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Packaging </span>
               <span style={{ backgroundImage: `linear-gradient(90deg, ${T.gold} 0%, ${T.goldLight} 60%, ${T.gold} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Systems</span>
@@ -494,17 +495,17 @@ export default function ShrastiEnterprisesHome() {
               initial={{ opacity: 0, y: 34, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.16, type: "spring", stiffness: 145, damping: 20, mass: 0.72 }}
-              style={{ position: "relative", width: "min(100%, 1080px)", margin: "0 auto" }}
+              style={{ position: "relative", width: "min(100%, 1080px)", margin: "0 auto", scale: heroImageScale }}
             >
               <div style={{
-                position: "absolute", inset: -16,
+                position: "absolute", inset: -24,
                 background: `radial-gradient(ellipse at center, ${T.goldGlow} 0%, transparent 70%)`,
-                borderRadius: 26, pointerEvents: "none",
+                borderRadius: 28, pointerEvents: "none", filter: "blur(1px)",
               }} />
               <div style={{
-                position: "relative", borderRadius: 14, overflow: "hidden", aspectRatio: "16 / 6.5",
-                border: `2px solid ${T.gold}55`, background: "#F3F1EA",
-                boxShadow: `0 30px 78px rgba(13,31,78,0.14), 0 0 0 1px ${T.divider}, 0 0 38px ${T.goldGlow}`,
+                position: "relative", borderRadius: 20, overflow: "hidden", aspectRatio: "16 / 5.2",
+                border: `2.5px solid ${T.gold}66`, background: "#F3F1EA",
+                boxShadow: `0 40px 100px rgba(13,31,78,0.16), 0 0 0 1px ${T.divider}, 0 0 48px ${T.goldGlow}`,
               }}>
                 <Image
                   src="/hero-products.jpg"
@@ -515,14 +516,14 @@ export default function ShrastiEnterprisesHome() {
                   priority
                   style={{ objectPosition: "center" }}
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0.04), rgba(13,31,78,0.20))", pointerEvents: "none" }} />
-                <div style={{ position: "absolute", top: 18, left: 18, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(13,31,78,0.16))", pointerEvents: "none" }} />
+                <div style={{ position: "absolute", top: 20, left: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
                   {[
                     ["11", "Solutions"],
                     ["24/7", "Production"],
                     ["ISO", "Verified"],
                   ].map(([value, label]) => (
-                    <div key={label} style={{ borderRadius: 10, padding: "8px 12px", background: "rgba(255,255,255,0.88)", border: `1px solid ${T.divider}`, boxShadow: "0 8px 22px rgba(13,31,78,0.10)", textAlign: "left" }}>
+                    <div key={label} style={{ borderRadius: 12, padding: "9px 14px", background: "rgba(255,255,255,0.92)", border: `1.5px solid ${T.divider}`, boxShadow: "0 12px 32px rgba(13,31,78,0.12)", textAlign: "left" }}>
                       <div style={{ fontSize: 18, fontWeight: 900, color: T.navy, lineHeight: 1 }}>{value}</div>
                       <div style={{ fontSize: 9, fontWeight: 800, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
                     </div>
@@ -576,13 +577,16 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           METRICS
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.bgAlt, padding: "72px 24px" }}>
+      <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
             <motion.div key={i}
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.035, type: "spring", stiffness: 145, damping: 20, mass: 0.7 }}
-              whileHover={{ y: -8, scale: 1.015, boxShadow: `0 16px 40px rgba(13,31,78,0.10), 0 0 0 2px ${T.gold}55` }}
-              style={{ background: T.bgSection, borderRadius: 16, padding: "28px 28px 24px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "box-shadow 0.16s, transform 0.16s", cursor: "default" }}>
+              whileHover={{ y: -10, scale: 1.018, boxShadow: `0 20px 52px rgba(13,31,78,0.12), 0 0 0 2.5px ${T.gold}66` }}
+              style={{ background: T.bgSection, borderRadius: 16, padding: "28px 28px 24px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "box-shadow 0.18s, transform 0.18s, border-color 0.18s", cursor: "default" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = T.gold; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = T.divider; }}
+            >
               <div style={{ fontSize: 42, fontWeight: 900, color: T.blue, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: T.navy, marginBottom: 4 }}>{s.label}</div>
               <div style={{ fontSize: 12, color: T.textSoft, fontWeight: 500 }}>{s.support}</div>
@@ -595,7 +599,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           WHY CHOOSE US
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section style={{ background: T.bg, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52, textAlign: "center" }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -613,8 +617,8 @@ export default function ShrastiEnterprisesHome() {
             {whyChooseUs.map((item, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.03, type: "spring", stiffness: 145, damping: 20, mass: 0.7 }}
-                whileHover={{ y: -9, scale: 1.015, boxShadow: `0 20px 48px rgba(13,31,78,0.10), 0 0 0 2px ${T.gold}44` }}
-                style={{ background: T.bgSection, borderRadius: 16, padding: "28px 26px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.16s ease", cursor: "default" }}
+                whileHover={{ y: -12, scale: 1.02, boxShadow: `0 24px 56px rgba(13,31,78,0.12), 0 0 0 2.5px ${T.gold}66` }}
+                style={{ background: T.bgSection, borderRadius: 16, padding: "28px 26px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.18s ease", cursor: "default" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = T.gold; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = T.divider; }}
               >
@@ -633,7 +637,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           PRODUCT CATALOG
       ══════════════════════════════════════════ */}
-      <section id="product-matrix" style={{ background: T.bgAlt, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="product-matrix" style={{ background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
 
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 20, marginBottom: 36 }}>
@@ -713,7 +717,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           PRODUCTION TABS
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}`, borderBottom: `1px solid ${T.divider}` }}>
+      <section style={{ background: T.bg, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}`, borderBottom: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr", gap: 40, alignItems: "start" }} className="lg:grid-cols-[360px_1fr]">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -759,7 +763,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
       ══════════════════════════════════════════ */}
-      <section id="logistics-grid" style={{ background: T.bgAlt, padding: "80px 24px" }}>
+      <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -775,10 +779,10 @@ export default function ShrastiEnterprisesHome() {
             {distributionRoutes.map((r, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.025 }}
-                whileHover={{ y: -8, scale: 1.015 }}
-                style={{ background: T.bgSection, borderRadius: 14, padding: "26px 26px 22px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.16s", cursor: "default" }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.gold; el.style.boxShadow = `0 0 0 3px ${T.goldGlow}, 0 12px 32px rgba(13,31,78,0.08)`; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.divider; el.style.boxShadow = "0 2px 12px rgba(13,31,78,0.05)"; }}
+                whileHover={{ y: -10, scale: 1.018, boxShadow: `0 0 0 2.5px ${T.gold}66, 0 16px 44px rgba(13,31,78,0.10)` }}
+                style={{ background: T.bgSection, borderRadius: 14, padding: "26px 26px 22px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.18s ease", cursor: "default" }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.gold; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.divider; }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
                   <h4 style={{ fontSize: 17, fontWeight: 800, color: T.navy, margin: 0 }}>{r.region}</h4>
@@ -798,7 +802,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           CTA BANNER
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.navy, padding: "72px 24px", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: T.navy, padding: "100px 24px 96px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${T.gold}08 1px, transparent 1px), linear-gradient(to right, ${T.gold}08 1px, transparent 1px)`, backgroundSize: "48px 48px", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${T.gold}66, transparent)` }} />
@@ -834,7 +838,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           RFQ FORM
       ══════════════════════════════════════════ */}
-      <section id="quote-configurator" style={{ background: T.bgAlt, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="quote-configurator" style={{ background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             style={{ background: T.bgSection, borderRadius: 20, padding: "clamp(28px,5vw,52px)", border: `1.5px solid ${T.divider}`, boxShadow: "0 8px 48px rgba(13,31,78,0.08)" }}>
@@ -948,7 +952,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           TERMS & CONDITIONS
       ══════════════════════════════════════════ */}
-      <section id="terms-conditions" style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="terms-conditions" style={{ background: T.bg, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48, textAlign: "center" }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -1024,7 +1028,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           FOOTER
       ══════════════════════════════════════════ */}
-      <footer style={{ background: T.footerBg, padding: "64px 24px 28px", position: "relative", overflow: "hidden" }}>
+      <footer style={{ background: T.footerBg, padding: "80px 24px 36px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
         <div style={{ position: "absolute", right: -40, bottom: -40, opacity: 0.04, pointerEvents: "none" }}>
           <ShrastiLogo size="lg" dark />
