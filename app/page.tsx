@@ -8,7 +8,6 @@ import {
   AnimatePresence,
   useScroll,
   useSpring,
-  useTransform,
   type Variants,
 } from "framer-motion";
 
@@ -280,8 +279,6 @@ export default function ShrastiEnterprisesHome() {
 
   const { scrollYProgress } = useScroll();
   const smoothProgress      = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const heroY               = useTransform(smoothProgress, [0, 0.3], ["0%", "10%"]);
-  const heroOpacity         = useTransform(smoothProgress, [0, 0.28], [1, 0]);
 
   const rafRef = useRef<number | null>(null);
   const handleMouseMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
@@ -453,104 +450,117 @@ export default function ShrastiEnterprisesHome() {
       </header>
 
       {/* ══════════════════════════════════════════
-          HERO — with product image on right
+          HERO — Image-Dominant Overlay Layout
       ══════════════════════════════════════════ */}
       <section id="about-plant" style={{
-        position: "relative", minHeight: "calc(100vh - 56px)", display: "flex", alignItems: "center",
-        padding: "0 24px", paddingTop: 72, overflow: "hidden",
-        background: `linear-gradient(160deg, #F7F4EE 0%, #EEF2FB 55%, #F7F4EE 100%)`,
+        position: "relative", height: "100vh", width: "100%", overflow: "hidden",
       }}>
+        {/* Hero Background Image - fills 95% of viewport */}
+        <Image
+          src="/hero-products.jpg"
+          alt="Shrasti Enterprises premium packaging solutions"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+          style={{ objectPosition: "center" }}
+        />
+        {/* Overlay gradient for text readability */}
         <div style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage: `linear-gradient(${T.blue}0A 1px, transparent 1px), linear-gradient(to right, ${T.blue}0A 1px, transparent 1px)`,
-          backgroundSize: "52px 52px",
+          position: "absolute", inset: 0,
+          background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
+          pointerEvents: "none"
         }} />
 
-        <motion.div style={{ y: heroY, opacity: heroOpacity, maxWidth: 1120, margin: "0 auto", width: "100%", position: "relative", zIndex: 2, paddingTop: 32, paddingBottom: 48 }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 18 }}>
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 }}>
-              <ShrastiLogo size="lg" />
+        {/* Text Content Overlay - positioned on LEFT side */}
+        <motion.div style={{
+          position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
+          display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center",
+          padding: "60px 40px", zIndex: 10,
+          maxWidth: "50%",
+        }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            {/* Logo */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
+              <ShrastiLogo size="md" />
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 }}
-              style={{ fontSize: "clamp(24px, 3vw, 38px)", fontWeight: 900, color: T.navy, lineHeight: 1.05, letterSpacing: 0 }}>
-              Shrasti Enterprises
+            {/* Badge */}
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}>
+              <span style={{ width: 7, height: 7, borderRadius: "50%", background: T.gold }} />
+              Haridwar Factory Direct
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
-              style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "7px 16px", borderRadius: 999, border: `1px solid ${T.gold}88`, background: `${T.gold}14`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: T.gold, animation: "ping 1.5s infinite", boxShadow: `0 0 8px ${T.gold}` }} />
-              Haridwar Factory Direct - SIDCUL Industrial Zone
-            </motion.div>
-
-            <motion.h1 initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 20, mass: 0.7 }}
-              style={{ fontSize: "clamp(40px, 5.6vw, 72px)", fontWeight: 900, lineHeight: 1.02, color: T.navy, letterSpacing: 0, margin: 0, maxWidth: 960 }}>
-              <span>Next-Gen </span>
-              <span style={{ backgroundImage: `linear-gradient(90deg, ${T.blue} 0%, ${T.blueLight} 60%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Packaging </span>
-              <span style={{ backgroundImage: `linear-gradient(90deg, ${T.gold} 0%, ${T.goldLight} 60%, ${T.gold} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Systems</span>
+            {/* Main Headline */}
+            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
+              style={{
+                fontSize: "clamp(48px, 5vw, 64px)", fontWeight: 900, lineHeight: 1.1, color: "#FFF",
+                letterSpacing: "-0.01em", margin: 0, textShadow: "0 4px 12px rgba(0,0,0,0.3)",
+              }}>
+              Next-Gen Packaging Systems
             </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 34, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.16, type: "spring", stiffness: 145, damping: 20, mass: 0.72 }}
-              style={{ position: "relative", width: "min(100%, 1080px)", margin: "0 auto" }}
-            >
-              <div style={{
-                position: "absolute", inset: -16,
-                background: `radial-gradient(ellipse at center, ${T.goldGlow} 0%, transparent 70%)`,
-                borderRadius: 26, pointerEvents: "none",
-              }} />
-              <div style={{
-                position: "relative", borderRadius: 14, overflow: "hidden", aspectRatio: "16 / 6.5",
-                border: `2px solid ${T.gold}55`, background: "#F3F1EA",
-                boxShadow: `0 30px 78px rgba(13,31,78,0.14), 0 0 0 1px ${T.divider}, 0 0 38px ${T.goldGlow}`,
+            {/* Supporting Text */}
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }}
+              style={{
+                fontSize: "clamp(14px, 1.5vw, 18px)", color: "rgba(255, 255, 255, 0.85)", lineHeight: 1.6,
+                fontWeight: 400, maxWidth: 320, margin: 0,
               }}>
-                <Image
-                  src="/hero-products.jpg"
-                  alt="Shrasti Enterprises product range"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 980px"
-                  className="object-cover"
-                  priority
-                  style={{ objectPosition: "center" }}
-                />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,255,255,0.04), rgba(13,31,78,0.20))", pointerEvents: "none" }} />
-                <div style={{ position: "absolute", top: 18, left: 18, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                  {[
-                    ["11", "Solutions"],
-                    ["24/7", "Production"],
-                    ["ISO", "Verified"],
-                  ].map(([value, label]) => (
-                    <div key={label} style={{ borderRadius: 10, padding: "8px 12px", background: "rgba(255,255,255,0.88)", border: `1px solid ${T.divider}`, boxShadow: "0 8px 22px rgba(13,31,78,0.10)", textAlign: "left" }}>
-                      <div style={{ fontSize: 18, fontWeight: 900, color: T.navy, lineHeight: 1 }}>{value}</div>
-                      <div style={{ fontSize: 9, fontWeight: 800, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }}
-              style={{ fontSize: "clamp(18px, 2vw, 23px)", color: T.textMid, lineHeight: 1.65, fontWeight: 500, maxWidth: 860, margin: 0 }}>
-              Shrasti Enterprises manufactures BOPP tapes, stretch films, shrink sleeves, poly bags, strapping rolls, and industrial packaging materials for bulk buyers across North India, with consistent quality straight from our SIDCUL Haridwar assembly lines.
+              Industrial-grade BOPP tapes, stretch films, and packaging solutions manufactured for bulk buyers across North India.
             </motion.p>
 
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28 }}
-              style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14 }}>
-              <motion.a whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
+            {/* CTAs */}
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28 }}
+              style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 12 }}>
+              <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
                 href="#product-matrix"
-                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 30px", borderRadius: 8, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800, fontSize: 12, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 6px 28px ${T.goldGlow}` }}>
-                Explore Inventory <span>--&gt;</span>
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 26px", borderRadius: 8,
+                  background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800,
+                  fontSize: 13, letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none",
+                  boxShadow: `0 8px 24px rgba(212, 175, 55, 0.3)`, cursor: "pointer",
+                }}>
+                Explore Inventory <span>→</span>
               </motion.a>
-              <motion.a whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
+              <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
                 href="tel:+918449350005"
-                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 30px", borderRadius: 8, border: `1.5px solid ${T.blue}55`, background: `${T.blue}0D`, color: T.blue, fontWeight: 800, fontSize: 12, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}>
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 26px", borderRadius: 8,
+                  border: `1.5px solid rgba(255, 255, 255, 0.4)`, background: "rgba(255, 255, 255, 0.08)",
+                  backdropFilter: "blur(8px)", color: "#FFF", fontWeight: 800, fontSize: 13,
+                  letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
+                }}>
                 <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                Call the Plant
+                Call Plant
               </motion.a>
             </motion.div>
           </div>
+        </motion.div>
+
+        {/* Trust Badges on bottom left overlay */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 }}
+          style={{
+            position: "absolute", bottom: 40, left: 40, zIndex: 10,
+            display: "flex", gap: 20, flexWrap: "wrap",
+          }}>
+          {[
+            { label: "ISO Certified", icon: "✓" },
+            { label: "24/7 Production", icon: "⚡" },
+            { label: "Direct Supply", icon: "🚚" },
+          ].map((badge, i) => (
+            <motion.div key={i}
+              whileHover={{ scale: 1.05 }}
+              style={{
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "8px 14px", borderRadius: 8,
+                background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)",
+                border: `1px solid rgba(255, 255, 255, 0.2)`,
+              }}>
+              <span style={{ fontSize: 16 }}>{badge.icon}</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: "#FFF", letterSpacing: "0.04em" }}>{badge.label}</span>
+            </motion.div>
+          ))}
         </motion.div>
       </section>
       {/* ══════════════════════════════════════════
@@ -575,14 +585,17 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           METRICS
-      ══════════════════════════════════════════ */}
-      <section style={{ background: T.bgAlt, padding: "72px 24px" }}>
+      ═══════════════════════════���══════════════ */}
+      <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
             <motion.div key={i}
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.035, type: "spring", stiffness: 145, damping: 20, mass: 0.7 }}
-              whileHover={{ y: -8, scale: 1.015, boxShadow: `0 16px 40px rgba(13,31,78,0.10), 0 0 0 2px ${T.gold}55` }}
-              style={{ background: T.bgSection, borderRadius: 16, padding: "28px 28px 24px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "box-shadow 0.16s, transform 0.16s", cursor: "default" }}>
+              whileHover={{ y: -10, scale: 1.018, boxShadow: `0 20px 52px rgba(13,31,78,0.12), 0 0 0 2.5px ${T.gold}66` }}
+              style={{ background: T.bgSection, borderRadius: 16, padding: "28px 28px 24px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "box-shadow 0.18s, transform 0.18s, border-color 0.18s", cursor: "default" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = T.gold; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = T.divider; }}
+            >
               <div style={{ fontSize: 42, fontWeight: 900, color: T.blue, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: T.navy, marginBottom: 4 }}>{s.label}</div>
               <div style={{ fontSize: 12, color: T.textSoft, fontWeight: 500 }}>{s.support}</div>
@@ -595,7 +608,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           WHY CHOOSE US
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section style={{ background: T.bg, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52, textAlign: "center" }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -613,8 +626,8 @@ export default function ShrastiEnterprisesHome() {
             {whyChooseUs.map((item, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.03, type: "spring", stiffness: 145, damping: 20, mass: 0.7 }}
-                whileHover={{ y: -9, scale: 1.015, boxShadow: `0 20px 48px rgba(13,31,78,0.10), 0 0 0 2px ${T.gold}44` }}
-                style={{ background: T.bgSection, borderRadius: 16, padding: "28px 26px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.16s ease", cursor: "default" }}
+                whileHover={{ y: -12, scale: 1.02, boxShadow: `0 24px 56px rgba(13,31,78,0.12), 0 0 0 2.5px ${T.gold}66` }}
+                style={{ background: T.bgSection, borderRadius: 16, padding: "28px 26px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.18s ease", cursor: "default" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = T.gold; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = T.divider; }}
               >
@@ -633,7 +646,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           PRODUCT CATALOG
       ══════════════════════════════════════════ */}
-      <section id="product-matrix" style={{ background: T.bgAlt, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="product-matrix" style={{ background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
 
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 20, marginBottom: 36 }}>
@@ -713,7 +726,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           PRODUCTION TABS
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}`, borderBottom: `1px solid ${T.divider}` }}>
+      <section style={{ background: T.bg, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}`, borderBottom: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr", gap: 40, alignItems: "start" }} className="lg:grid-cols-[360px_1fr]">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -759,7 +772,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
       ══════════════════════════════════════════ */}
-      <section id="logistics-grid" style={{ background: T.bgAlt, padding: "80px 24px" }}>
+      <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -775,10 +788,10 @@ export default function ShrastiEnterprisesHome() {
             {distributionRoutes.map((r, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.025 }}
-                whileHover={{ y: -8, scale: 1.015 }}
-                style={{ background: T.bgSection, borderRadius: 14, padding: "26px 26px 22px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.16s", cursor: "default" }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.gold; el.style.boxShadow = `0 0 0 3px ${T.goldGlow}, 0 12px 32px rgba(13,31,78,0.08)`; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.divider; el.style.boxShadow = "0 2px 12px rgba(13,31,78,0.05)"; }}
+                whileHover={{ y: -10, scale: 1.018, boxShadow: `0 0 0 2.5px ${T.gold}66, 0 16px 44px rgba(13,31,78,0.10)` }}
+                style={{ background: T.bgSection, borderRadius: 14, padding: "26px 26px 22px", border: `1.5px solid ${T.divider}`, boxShadow: "0 2px 12px rgba(13,31,78,0.05)", transition: "all 0.18s ease", cursor: "default" }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.gold; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.divider; }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
                   <h4 style={{ fontSize: 17, fontWeight: 800, color: T.navy, margin: 0 }}>{r.region}</h4>
@@ -798,7 +811,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           CTA BANNER
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.navy, padding: "72px 24px", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: T.navy, padding: "100px 24px 96px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${T.gold}08 1px, transparent 1px), linear-gradient(to right, ${T.gold}08 1px, transparent 1px)`, backgroundSize: "48px 48px", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${T.gold}66, transparent)` }} />
@@ -834,7 +847,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           RFQ FORM
       ══════════════════════════════════════════ */}
-      <section id="quote-configurator" style={{ background: T.bgAlt, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="quote-configurator" style={{ background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             style={{ background: T.bgSection, borderRadius: 20, padding: "clamp(28px,5vw,52px)", border: `1.5px solid ${T.divider}`, boxShadow: "0 8px 48px rgba(13,31,78,0.08)" }}>
@@ -948,7 +961,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           TERMS & CONDITIONS
       ══════════════════════════════════════════ */}
-      <section id="terms-conditions" style={{ background: T.bg, padding: "80px 24px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="terms-conditions" style={{ background: T.bg, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48, textAlign: "center" }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
@@ -1024,7 +1037,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           FOOTER
       ══════════════════════════════════════════ */}
-      <footer style={{ background: T.footerBg, padding: "64px 24px 28px", position: "relative", overflow: "hidden" }}>
+      <footer style={{ background: T.footerBg, padding: "80px 24px 36px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
         <div style={{ position: "absolute", right: -40, bottom: -40, opacity: 0.04, pointerEvents: "none" }}>
           <ShrastiLogo size="lg" dark />
