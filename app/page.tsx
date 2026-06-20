@@ -173,7 +173,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
   );
 }
 // PRODUCT CARD
-// ──────��──────────────────────────────────────────────────────
+// ──────���──────────────────────────────────────────────────────
 function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]; onQuote: (t: string) => void }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -462,24 +462,25 @@ export default function ShrastiEnterprisesHome() {
         overflow: "hidden",
         backgroundColor: "#F7F4EE",
       }}>
-        {/* Hero Background Image - Responsive mobile/desktop */}
+        {/* Desktop/Tablet Image - hero-products.jpg for 768px and above */}
         <Image
           src="/hero-products.jpg"
           alt="Shrasti Enterprises premium packaging solutions"
           fill
-          sizes="(max-width: 767px) 0vw, (min-width: 768px) 100vw"
+          sizes="100vw"
           priority
           className="hidden md:block"
-          style={{ objectFit: "contain", objectPosition: "center", backgroundColor: "#F7F4EE" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
+        {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
         <Image
           src="/hero-products-mobile.jpg"
           alt="Shrasti Enterprises premium packaging solutions"
           fill
-          sizes="(max-width: 767px) 100vw, (min-width: 768px) 0vw"
+          sizes="100vw"
           priority
           className="block md:hidden"
-          style={{ objectFit: "contain", objectPosition: "center", backgroundColor: "#F7F4EE" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         {/* Overlay gradient for text readability */}
         <div style={{
