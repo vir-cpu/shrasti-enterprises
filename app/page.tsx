@@ -227,7 +227,7 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
       <div style={{ padding: "22px 24px 20px", display: "flex", flexDirection: "column", flex: 1, gap: 12 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
           <h3 style={{ fontSize: 20, fontWeight: 800, color: T.navy, lineHeight: 1.2 }}>{product.title}</h3>
-          <span style={{ fontSize: 11, fontWeight: 600, color: T.textSoft, fontFamily: "monospace", marginTop: 3, whiteSpace: "nowrap" }}>{product.spec}</span>
+          <span style={{ fontSize: 11, fontWeight: 600, color: T.textSoft, fontFamily: "var(--font-montserrat), sans-serif", marginTop: 3, whiteSpace: "nowrap" }}>{product.spec}</span>
         </div>
         <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.7, fontWeight: 400, flex: 1 }}>{product.desc}</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -733,7 +733,7 @@ export default function ShrastiEnterprisesHome() {
                       </div>
                       <p style={{ fontSize: 16, color: T.textMid, flex: 1, minWidth: 220, lineHeight: 1.8, margin: 0 }}>{p.desc}</p>
                       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12, flexShrink: 0 }}>
-                        <span style={{ fontSize: 12, fontWeight: 700, color: T.textSoft, fontFamily: "monospace", letterSpacing: "0.08em" }}>{p.spec}</span>
+                        <span style={{ fontSize: 12, fontWeight: 700, color: T.textSoft, fontFamily: "var(--font-montserrat), sans-serif", letterSpacing: "0.08em" }}>{p.spec}</span>
                         <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} onClick={() => handleQuote(p.title)}
                           style={{ padding: "12px 26px", borderRadius: 12, border: "none", background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontSize: 15, fontWeight: 900, letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", boxShadow: `0 6px 20px ${T.goldGlow}` }}>
                           Request Quote
@@ -783,7 +783,7 @@ export default function ShrastiEnterprisesHome() {
                     {tab.details.map(d => (
                       <div key={d.label} style={{ padding: "16px 18px", borderRadius: 10, background: T.bgAlt, border: `1px solid ${T.divider}` }}>
                         <div style={{ fontSize: 11, fontWeight: 700, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 6 }}>{d.label}</div>
-                        <div style={{ fontSize: 14, fontWeight: 600, color: T.navy, fontFamily: "monospace" }}>{d.value}</div>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: T.navy, fontFamily: "var(--font-montserrat), sans-serif" }}>{d.value}</div>
                       </div>
                     ))}
                   </div>
@@ -825,7 +825,7 @@ export default function ShrastiEnterprisesHome() {
                 <p style={{ fontSize: 14, color: T.textSoft, lineHeight: 1.6, marginBottom: 16, fontWeight: 400 }}>{r.centers}</p>
                 <div style={{ borderTop: `1px solid ${T.divider}`, paddingTop: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <span style={{ fontSize: 11, fontWeight: 700, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase" }}>Transit Time</span>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: T.gold, fontFamily: "monospace" }}>{r.leadTime}</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: T.gold, fontFamily: "var(--font-montserrat), sans-serif" }}>{r.leadTime}</span>
                 </div>
               </motion.div>
             ))}
