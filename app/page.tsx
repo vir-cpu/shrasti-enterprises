@@ -319,6 +319,7 @@ export default function ShrastiEnterprisesHome() {
     { href: "#product-matrix",     label: "Material Index" },
     { href: "#logistics-grid",     label: "Dispatch Map"   },
     { href: "#quote-configurator", label: "Get a Quote"    },
+    { href: "#terms-conditions",   label: "Terms & Conditions" },
   ];
 
   const pill = (active: boolean) => ({
@@ -453,18 +454,26 @@ export default function ShrastiEnterprisesHome() {
           HERO — Image-Dominant Overlay Layout
       ══════════════════════════════════════════ */}
       <section id="about-plant" style={{
-        position: "relative", height: "100vh", width: "100%", overflow: "hidden",
+        position: "relative", width: "100%", 
+        aspectRatio: "16 / 9",
+        minHeight: "100vh",
+        overflow: "hidden",
+        backgroundColor: "#F7F4EE",
       }}>
-        {/* Hero Background Image - fills 95% of viewport */}
+        {/* Hero Background Image - 16:9 aspect ratio preserved */}
         <Image
           src="/hero-products.jpg"
           alt="Shrasti Enterprises premium packaging solutions"
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-contain"
           priority
-          style={{ objectPosition: "center" }}
+          style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
         />
+        {/* Mobile-specific image support */}
+        <picture style={{ display: "none" }}>
+          <source media="(max-width: 768px)" srcSet="/hero-products-mobile.jpg" />
+        </picture>
         {/* Overlay gradient for text readability */}
         <div style={{
           position: "absolute", inset: 0,
@@ -472,14 +481,18 @@ export default function ShrastiEnterprisesHome() {
           pointerEvents: "none"
         }} />
 
-        {/* Text Content Overlay - positioned on LEFT side */}
+        {/* Text Content Overlay - responsive positioning */}
         <motion.div style={{
-          position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
-          display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center",
-          padding: "60px 40px", zIndex: 10,
-          maxWidth: "50%",
-        }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+  position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
+  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start",
+  paddingTop: "clamp(90px, 15vh, 140px)",
+  paddingLeft: "clamp(20px, 6vw, 60px)",
+  paddingRight: "clamp(20px, 6vw, 40px)",
+  paddingBottom: "40px",
+  zIndex: 10,
+  maxWidth: "clamp(95%, calc(95% - 0px), 50%)",
+}}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {/* Badge */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}>
@@ -487,33 +500,69 @@ export default function ShrastiEnterprisesHome() {
               Haridwar Factory Direct
             </motion.div>
 
-            {/* Main Headline */}
-            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
+            {/* Company Name - Two Lines, Heading Size */}
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
               style={{
-                fontFamily: "var(--font-playfair), serif",
-                fontSize: "clamp(48px, 5vw, 64px)", fontWeight: 800, lineHeight: 1.1,
-                letterSpacing: "-0.01em", margin: 0,
-                backgroundImage: `linear-gradient(135deg, #FFF 25%, ${T.goldLight} 70%, ${T.gold} 100%)`,
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                filter: "drop-shadow(0 6px 15px rgba(0,0,0,0.4))",
+                marginBottom: 12,
+                lineHeight: 1.15,
+                display: "flex",
+                flexDirection: "column",
+                gap: 0,
               }}>
-              Next-Gen Packaging Systems
+              <span style={{ color: "#0066CC", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase" }}>SHRASTI</span>
+              <span style={{ color: "#CDCAC5",  WebkitTextStroke: "1px #B0AEA9", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8" }}>ENTERPRISES</span>
+            </motion.div>
+
+            {/* Main Headline - Two Lines with Colors */}
+            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.20, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 900, lineHeight: 1.15,
+                letterSpacing: "-0.02em", margin: 0,
+                filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.3))",
+              }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.95 }}>
+  {/* Line 1: Dark Navy */}
+  <span style={{ 
+    color: T.navy,
+    fontWeight: 900,
+    fontSize: "clamp(32px, 5vw, 64px)"
+  }}>
+    Next-Gen
+  </span>
+  
+  {/* Line 2: Bright Blue */}
+  <span style={{ 
+    color: "#B0AEA9",
+    fontWeight: 900,
+    fontSize: "clamp(32px, 5vw, 64px)"
+  }}>
+    Packaging
+  </span>
+  
+  {/* Line 3: Deep Gold */}
+  <span style={{ 
+    color: T.gold,
+    fontWeight: 900,
+    fontSize: "clamp(32px, 5vw, 64px)"
+  }}>
+    Systems
+  </span>
+</div>
             </motion.h1>
 
-            {/* Supporting Text */}
-            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }}
+            {/* Supporting Text - Expanded with manufacturing context */}
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
               style={{
-                fontSize: "clamp(14px, 1.5vw, 18px)", color: "rgba(255, 255, 255, 0.85)", lineHeight: 1.6,
-                fontWeight: 400, maxWidth: 320, margin: 0,
+                fontSize: "clamp(13px, 1.4vw, 17px)", color: "rgba(255, 255, 255, 0.88)", lineHeight: 1.65,
+                fontWeight: 400, maxWidth: "clamp(280px, 90%, 380px)", margin: 0,
               }}>
-              Industrial-grade BOPP tapes, stretch films, and packaging solutions manufactured for bulk buyers across North India.
+              Industrial-grade BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our SIDCUL Haridwar facility. Direct pricing. Premium quality verified to micron precision. Trusted by bulk buyers across North India.
             </motion.p>
 
             {/* CTAs */}
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28 }}
-              style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 12 }}>
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.30 }}
+              style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)", marginTop: 16 }}>
               <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
                 href="#product-matrix"
                 style={{
@@ -590,7 +639,7 @@ export default function ShrastiEnterprisesHome() {
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
               Why Partner With Us
             </div>
-            <h2 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
+            <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
               Built for Industrial Buyers
             </h2>
             <p style={{ fontSize: 17, color: T.textMid, maxWidth: 540, margin: "0 auto", lineHeight: 1.7, fontWeight: 400 }}>
@@ -630,7 +679,7 @@ export default function ShrastiEnterprisesHome() {
               <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
                 Materials Architecture
               </div>
-            <h2 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>Our Product Range</h2>
+            <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>Our Product Range</h2>
               <p style={{ fontSize: 17, color: T.textMid, marginTop: 12, maxWidth: 520, lineHeight: 1.7, fontWeight: 400 }}>
                 Every product manufactured with strict gauge parameters, dispatched direct from our SIDCUL factory.
               </p>
@@ -708,7 +757,7 @@ export default function ShrastiEnterprisesHome() {
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
               Manufacturing
             </div>
-            <h2 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800, color: T.navy, marginBottom: 12, letterSpacing: "-0.02em" }}>Production Controls</h2>
+            <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800, color: T.navy, marginBottom: 12, letterSpacing: "-0.02em" }}>Production Controls</h2>
             <p style={{ fontSize: 16, color: T.textMid, lineHeight: 1.7, marginBottom: 28, fontWeight: 400 }}>
               Focused manufacturing metrics keep materials strong across multi-state shipping transits.
             </p>
@@ -937,19 +986,19 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           TERMS & CONDITIONS
       ══════════════════════════════════════════ */}
-      <section id="terms-conditions" style={{ background: T.bg, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="terms-conditions" style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bgAlt} 100%)`, padding: "100px 24px 96px", borderTop: `2px solid ${T.gold}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48, textAlign: "center" }}>
-            <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
-              Legal
-            </div>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>Terms &amp; Conditions</h2>
-            <p style={{ fontSize: 16, color: T.textMid, maxWidth: 560, margin: "0 auto", lineHeight: 1.7, fontWeight: 400 }}>
-              Please review these terms before placing orders with Shrasti Enterprises. Continued engagement implies acceptance.
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52, textAlign: "center" }}>
+            <motion.div initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 120, damping: 15 }} style={{ display: "inline-block", padding: "7px 16px", borderRadius: 8, background: `${T.gold}15`, border: `1.5px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 16, boxShadow: `0 0 16px ${T.goldGlow}` }}>
+              Legal & Transparency
+            </motion.div>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", marginBottom: 14, backgroundImage: `linear-gradient(135deg, ${T.navy}, ${T.blue})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Terms &amp; Conditions</h2>
+            <p style={{ fontSize: "clamp(15px, 1.2vw, 16px)", color: T.textMid, maxWidth: 560, margin: "0 auto", lineHeight: 1.75, fontWeight: 400 }}>
+              Please review these terms before placing orders with Shrasti Enterprises. Continued engagement implies full acceptance.
             </p>
           </motion.div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {[
               {
                 title: "1. Orders & Pricing",
@@ -979,33 +1028,48 @@ export default function ShrastiEnterprisesHome() {
                 title: "7. Governing Law & Dispute Resolution",
                 body: "These terms are governed by the laws of India, with the courts of Haridwar, Uttarakhand holding exclusive jurisdiction. Any dispute shall first be attempted to be resolved through negotiation within 30 days. Failing resolution, disputes will proceed to arbitration under the Arbitration and Conciliation Act, 1996, with a sole arbitrator appointed by mutual agreement.",
               },
-            ].map((item, i) => (
+            ].map((item, i) => {
+              const [hoveredTerm, setHoveredTerm] = useState(false);
+              return (
               <motion.div key={i} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}
-                style={{ background: T.bgSection, borderRadius: 14, border: `1.5px solid ${T.divider}`, overflow: "hidden", transition: "all 0.16s" }}>
+                whileHover={{ y: -4, boxShadow: `0 12px 36px ${T.goldGlow}` }}
+                onMouseEnter={() => setHoveredTerm(true)}
+                onMouseLeave={() => setHoveredTerm(false)}
+                style={{ background: T.bgSection, borderRadius: 16, border: `1.5px solid ${T.gold}44`, overflow: "hidden", transition: "all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1)", position: "relative" }}>
+                {/* Animated golden border glow on hover */}
+                <motion.div animate={{ opacity: hoveredTerm ? 1 : 0 }} transition={{ duration: 0.22 }} style={{
+                  position: "absolute", inset: 0, borderRadius: 16,
+                  border: `1.5px solid ${T.gold}`,
+                  background: `linear-gradient(135deg, ${T.gold}0 0%, ${T.gold}15 50%, ${T.gold}0 100%)`,
+                  pointerEvents: "none",
+                }} />
                 <button
                   onClick={() => setOpenTerm(openTerm === i ? null : i)}
                   style={{
                     width: "100%", background: "none", border: "none", cursor: "pointer",
-                    padding: "22px 26px", display: "flex", justifyContent: "space-between", alignItems: "center",
-                    gap: 16, textAlign: "left",
+                    padding: "24px 28px", display: "flex", justifyContent: "space-between", alignItems: "center",
+                    gap: 16, textAlign: "left", position: "relative", zIndex: 1,
                   }}
                 >
-                  <span style={{ fontSize: 16, fontWeight: 800, color: T.navy, letterSpacing: "-0.01em" }}>{item.title}</span>
-                  <motion.span animate={{ rotate: openTerm === i ? 45 : 0 }} transition={{ duration: 0.2 }}
-                    style={{ fontSize: 22, color: T.gold, fontWeight: 700, flexShrink: 0, lineHeight: 1 }}>+</motion.span>
+                  <span style={{ fontSize: "clamp(15px, 1.1vw, 16px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.01em" }}>{item.title}</span>
+                  <motion.div animate={{ rotate: openTerm === i ? 45 : 0, scale: openTerm === i ? 1.2 : 1 }} transition={{ duration: 0.24, type: "spring", stiffness: 200, damping: 17 }}
+                    style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: `${T.gold}11`, border: `1.5px solid ${T.gold}`, flexShrink: 0 }}>
+                    <span style={{ fontSize: 18, color: T.gold, fontWeight: 800, lineHeight: 1, textAlign: "center" }}>+</span>
+                  </motion.div>
                 </button>
                 <AnimatePresence>
                   {openTerm === i && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22 }}
-                      style={{ overflow: "hidden" }}>
-                      <div style={{ padding: "0 26px 24px", borderTop: `1px solid ${T.divider}` }}>
-                        <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.8, fontWeight: 500, marginTop: 18, margin: "18px 0 0" }}>{item.body}</p>
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.24 }}
+                      style={{ overflow: "hidden", position: "relative", zIndex: 0 }}>
+                      <div style={{ padding: "0 28px 24px", borderTop: `1.5px solid ${T.gold}33`, background: `linear-gradient(180deg, transparent 0%, ${T.gold}04 100%)` }}>
+                        <p style={{ fontSize: "clamp(13px, 1vw, 14px)", color: T.textMid, lineHeight: 1.85, fontWeight: 500, marginTop: 18, margin: "18px 0 0" }}>{item.body}</p>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
