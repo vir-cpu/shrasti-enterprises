@@ -188,3 +188,10 @@ html {
 .font-dm-sans {
   font-family: var(--font-dm-sans);
 }
+
+/* Ensure nav is hidden on mobile */
+@media (max-width: 1023px) {
+  nav {
+    display: none !important;
+  }
+}

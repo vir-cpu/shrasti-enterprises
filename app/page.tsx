@@ -173,7 +173,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
   );
 }
 // PRODUCT CARD
-// ─────────────────────────────────────────────────────────────
+// ──────��──────────────────────────────────────────────────────
 function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]; onQuote: (t: string) => void }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -374,11 +374,12 @@ export default function ShrastiEnterprisesHome() {
         position: "fixed", top: 0, width: "100%", zIndex: 50,
         background: "rgba(247,244,238,0.92)", backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${T.divider}`,
+        overflow: "hidden",
       }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 12px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(8px, 3vw, 24px)", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <motion.a href="#" style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}><ShrastiLogo size="md" /></motion.a>
 
-          <nav style={{ display: "flex", alignItems: "center", gap: 36 }} className="hidden lg:flex">
+          <nav className="hidden lg:flex" style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 3vw, 36px)" }}>
             {navLinks.map(l => (
               <a key={l.href} href={l.href}
                 style={{ fontSize: 13, fontWeight: 700, color: T.textMid, textDecoration: "none", letterSpacing: "0.06em", textTransform: "uppercase", transition: "color 0.2s" }}
@@ -468,7 +469,7 @@ export default function ShrastiEnterprisesHome() {
             src="/hero-products.jpg"
             alt="Shrasti Enterprises premium packaging solutions"
             fill
-            sizes="100vw"
+            sizes="(min-width: 768px) 100vw, 0vw"
             className="object-contain hidden md:block"
             priority
             style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
@@ -478,7 +479,7 @@ export default function ShrastiEnterprisesHome() {
             src="/hero-products-mobile.jpg"
             alt="Shrasti Enterprises premium packaging solutions"
             fill
-            sizes="100vw"
+            sizes="(max-width: 767px) 100vw, 0vw"
             className="object-contain md:hidden"
             priority
             style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
@@ -620,7 +621,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           METRICS
-      ═══════════════════════════���══════════════ */}
+      ═══════════════���═══════════���══════════════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
