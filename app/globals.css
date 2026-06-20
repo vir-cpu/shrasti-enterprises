@@ -188,3 +188,31 @@ html {
 .font-dm-sans {
   font-family: var(--font-dm-sans);
 }
+
+/* Ensure nav is hidden on mobile */
+@media (max-width: 1023px) {
+  nav {
+    display: none !important;
+  }
+}
+
+/* Hero images responsive display */
+/* Desktop/Tablet: Show desktop image for 768px and above */
+@media (min-width: 768px) {
+  .desktop-hero-image {
+    display: block !important;
+  }
+  .mobile-hero-image {
+    display: none !important;
+  }
+}
+
+/* Mobile: Show mobile image below 768px */
+@media (max-width: 767px) {
+  .desktop-hero-image {
+    display: none !important;
+  }
+  .mobile-hero-image {
+    display: block !important;
+  }
+}

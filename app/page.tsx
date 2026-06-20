@@ -128,20 +128,20 @@ const whyChooseUs = [
 // ─────────────────────────────────────────────────────────────
 const fadeUp: Variants = {
   hidden:  { opacity: 0, y: 26, scale: 0.98 },
-  visible: { opacity: 1, y: 0,  scale: 1,    transition: { type: "spring", stiffness: 140, damping: 20, mass: 0.65 } },
-  exit:    { opacity: 0, y: -14, scale: 0.98, transition: { duration: 0.14 } },
+  visible: { opacity: 1, y: 0,  scale: 1,    transition: { type: "spring", stiffness: 180, damping: 24, mass: 0.55 } },
+  exit:    { opacity: 0, y: -14, scale: 0.98, transition: { duration: 0.1 } },
 };
 
 const stagger: Variants = {
   hidden:  { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.035, delayChildren: 0.02 } },
-  exit:    { opacity: 0, transition: { staggerChildren: 0.02 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.025, delayChildren: 0.01 } },
+  exit:    { opacity: 0, transition: { staggerChildren: 0.015 } },
 };
 
 const slideIn: Variants = {
   hidden:  { opacity: 0, x: 22 },
-  visible: { opacity: 1, x: 0,  transition: { type: "spring", stiffness: 150, damping: 21, mass: 0.7 } },
-  exit:    { opacity: 0, x: -16, transition: { duration: 0.14 } },
+  visible: { opacity: 1, x: 0,  transition: { type: "spring", stiffness: 200, damping: 26, mass: 0.6 } },
+  exit:    { opacity: 0, x: -16, transition: { duration: 0.1 } },
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -173,7 +173,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
   );
 }
 // PRODUCT CARD
-// ─────────────────────────────────────────────────────────────
+// ──────�����──────────────────────────────────────────────────────
 function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]; onQuote: (t: string) => void }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -323,18 +323,19 @@ export default function ShrastiEnterprisesHome() {
   ];
 
   const pill = (active: boolean) => ({
-    padding:       "8px 18px",
+    padding:       "clamp(6px, 2vw, 8px) clamp(10px, 3.5vw, 18px)",
     borderRadius:  999,
     border:        `1.5px solid ${active ? T.gold : T.border}`,
     background:    active ? `linear-gradient(135deg, ${T.gold}, ${T.goldLight})` : T.bgSection,
     color:         active ? T.navy : T.textMid,
     fontWeight:    700,
-    fontSize:      12,
+    fontSize:      "clamp(10px, 2.5vw, 12px)",
     letterSpacing: "0.09em",
     textTransform: "uppercase" as const,
     cursor:        "pointer",
     boxShadow:     active ? `0 0 16px ${T.goldGlow}` : "none",
     transition:    "all 0.22s ease",
+    whiteSpace:    "nowrap" as const,
   });
 
   return (
@@ -373,11 +374,12 @@ export default function ShrastiEnterprisesHome() {
         position: "fixed", top: 0, width: "100%", zIndex: 50,
         background: "rgba(247,244,238,0.92)", backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${T.divider}`,
+        overflow: "hidden",
       }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <motion.a href="#" style={{ display: "inline-flex", alignItems: "center" }}><ShrastiLogo size="md" /></motion.a>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(8px, 3vw, 24px)", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <motion.a href="#" style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}><ShrastiLogo size="md" /></motion.a>
 
-          <nav style={{ display: "flex", alignItems: "center", gap: 36 }} className="hidden lg:flex">
+          <nav className="hidden lg:flex" style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 3vw, 36px)" }}>
             {navLinks.map(l => (
               <a key={l.href} href={l.href}
                 style={{ fontSize: 13, fontWeight: 700, color: T.textMid, textDecoration: "none", letterSpacing: "0.06em", textTransform: "uppercase", transition: "color 0.2s" }}
@@ -460,20 +462,26 @@ export default function ShrastiEnterprisesHome() {
         overflow: "hidden",
         backgroundColor: "#F7F4EE",
       }}>
-        {/* Hero Background Image - 16:9 aspect ratio preserved */}
+        {/* Desktop/Tablet Image - hero-products.jpg for 768px and above */}
         <Image
           src="/hero-products.jpg"
           alt="Shrasti Enterprises premium packaging solutions"
           fill
           sizes="100vw"
-          className="object-contain"
           priority
-          style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
+          className="desktop-hero-image"
+          style={{ objectFit: "contain", objectPosition: "center" }}
         />
-        {/* Mobile-specific image support */}
-        <picture style={{ display: "none" }}>
-          <source media="(max-width: 768px)" srcSet="/hero-products-mobile.jpg" />
-        </picture>
+        {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
+        <Image
+          src="/hero-products-mobile.jpg"
+          alt="Shrasti Enterprises premium packaging solutions"
+          fill
+          sizes="100vw"
+          priority
+          className="mobile-hero-image"
+          style={{ objectFit: "contain", objectPosition: "center" }}
+        />
         {/* Overlay gradient for text readability */}
         <div style={{
           position: "absolute", inset: 0,
@@ -509,8 +517,8 @@ export default function ShrastiEnterprisesHome() {
                 flexDirection: "column",
                 gap: 0,
               }}>
-              <span style={{ color: "#0066CC", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase" }}>SHRASTI</span>
-              <span style={{ color: "#CDCAC5",  WebkitTextStroke: "1px #B0AEA9", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8" }}>ENTERPRISES</span>
+              <span style={{ color: "#FFFFFF", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>SHRASTI</span>
+              <span style={{ color: "#FFFFFF", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>ENTERPRISES</span>
             </motion.div>
 
             {/* Main Headline - Two Lines with Colors */}
@@ -531,9 +539,9 @@ export default function ShrastiEnterprisesHome() {
     Next-Gen
   </span>
   
-  {/* Line 2: Bright Blue */}
+              {/* Line 2: White */}
   <span style={{ 
-    color: "#B0AEA9",
+    color: "#FFFFFF",
     fontWeight: 900,
     fontSize: "clamp(32px, 5vw, 64px)"
   }}>
@@ -566,9 +574,9 @@ export default function ShrastiEnterprisesHome() {
               <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
                 href="#product-matrix"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 26px", borderRadius: 8,
+                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(8px, 2vw, 12px) clamp(14px, 4vw, 26px)", borderRadius: 8,
                   background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800,
-                  fontSize: 13, letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none",
+                  fontSize: "clamp(11px, 2.2vw, 13px)", letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none",
                   boxShadow: `0 8px 24px rgba(212, 175, 55, 0.3)`, cursor: "pointer",
                 }}>
                 Explore Inventory <span>→</span>
@@ -576,9 +584,9 @@ export default function ShrastiEnterprisesHome() {
               <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
                 href="tel:+918449350005"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 26px", borderRadius: 8,
+                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(8px, 2vw, 12px) clamp(14px, 4vw, 26px)", borderRadius: 8,
                   border: `1.5px solid rgba(255, 255, 255, 0.4)`, background: "rgba(255, 255, 255, 0.08)",
-                  backdropFilter: "blur(8px)", color: "#FFF", fontWeight: 800, fontSize: 13,
+                  backdropFilter: "blur(8px)", color: "#FFF", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
                   letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
                 }}>
                 <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
@@ -608,9 +616,9 @@ export default function ShrastiEnterprisesHome() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
+      {/* ═══════════════��═══��══��═══════════════════
           METRICS
-      ═══════════════════════════���══════════════ */}
+      ═══════════════���═══════════���═════════��════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
@@ -796,7 +804,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
-      ══════════════════════════════════════════ */}
+      ══════════════����════════���══════════════════ */}
       <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
