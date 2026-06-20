@@ -151,7 +151,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
   const s = {
     sm: { width: 74, height: 52 },
     md: { width: 108, height: 75 },
-    lg: { width: 174, height: 121 },
+    lg: { width: 220, height: 152 },
   }[size];
 
   return (
@@ -166,6 +166,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
         width: s.width,
         height: s.height,
         objectFit: "contain",
+        objectPosition: "left",
         filter: dark ? "drop-shadow(0 10px 28px rgba(0,0,0,0.22))" : "none",
       }}
     />
@@ -338,25 +339,24 @@ export default function ShrastiEnterprisesHome() {
   return (
     <div
       onMouseMove={handleMouseMove}
-      style={{ background: T.bg, color: T.text, fontFamily: "'Plus Jakarta Sans', sans-serif", minHeight: "100vh" }}
+      style={{ background: T.bg, color: T.text, fontFamily: "var(--font-dm-sans), sans-serif", minHeight: "100vh" }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
-        * { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         ::selection { background: rgba(26,82,212,0.18); color: #0D1F4E; }
-        input, select, textarea { font-family: 'Plus Jakarta Sans', sans-serif; }
-        @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.4)} }
+        input, select, textarea { font-family: var(--font-dm-sans), sans-serif; } // Consistent font for form elements.
+        @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.4)} } // Unused animation, consider removing if not needed.
+        .cursor-glow-hidden-on-mobile { display: none; }
+        @media (min-width: 1024px) { .cursor-glow-hidden-on-mobile { display: block; } } // Hide cursor glow on smaller screens
       `}</style>
-
       {/* Cursor glow */}
       <div style={{
         position: "fixed", pointerEvents: "none", zIndex: 0,
-        width: 500, height: 500, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(26,82,212,0.055) 0%, transparent 70%)",
+        width: 500, height: 500, borderRadius: "50%", // Fixed size for the glow area.
+        background: "radial-gradient(circle, rgba(26,82,212,0.03) 0%, transparent 70%)", // Reduced opacity for a more subtle effect.
         transform: `translate(${mousePos.x - 250}px, ${mousePos.y - 250}px)`,
         transition: "transform 0.24s ease-out",
-      }} />
+      }} className="cursor-glow-hidden-on-mobile" /> {/* Added class to hide on mobile */}
 
       {/* Scroll progress bar */}
       <motion.div style={{
@@ -480,11 +480,6 @@ export default function ShrastiEnterprisesHome() {
           maxWidth: "50%",
         }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            {/* Logo */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
-              <ShrastiLogo size="md" />
-            </motion.div>
-
             {/* Badge */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}>
@@ -495,8 +490,14 @@ export default function ShrastiEnterprisesHome() {
             {/* Main Headline */}
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
               style={{
-                fontSize: "clamp(48px, 5vw, 64px)", fontWeight: 900, lineHeight: 1.1, color: "#FFF",
-                letterSpacing: "-0.01em", margin: 0, textShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                fontFamily: "var(--font-playfair), serif",
+                fontSize: "clamp(48px, 5vw, 64px)", fontWeight: 800, lineHeight: 1.1,
+                letterSpacing: "-0.01em", margin: 0,
+                backgroundImage: `linear-gradient(135deg, #FFF 25%, ${T.goldLight} 70%, ${T.gold} 100%)`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                filter: "drop-shadow(0 6px 15px rgba(0,0,0,0.4))",
               }}>
               Next-Gen Packaging Systems
             </motion.h1>
@@ -536,31 +537,6 @@ export default function ShrastiEnterprisesHome() {
               </motion.a>
             </motion.div>
           </div>
-        </motion.div>
-
-        {/* Trust Badges on bottom left overlay */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 }}
-          style={{
-            position: "absolute", bottom: 40, left: 40, zIndex: 10,
-            display: "flex", gap: 20, flexWrap: "wrap",
-          }}>
-          {[
-            { label: "ISO Certified", icon: "✓" },
-            { label: "24/7 Production", icon: "⚡" },
-            { label: "Direct Supply", icon: "🚚" },
-          ].map((badge, i) => (
-            <motion.div key={i}
-              whileHover={{ scale: 1.05 }}
-              style={{
-                display: "flex", alignItems: "center", gap: 8,
-                padding: "8px 14px", borderRadius: 8,
-                background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)",
-                border: `1px solid rgba(255, 255, 255, 0.2)`,
-              }}>
-              <span style={{ fontSize: 16 }}>{badge.icon}</span>
-              <span style={{ fontSize: 12, fontWeight: 700, color: "#FFF", letterSpacing: "0.04em" }}>{badge.label}</span>
-            </motion.div>
-          ))}
         </motion.div>
       </section>
       {/* ══════════════════════════════════════════
@@ -614,7 +590,7 @@ export default function ShrastiEnterprisesHome() {
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
               Why Partner With Us
             </div>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
+            <h2 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
               Built for Industrial Buyers
             </h2>
             <p style={{ fontSize: 17, color: T.textMid, maxWidth: 540, margin: "0 auto", lineHeight: 1.7, fontWeight: 400 }}>
@@ -654,7 +630,7 @@ export default function ShrastiEnterprisesHome() {
               <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
                 Materials Architecture
               </div>
-              <h2 style={{ fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>Our Product Range</h2>
+            <h2 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>Our Product Range</h2>
               <p style={{ fontSize: 17, color: T.textMid, marginTop: 12, maxWidth: 520, lineHeight: 1.7, fontWeight: 400 }}>
                 Every product manufactured with strict gauge parameters, dispatched direct from our SIDCUL factory.
               </p>
@@ -732,7 +708,7 @@ export default function ShrastiEnterprisesHome() {
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
               Manufacturing
             </div>
-            <h2 style={{ fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 900, color: T.navy, marginBottom: 12, letterSpacing: "-0.02em" }}>Production Controls</h2>
+            <h2 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800, color: T.navy, marginBottom: 12, letterSpacing: "-0.02em" }}>Production Controls</h2>
             <p style={{ fontSize: 16, color: T.textMid, lineHeight: 1.7, marginBottom: 28, fontWeight: 400 }}>
               Focused manufacturing metrics keep materials strong across multi-state shipping transits.
             </p>
@@ -976,7 +952,7 @@ export default function ShrastiEnterprisesHome() {
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {[
               {
-                title: "1. Orders &amp; Pricing",
+                title: "1. Orders & Pricing",
                 body: "All prices quoted are factory-direct rates from our SIDCUL Haridwar facility. Prices are subject to change without prior notice based on raw polymer costs. An order is considered confirmed only upon receipt of a purchase order and our written acknowledgement. Minimum order quantities (MOQ) and dispatch timelines will be communicated at the time of quotation.",
               },
               {
@@ -984,11 +960,11 @@ export default function ShrastiEnterprisesHome() {
                 body: "For new clients, a 50% advance is required prior to production, with the balance payable before dispatch. Existing clients with approved credit limits may opt for net-15 or net-30 terms as mutually agreed. Payments must be made via bank transfer or cheque favouring 'Shrasti Enterprises'. Late payments may incur interest at 1.5% per month.",
               },
               {
-                title: "3. Delivery &amp; Logistics",
+                title: "3. Delivery & Logistics",
                 body: "Delivery timelines are estimates and subject to force majeure events including but not limited to floods, road blockages, fuel scarcity, and government regulations. We deliver across North India via our own fleet and partnered logistics providers. Risk of loss transfers to the buyer upon handover to the carrier at our factory premises.",
               },
               {
-                title: "4. Quality &amp; Returns",
+                title: "4. Quality & Returns",
                 body: "Every batch is micrometer-verified and meets ISO-aligned specifications. Claims for damaged or defective material must be raised in writing within 72 hours of receipt with photographic evidence. Returns are accepted only for manufacturing defects; freight-back charges and restocking fees apply. Custom-printed or specially tailored products cannot be returned unless proven defective.",
               },
               {
@@ -1000,7 +976,7 @@ export default function ShrastiEnterprisesHome() {
                 body: "All trademarks, logos, product designs, and brand content published by Shrasti Enterprises remain our exclusive property. Buyers may not reproduce, distribute, or use our branding without prior written consent. Custom printing orders delivered to clients become their property; however, we retain the right to showcase the design in our portfolio unless confidentiality is explicitly agreed in writing.",
               },
               {
-                title: "7. Governing Law &amp; Dispute Resolution",
+                title: "7. Governing Law & Dispute Resolution",
                 body: "These terms are governed by the laws of India, with the courts of Haridwar, Uttarakhand holding exclusive jurisdiction. Any dispute shall first be attempted to be resolved through negotiation within 30 days. Failing resolution, disputes will proceed to arbitration under the Arbitration and Conciliation Act, 1996, with a sole arbitrator appointed by mutual agreement.",
               },
             ].map((item, i) => (
@@ -1039,9 +1015,6 @@ export default function ShrastiEnterprisesHome() {
       ══════════════════════════════════════════ */}
       <footer style={{ background: T.footerBg, padding: "80px 24px 36px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
-        <div style={{ position: "absolute", right: -40, bottom: -40, opacity: 0.04, pointerEvents: "none" }}>
-          <ShrastiLogo size="lg" dark />
-        </div>
 
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 40, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -1069,7 +1042,7 @@ export default function ShrastiEnterprisesHome() {
           <div>
             <h4 style={{ fontSize: 14, fontWeight: 900, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Administrative HQ</h4>
             <p style={{ fontSize: 16, color: T.footerText, lineHeight: 1.8, fontWeight: 500 }}>
-              Flat No. S-2, Rishabh Apartment,<br />
+              Flat No. S-2, Rishabh Apartment,<br /> 
               Purushottam Vihar, Kankhal,<br />
               Haridwar, Uttarakhand — 249408
             </p>
@@ -1078,7 +1051,7 @@ export default function ShrastiEnterprisesHome() {
           <div>
             <h4 style={{ fontSize: 14, fontWeight: 900, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Manufacturing Center</h4>
             <p style={{ fontSize: 16, color: T.footerText, lineHeight: 1.8, fontWeight: 500 }}>
-              Near Prince Pipe &amp; Fittings,<br />
+              Near Prince Pipe & Fittings,<br />
               Industrial Park - 2, Denso Chowk,<br />
               SIDCUL Haridwar — 249402
             </p>
