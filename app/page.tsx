@@ -455,9 +455,9 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           HERO — Image-Dominant Overlay Layout
       ══════════════════════════════════════════ */}
-      <section id="about-plant" style={{
+      <section id="about-plant" className="hero-section" style={{
         position: "relative", width: "100%", 
-        aspectRatio: "16 / 9",
+        aspectRatio: "clamp(0.6, 100vw / 100vh, 16 / 9)",
         minHeight: "100vh",
         overflow: "hidden",
         backgroundColor: "#F7F4EE",
@@ -470,7 +470,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="hidden md:block"
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "contain", objectPosition: "center" }}
         />
         {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
         <Image
@@ -480,7 +480,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="block md:hidden"
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "contain", objectPosition: "center" }}
         />
         {/* Overlay gradient for text readability */}
         <div style={{
@@ -574,9 +574,9 @@ export default function ShrastiEnterprisesHome() {
               <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
                 href="#product-matrix"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 26px", borderRadius: 8,
+                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(8px, 2vw, 12px) clamp(14px, 4vw, 26px)", borderRadius: 8,
                   background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800,
-                  fontSize: 13, letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none",
+                  fontSize: "clamp(11px, 2.2vw, 13px)", letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none",
                   boxShadow: `0 8px 24px rgba(212, 175, 55, 0.3)`, cursor: "pointer",
                 }}>
                 Explore Inventory <span>→</span>
@@ -584,9 +584,9 @@ export default function ShrastiEnterprisesHome() {
               <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
                 href="tel:+918449350005"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 26px", borderRadius: 8,
+                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(8px, 2vw, 12px) clamp(14px, 4vw, 26px)", borderRadius: 8,
                   border: `1.5px solid rgba(255, 255, 255, 0.4)`, background: "rgba(255, 255, 255, 0.08)",
-                  backdropFilter: "blur(8px)", color: "#FFF", fontWeight: 800, fontSize: 13,
+                  backdropFilter: "blur(8px)", color: "#FFF", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
                   letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
                 }}>
                 <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
@@ -618,7 +618,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════��═══════════════════
           METRICS
-      ═══════════════���═══════════���══════════════ */}
+      ═══════════════���═══════════���═════════��════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
