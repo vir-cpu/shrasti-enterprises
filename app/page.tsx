@@ -128,20 +128,20 @@ const whyChooseUs = [
 // ─────────────────────────────────────────────────────────────
 const fadeUp: Variants = {
   hidden:  { opacity: 0, y: 26, scale: 0.98 },
-  visible: { opacity: 1, y: 0,  scale: 1,    transition: { type: "spring", stiffness: 140, damping: 20, mass: 0.65 } },
-  exit:    { opacity: 0, y: -14, scale: 0.98, transition: { duration: 0.14 } },
+  visible: { opacity: 1, y: 0,  scale: 1,    transition: { type: "spring", stiffness: 180, damping: 24, mass: 0.55 } },
+  exit:    { opacity: 0, y: -14, scale: 0.98, transition: { duration: 0.1 } },
 };
 
 const stagger: Variants = {
   hidden:  { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.035, delayChildren: 0.02 } },
-  exit:    { opacity: 0, transition: { staggerChildren: 0.02 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.025, delayChildren: 0.01 } },
+  exit:    { opacity: 0, transition: { staggerChildren: 0.015 } },
 };
 
 const slideIn: Variants = {
   hidden:  { opacity: 0, x: 22 },
-  visible: { opacity: 1, x: 0,  transition: { type: "spring", stiffness: 150, damping: 21, mass: 0.7 } },
-  exit:    { opacity: 0, x: -16, transition: { duration: 0.14 } },
+  visible: { opacity: 1, x: 0,  transition: { type: "spring", stiffness: 200, damping: 26, mass: 0.6 } },
+  exit:    { opacity: 0, x: -16, transition: { duration: 0.1 } },
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -323,18 +323,19 @@ export default function ShrastiEnterprisesHome() {
   ];
 
   const pill = (active: boolean) => ({
-    padding:       "8px 18px",
+    padding:       "clamp(6px, 2vw, 8px) clamp(10px, 3.5vw, 18px)",
     borderRadius:  999,
     border:        `1.5px solid ${active ? T.gold : T.border}`,
     background:    active ? `linear-gradient(135deg, ${T.gold}, ${T.goldLight})` : T.bgSection,
     color:         active ? T.navy : T.textMid,
     fontWeight:    700,
-    fontSize:      12,
+    fontSize:      "clamp(10px, 2.5vw, 12px)",
     letterSpacing: "0.09em",
     textTransform: "uppercase" as const,
     cursor:        "pointer",
     boxShadow:     active ? `0 0 16px ${T.goldGlow}` : "none",
     transition:    "all 0.22s ease",
+    whiteSpace:    "nowrap" as const,
   });
 
   return (
@@ -374,8 +375,8 @@ export default function ShrastiEnterprisesHome() {
         background: "rgba(247,244,238,0.92)", backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${T.divider}`,
       }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <motion.a href="#" style={{ display: "inline-flex", alignItems: "center" }}><ShrastiLogo size="md" /></motion.a>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 12px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <motion.a href="#" style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}><ShrastiLogo size="md" /></motion.a>
 
           <nav style={{ display: "flex", alignItems: "center", gap: 36 }} className="hidden lg:flex">
             {navLinks.map(l => (
@@ -460,20 +461,29 @@ export default function ShrastiEnterprisesHome() {
         overflow: "hidden",
         backgroundColor: "#F7F4EE",
       }}>
-        {/* Hero Background Image - 16:9 aspect ratio preserved */}
-        <Image
-          src="/hero-products.jpg"
-          alt="Shrasti Enterprises premium packaging solutions"
-          fill
-          sizes="100vw"
-          className="object-contain"
-          priority
-          style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
-        />
-        {/* Mobile-specific image support */}
-        <picture style={{ display: "none" }}>
-          <source media="(max-width: 768px)" srcSet="/hero-products-mobile.jpg" />
-        </picture>
+        {/* Hero Background Image - Responsive with mobile support */}
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+          {/* Desktop image */}
+          <Image
+            src="/hero-products.jpg"
+            alt="Shrasti Enterprises premium packaging solutions"
+            fill
+            sizes="100vw"
+            className="object-contain hidden md:block"
+            priority
+            style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
+          />
+          {/* Mobile image */}
+          <Image
+            src="/hero-products-mobile.jpg"
+            alt="Shrasti Enterprises premium packaging solutions"
+            fill
+            sizes="100vw"
+            className="object-contain md:hidden"
+            priority
+            style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
+          />
+        </div>
         {/* Overlay gradient for text readability */}
         <div style={{
           position: "absolute", inset: 0,
@@ -509,8 +519,8 @@ export default function ShrastiEnterprisesHome() {
                 flexDirection: "column",
                 gap: 0,
               }}>
-              <span style={{ color: "#0066CC", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase" }}>SHRASTI</span>
-              <span style={{ color: "#CDCAC5",  WebkitTextStroke: "1px #B0AEA9", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8" }}>ENTERPRISES</span>
+              <span style={{ color: "#FFFFFF", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>SHRASTI</span>
+              <span style={{ color: "#FFFFFF", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>ENTERPRISES</span>
             </motion.div>
 
             {/* Main Headline - Two Lines with Colors */}
@@ -531,9 +541,9 @@ export default function ShrastiEnterprisesHome() {
     Next-Gen
   </span>
   
-  {/* Line 2: Bright Blue */}
+              {/* Line 2: White */}
   <span style={{ 
-    color: "#B0AEA9",
+    color: "#FFFFFF",
     fontWeight: 900,
     fontSize: "clamp(32px, 5vw, 64px)"
   }}>
