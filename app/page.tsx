@@ -462,29 +462,25 @@ export default function ShrastiEnterprisesHome() {
         overflow: "hidden",
         backgroundColor: "#F7F4EE",
       }}>
-        {/* Hero Background Image - Responsive with mobile support */}
-        <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-          {/* Desktop image */}
-          <Image
-            src="/hero-products.jpg"
-            alt="Shrasti Enterprises premium packaging solutions"
-            fill
-            sizes="(min-width: 768px) 100vw, 0vw"
-            className="object-contain hidden md:block"
-            priority
-            style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
-          />
-          {/* Mobile image */}
-          <Image
-            src="/hero-products-mobile.jpg"
-            alt="Shrasti Enterprises premium packaging solutions"
-            fill
-            sizes="(max-width: 767px) 100vw, 0vw"
-            className="object-contain md:hidden"
-            priority
-            style={{ objectPosition: "center", backgroundColor: "#F7F4EE" }}
-          />
-        </div>
+        {/* Hero Background Image - Responsive mobile/desktop */}
+        <Image
+          src="/hero-products.jpg"
+          alt="Shrasti Enterprises premium packaging solutions"
+          fill
+          sizes="(max-width: 767px) 0vw, (min-width: 768px) 100vw"
+          priority
+          className="hidden md:block"
+          style={{ objectFit: "contain", objectPosition: "center", backgroundColor: "#F7F4EE" }}
+        />
+        <Image
+          src="/hero-products-mobile.jpg"
+          alt="Shrasti Enterprises premium packaging solutions"
+          fill
+          sizes="(max-width: 767px) 100vw, (min-width: 768px) 0vw"
+          priority
+          className="block md:hidden"
+          style={{ objectFit: "contain", objectPosition: "center", backgroundColor: "#F7F4EE" }}
+        />
         {/* Overlay gradient for text readability */}
         <div style={{
           position: "absolute", inset: 0,
@@ -619,7 +615,7 @@ export default function ShrastiEnterprisesHome() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
+      {/* ══════════════════════��═══════════════════
           METRICS
       ═══════════════���═══════════���══════════════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
@@ -807,7 +803,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
-      ══════════════════════════════════════════ */}
+      ═══════════════════════���══════════════════ */}
       <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
