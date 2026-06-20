@@ -195,3 +195,24 @@ html {
     display: none !important;
   }
 }
+
+/* Hero images responsive display */
+/* Desktop/Tablet: Show desktop image for 768px and above */
+@media (min-width: 768px) {
+  .desktop-hero-image {
+    display: block !important;
+  }
+  .mobile-hero-image {
+    display: none !important;
+  }
+}
+
+/* Mobile: Show mobile image below 768px */
+@media (max-width: 767px) {
+  .desktop-hero-image {
+    display: none !important;
+  }
+  .mobile-hero-image {
+    display: block !important;
+  }
+}

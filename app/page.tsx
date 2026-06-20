@@ -173,7 +173,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
   );
 }
 // PRODUCT CARD
-// ──────����──────────────────────────────────────────────────────
+// ──────�����──────────────────────────────────────────────────────
 function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]; onQuote: (t: string) => void }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -470,7 +470,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="desktop-hero-image"
-          style={{ objectFit: "contain", objectPosition: "center", display: "none" }}
+          style={{ objectFit: "contain", objectPosition: "center" }}
         />
         {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
         <Image
@@ -480,7 +480,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="mobile-hero-image"
-          style={{ objectFit: "contain", objectPosition: "center", display: "block" }}
+          style={{ objectFit: "contain", objectPosition: "center" }}
         />
         {/* Overlay gradient for text readability */}
         <div style={{
@@ -616,7 +616,7 @@ export default function ShrastiEnterprisesHome() {
         </div>
       </section>
 
-      {/* ═══════════════��══════��═══════════════════
+      {/* ═══════════════��═══��══��═══════════════════
           METRICS
       ═══════════════���═══════════���═════════��════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
@@ -804,7 +804,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
-      ══════════════���════════���══════════════════ */}
+      ══════════════����════════���══════════════════ */}
       <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
