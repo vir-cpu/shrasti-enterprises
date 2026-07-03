@@ -173,7 +173,7 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
   );
 }
 // PRODUCT CARD
-// ──────�����──────────────────────────────────────────────────────
+// ──────������──────────────────────────────────────────────────────
 function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]; onQuote: (t: string) => void }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -350,6 +350,8 @@ export default function ShrastiEnterprisesHome() {
         @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.4)} } // Unused animation, consider removing if not needed.
         .cursor-glow-hidden-on-mobile { display: none; }
         @media (min-width: 1024px) { .cursor-glow-hidden-on-mobile { display: block; } } // Hide cursor glow on smaller screens
+        .desktop-hero-image { display: none; }
+        @media (min-width: 768px) { .desktop-hero-image { display: block; } .mobile-hero-image { display: none; } }
       `}</style>
       {/* Cursor glow */}
       <div style={{
@@ -456,9 +458,8 @@ export default function ShrastiEnterprisesHome() {
           HERO — Image-Dominant Overlay Layout
       ══════════════════════════════════════════ */}
       <section id="about-plant" style={{
-        position: "relative", width: "100%", 
-        aspectRatio: "16 / 9",
-        minHeight: "100vh",
+        position: "relative", width: "100vw", 
+        height: "100svh",
         overflow: "hidden",
         backgroundColor: "#F7F4EE",
       }}>
@@ -470,7 +471,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="desktop-hero-image"
-          style={{ objectFit: "contain", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
         <Image
@@ -480,7 +481,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="mobile-hero-image"
-          style={{ objectFit: "contain", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         {/* Overlay gradient for text readability */}
         <div style={{
@@ -517,8 +518,8 @@ export default function ShrastiEnterprisesHome() {
                 flexDirection: "column",
                 gap: 0,
               }}>
-              <span style={{ color: "#FFFFFF", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>SHRASTI</span>
-              <span style={{ color: "#FFFFFF", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", textShadow: "0 2px 8px rgba(0,0,0,0.3)" }}>ENTERPRISES</span>
+              <span style={{ color: "#F5F1E8", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: "0 4px 12px rgba(0,0,0,0.2)" }}>SHRASTI</span>
+              <span style={{ background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.15))" }}>ENTERPRISES</span>
             </motion.div>
 
             {/* Main Headline - Two Lines with Colors */}
@@ -529,30 +530,33 @@ export default function ShrastiEnterprisesHome() {
                 letterSpacing: "-0.02em", margin: 0,
                 filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.3))",
               }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.95 }}>
-  {/* Line 1: Dark Navy */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 1.0 }}>
+  {/* Line 1: Deep Navy */}
   <span style={{ 
-    color: T.navy,
+    color: "#1A2F5C",
     fontWeight: 900,
-    fontSize: "clamp(32px, 5vw, 64px)"
+    fontSize: "clamp(32px, 5vw, 64px)",
+    letterSpacing: "-0.03em"
   }}>
     Next-Gen
   </span>
   
-              {/* Line 2: White */}
+              {/* Line 2: Bright Off-White */}
   <span style={{ 
-    color: "#FFFFFF",
+    color: "#F5F1E8",
     fontWeight: 900,
-    fontSize: "clamp(32px, 5vw, 64px)"
+    fontSize: "clamp(32px, 5.5vw, 72px)",
+    letterSpacing: "-0.02em"
   }}>
     Packaging
   </span>
   
-  {/* Line 3: Deep Gold */}
+  {/* Line 3: Rich Champagne Gold */}
   <span style={{ 
-    color: T.gold,
+    color: "#D4AF37",
     fontWeight: 900,
-    fontSize: "clamp(32px, 5vw, 64px)"
+    fontSize: "clamp(32px, 5vw, 64px)",
+    letterSpacing: "-0.03em"
   }}>
     Systems
   </span>
@@ -562,36 +566,55 @@ export default function ShrastiEnterprisesHome() {
             {/* Supporting Text - Expanded with manufacturing context */}
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
               style={{
-                fontSize: "clamp(13px, 1.4vw, 17px)", color: "rgba(255, 255, 255, 0.88)", lineHeight: 1.65,
-                fontWeight: 400, maxWidth: "clamp(280px, 90%, 380px)", margin: 0,
+                fontSize: "clamp(13px, 1.4vw, 17px)", color: "#E8E4D8", lineHeight: 1.7,
+                fontWeight: 400, maxWidth: "clamp(280px, 90%, 420px)", margin: 0,
               }}>
-              Industrial-grade BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our SIDCUL Haridwar facility. Direct pricing. Premium quality verified to micron precision. Trusted by bulk buyers across North India.
+              <span style={{ color: "#F5F1E8" }}>Industrial-grade</span> BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our <span style={{ color: "#D4AF37" }}>SIDCUL Haridwar</span> facility. <span style={{ color: "#D4AF37" }}>Direct Pricing</span>. <span style={{ color: "#F5F1E8" }}>Premium Quality</span> verified to micron precision. Trusted by bulk buyers across North India.
             </motion.p>
+
+            {/* Glass Panel Background */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
+              style={{
+                position: "absolute",
+                bottom: "clamp(20px, 8vh, 80px)",
+                left: "clamp(20px, 6vw, 60px)",
+                right: "clamp(20px, 6vw, 40px)",
+                maxWidth: "480px",
+                background: "rgba(255, 255, 255, 0.06)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.12)",
+                borderRadius: 24,
+                padding: "24px",
+                zIndex: 5,
+              }}>
 
             {/* CTAs */}
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.30 }}
-              style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)", marginTop: 16 }}>
-              <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
+              style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)" }}>
+              <motion.a whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.96 }}
                 href="#product-matrix"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(8px, 2vw, 12px) clamp(14px, 4vw, 26px)", borderRadius: 8,
-                  background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800,
-                  fontSize: "clamp(11px, 2.2vw, 13px)", letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none",
-                  boxShadow: `0 8px 24px rgba(212, 175, 55, 0.3)`, cursor: "pointer",
+                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
+                  background: `linear-gradient(135deg, #D4AF37, #E8C84A)`, color: "#1A2F5C", fontWeight: 800,
+                  fontSize: "clamp(11px, 2.2vw, 13px)", letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none",
+                  boxShadow: `0 8px 20px rgba(212, 175, 55, 0.25)`, cursor: "pointer",
                 }}>
                 Explore Inventory <span>→</span>
               </motion.a>
-              <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
+              <motion.a whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.96 }}
                 href="tel:+918449350005"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(8px, 2vw, 12px) clamp(14px, 4vw, 26px)", borderRadius: 8,
-                  border: `1.5px solid rgba(255, 255, 255, 0.4)`, background: "rgba(255, 255, 255, 0.08)",
-                  backdropFilter: "blur(8px)", color: "#FFF", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
-                  letterSpacing: "0.05em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
+                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
+                  border: `1.5px solid rgba(255, 255, 255, 0.25)`, background: "rgba(255, 255, 255, 0.1)",
+                  backdropFilter: "blur(10px)", color: "#F5F1E8", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
+                  letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  boxShadow: "0 4px 12px rgba(255, 255, 255, 0.08)",
                 }}>
                 <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                 Call Plant
               </motion.a>
+            </motion.div>
             </motion.div>
           </div>
         </motion.div>
@@ -804,7 +827,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
-      ══════════════����════════���══════════════════ */}
+      ══════════════����════════����══════════════════ */}
       <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
