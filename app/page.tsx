@@ -438,7 +438,7 @@ export default function ShrastiEnterprisesHome() {
         background: theme === "dark" ? "rgba(10,10,10,0.92)" : "rgba(247,244,238,0.92)", 
         backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${T.divider}`,
-        overflow: "hidden",
+        overflow: "visible",
         transition: "background-color 0.3s ease, border-color 0.3s ease",
       }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(8px, 3vw, 24px)", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -529,7 +529,7 @@ export default function ShrastiEnterprisesHome() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              style={{ overflow: "hidden", borderTop: `1px solid ${T.divider}`, background: T.bg }}
+              style={{ overflow: "hidden", borderTop: `1px solid ${T.divider}`, background: T.bg, position: "absolute", top: "72px", left: 0, right: 0, zIndex: 49 }}
             >
               <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: 4 }}>
                 {navLinks.map(l => (
@@ -583,7 +583,7 @@ export default function ShrastiEnterprisesHome() {
       ══════════════════════════════════════════ */}
       <section id="about-plant" style={{
         position: "relative", width: "100vw", 
-        height: "max(100svh, 100dvh)",
+        height: "100svh",
         overflow: "hidden",
         backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
         transition: "background-color 0.3s ease",
@@ -596,7 +596,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="desktop-hero-image"
-          style={{ objectFit: "cover", objectPosition: "left center" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
         <Image
@@ -606,29 +606,13 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="mobile-hero-image"
-          style={{ objectFit: "cover", objectPosition: "center center" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         {/* Overlay gradient for text readability */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.08) 60%, transparent 100%)",
+          background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
           pointerEvents: "none"
-        }} />
-
-        {/* Subtle Glass Panel Behind Text Content */}
-        <div style={{
-          position: "absolute",
-          top: "clamp(70px, 12vh, 120px)",
-          left: "clamp(16px, 5vw, 48px)",
-          right: "clamp(16px, 5vw, 36px)",
-          maxWidth: "560px",
-          background: "rgba(255, 255, 255, 0.04)",
-          backdropFilter: "blur(10px)",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
-          borderRadius: 28,
-          padding: "clamp(20px, 4vw, 40px)",
-          zIndex: 4,
-          pointerEvents: "none",
         }} />
 
         {/* Text Content Overlay - responsive positioning */}
