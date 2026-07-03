@@ -627,52 +627,62 @@ export default function ShrastiEnterprisesHome() {
           HERO — Image-Dominant Overlay Layout
       ══════════════════════════════════════════ */}
       <section id="about-plant" style={{
-        position: "relative", width: "100vw", 
-        height: "100svh",
-        minHeight: "560px",
-        overflow: "visible",
+        position: "relative", 
+        width: "100%", 
+        minHeight: "100svh",
+        display: "grid",
+        gridTemplateRows: "1fr auto",
         backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
         transition: "background-color 0.3s ease",
       }}>
-        {/* Desktop/Tablet Image - hero-products.jpg for 768px and above */}
-        <Image
-          src="/hero-products.jpg"
-          alt="Shrasti Enterprises premium packaging solutions"
-          fill
-          sizes="100vw"
-          priority
-          className="desktop-hero-image"
-          style={{ objectFit: "cover", objectPosition: "center" }}
-        />
-        {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
-        <Image
-          src="/hero-products-mobile.jpg"
-          alt="Shrasti Enterprises premium packaging solutions"
-          fill
-          sizes="100vw"
-          priority
-          className="mobile-hero-image"
-          style={{ objectFit: "cover", objectPosition: "center" }}
-        />
-        {/* Overlay gradient for text readability */}
+        {/* Hero Image Container - maintains aspect ratio and responsiveness */}
         <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
-          pointerEvents: "none"
-        }} />
+          position: "relative",
+          width: "100%",
+          overflow: "hidden",
+          backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
+        }}>
+          {/* Desktop/Tablet Image - hero-products.jpg for 768px and above */}
+          <Image
+            src="/hero-products.jpg"
+            alt="Shrasti Enterprises premium packaging solutions"
+            fill
+            sizes="(min-width: 768px) 100vw, 0px"
+            priority
+            className="desktop-hero-image"
+            style={{ objectFit: "cover", objectPosition: "right center" }}
+          />
+          {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
+          <Image
+            src="/hero-products-mobile.jpg"
+            alt="Shrasti Enterprises premium packaging solutions"
+            fill
+            sizes="(max-width: 767px) 100vw, 0px"
+            priority
+            className="mobile-hero-image"
+            style={{ objectFit: "cover", objectPosition: "center center" }}
+          />
+          {/* Overlay gradient for text readability */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
+            pointerEvents: "none",
+            zIndex: 2,
+          }} />
 
-        {/* Text Content Overlay - responsive positioning */}
-        <motion.div style={{
-  position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
-  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start",
-  paddingTop: "clamp(90px, 15vh, 140px)",
-  paddingLeft: "clamp(20px, 6vw, 60px)",
-  paddingRight: "clamp(20px, 6vw, 40px)",
-  paddingBottom: "40px",
-  zIndex: 10,
-  maxWidth: "clamp(95%, calc(95% - 0px), 50%)",
-}}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* Text Content Overlay - responsive positioning */}
+          <motion.div style={{
+    position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
+    display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between",
+    paddingTop: "clamp(90px, 15vh, 140px)",
+    paddingLeft: "clamp(20px, 6vw, 60px)",
+    paddingRight: "clamp(20px, 6vw, 40px)",
+    paddingBottom: "clamp(100px, 15vh, 160px)",
+    zIndex: 10,
+    maxWidth: "clamp(95%, calc(95% - 0px), 50%)",
+    pointerEvents: "none",
+  }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20, pointerEvents: "auto" }}>
             {/* Badge */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}>
@@ -742,22 +752,17 @@ export default function ShrastiEnterprisesHome() {
               }}>
               <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Industrial-grade</span> BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our <span style={{ color: "#D4AF37" }}>SIDCUL Haridwar</span> facility. <span style={{ color: "#D4AF37" }}>Direct Pricing</span>. <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Premium Quality</span> verified to micron precision. Trusted by bulk buyers across North India.
             </motion.p>
+            </div>
 
-            {/* CTA Buttons Container */}
+            {/* CTA Buttons Container - positioned at bottom of hero */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
               style={{
-                position: "absolute",
-                bottom: "clamp(20px, 8vh, 80px)",
-                left: "clamp(20px, 6vw, 60px)",
-                right: "clamp(20px, 6vw, 40px)",
-                maxWidth: "480px",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "clamp(8px, 2vw, 12px)",
                 zIndex: 5,
-                transition: "all 0.3s ease",
+                pointerEvents: "auto",
               }}>
-
-            {/* CTAs */}
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.30 }}
-              style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)" }}>
               <motion.a whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.95 }}
                 href="#product-matrix"
                 className="primary-cta"
@@ -788,9 +793,8 @@ export default function ShrastiEnterprisesHome() {
                 Call Plant
               </motion.a>
             </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
       {/* ══════════════════════════════════════════
           TRUST BAR
@@ -1189,7 +1193,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           TERMS & CONDITIONS
-      ══════════════════════════════════════════ */}
+      ═════════════════════════════════════��════ */}
       <section id="terms-conditions" style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bgAlt} 100%)`, padding: "100px 24px 96px", borderTop: `2px solid ${T.gold}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52, textAlign: "center" }}>
