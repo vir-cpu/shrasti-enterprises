@@ -413,6 +413,51 @@ export default function ShrastiEnterprisesHome() {
         .desktop-hero-image { display: none; }
         @media (min-width: 768px) { .desktop-hero-image { display: block; } .mobile-hero-image { display: none; } }
         * { transition-property: background-color, border-color, color; transition-duration: 0.3s; transition-timing-function: ease; }
+        
+        /* Premium Button Animations */
+        @keyframes goldenShimmer {
+          0%, 100% { background-position: -1000px 0; }
+          50% { background-position: 1000px 0; }
+        }
+        @keyframes breathingGlow {
+          0%, 100% { box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35); }
+          50% { box-shadow: 0 12px 28px rgba(212, 175, 55, 0.55); }
+        }
+        @keyframes softGlow {
+          0%, 100% { box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15); }
+          50% { box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-30px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+          from { opacity: 0; transform: translateX(30px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .primary-cta {
+          background: linear-gradient(90deg, #D4AF37 0%, #E8C84A 50%, #D4AF37 100%);
+          background-size: 200% 100%;
+          animation: breathingGlow 4s ease-in-out infinite;
+        }
+        .primary-cta:hover {
+          animation: goldenShimmer 2s linear infinite, breathingGlow 4s ease-in-out infinite;
+        }
+        
+        .secondary-cta:hover {
+          animation: softGlow 3s ease-in-out infinite;
+        }
+        
+        /* Scroll reveal animations */
+        .scroll-reveal {
+          animation: fadeInUp 0.8s ease-out forwards;
+          opacity: 0;
+        }
       `}</style>
       {/* Cursor glow */}
       <div style={{
@@ -615,6 +660,22 @@ export default function ShrastiEnterprisesHome() {
           pointerEvents: "none"
         }} />
 
+        {/* Subtle Glassmorphism Layer - Behind Text Content Only */}
+        <div style={{
+          position: "absolute",
+          top: "clamp(70px, 12vh, 130px)",
+          left: "clamp(16px, 5vw, 50px)",
+          maxWidth: "560px",
+          width: "clamp(85%, 100%, 560px)",
+          background: theme === "dark" ? "rgba(20,20,20,0.08)" : "rgba(255, 255, 255, 0.08)",
+          backdropFilter: "blur(12px)",
+          border: theme === "dark" ? "1px solid rgba(212,175,55,0.08)" : "1px solid rgba(255, 255, 255, 0.1)",
+          borderRadius: 24,
+          padding: "clamp(28px, 5vw, 44px)",
+          zIndex: 3,
+          pointerEvents: "none",
+        }} />
+
         {/* Text Content Overlay - responsive positioning */}
         <motion.div style={{
   position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
@@ -717,27 +778,32 @@ export default function ShrastiEnterprisesHome() {
             {/* CTAs */}
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.30 }}
               style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)" }}>
-              <motion.a whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.96 }}
+              <motion.a whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.95 }}
                 href="#product-matrix"
+                className="primary-cta"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
                   background: `linear-gradient(135deg, #D4AF37, #E8C84A)`, color: theme === "dark" ? "#0A0A0A" : "#1A2F5C", fontWeight: 800,
                   fontSize: "clamp(11px, 2.2vw, 13px)", letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none",
-                  boxShadow: theme === "dark" ? `0 8px 20px rgba(212, 175, 55, 0.35)` : `0 8px 20px rgba(212, 175, 55, 0.25)`, cursor: "pointer",
+                  boxShadow: theme === "dark" ? `0 8px 20px rgba(212, 175, 55, 0.35)` : `0 8px 20px rgba(212, 175, 55, 0.25)`, 
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
                 }}>
                 Explore Inventory <span>→</span>
               </motion.a>
-              <motion.a whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.96 }}
+              <motion.a whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.95 }}
                 href="tel:+918449350005"
+                className="secondary-cta"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
                   border: theme === "dark" ? `1.5px solid rgba(212, 175, 55, 0.3)` : `1.5px solid rgba(255, 255, 255, 0.25)`, 
                   background: theme === "dark" ? "rgba(45,45,45,0.4)" : "rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(10px)", color: theme === "dark" ? "#F7F7F7" : "#F5F1E8", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
                   letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
-                  transition: "all 0.2s ease",
+                  transition: "all 0.3s ease",
                   boxShadow: theme === "dark" ? "0 4px 12px rgba(212, 175, 55, 0.15)" : "0 4px 12px rgba(255, 255, 255, 0.08)",
                 }}>
+
                 <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                 Call Plant
               </motion.a>
@@ -768,7 +834,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ═══════════════��═══��══��═══════════════════
           METRICS
-      ═══════════════���═══════════���═���═══════��════ */}
+      ═════════��═════���═══════════���═���═══════��════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
