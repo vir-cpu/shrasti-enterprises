@@ -12,28 +12,58 @@ import {
 } from "framer-motion";
 
 // ─────────────────────────────────────────────────────────────
-// THEME TOKENS
+// THEME SYSTEM
 // ─────────────────────────────────────────────────────────────
-const T = {
-  bg:          "#F7F4EE",
-  bgSection:   "#FFFFFF",
-  bgAlt:       "#EFF0F4",
-  navy:        "#0D1F4E",
-  navyLight:   "#1A3070",
-  blue:        "#1A52D4",
-  blueLight:   "#4A7DE8",
-  gold:        "#C9A028",
-  goldLight:   "#E8C84A",
-  goldGlow:    "rgba(201,160,40,0.35)",
-  blueGlow:    "rgba(26,82,212,0.18)",
-  text:        "#0D1F4E",
-  textMid:     "#3D4F72",
-  textSoft:    "#6B7A99",
-  border:      "#DDD8CE",
-  divider:     "#E8E2D6",
-  footerBg:    "#0D1F4E",
-  footerText:  "#C8D0E4",
+type ThemeMode = "light" | "dark";
+
+const createThemeTokens = (mode: ThemeMode) => {
+  if (mode === "dark") {
+    return {
+      // Dark Mode Palette
+      bg:          "#0A0A0A",
+      bgSection:   "#151515",
+      bgAlt:       "#1C1C1C",
+      navy:        "#F7F7F7",
+      navyLight:   "#E8E8E8",
+      blue:        "#D4AF37",
+      blueLight:   "#F2C94C",
+      gold:        "#D4AF37",
+      goldLight:   "#F2C94C",
+      goldGlow:    "rgba(212,175,55,0.25)",
+      blueGlow:    "rgba(212,175,55,0.2)",
+      text:        "#F7F7F7",
+      textMid:     "rgba(255,255,255,0.75)",
+      textSoft:    "rgba(255,255,255,0.55)",
+      border:      "rgba(212,175,55,0.18)",
+      divider:     "rgba(212,175,55,0.12)",
+      footerBg:    "#0A0A0A",
+      footerText:  "rgba(212,175,55,0.8)",
+    };
+  }
+  // Light Mode (original)
+  return {
+    bg:          "#F7F4EE",
+    bgSection:   "#FFFFFF",
+    bgAlt:       "#EFF0F4",
+    navy:        "#0D1F4E",
+    navyLight:   "#1A3070",
+    blue:        "#1A52D4",
+    blueLight:   "#4A7DE8",
+    gold:        "#C9A028",
+    goldLight:   "#E8C84A",
+    goldGlow:    "rgba(201,160,40,0.35)",
+    blueGlow:    "rgba(26,82,212,0.18)",
+    text:        "#0D1F4E",
+    textMid:     "#3D4F72",
+    textSoft:    "#6B7A99",
+    border:      "#DDD8CE",
+    divider:     "#E8E2D6",
+    footerBg:    "#0D1F4E",
+    footerText:  "#C8D0E4",
+  };
 };
+
+
 
 // ─────────────────────────────────────────────────────────────
 // DATA
@@ -173,8 +203,8 @@ function ShrastiLogo({ size = "md", dark = false }: { size?: "sm" | "md" | "lg";
   );
 }
 // PRODUCT CARD
-// ──────������──────────────────────────────────────────────────────
-function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]; onQuote: (t: string) => void }) {
+// ──────────────────────────────────────────────────────────────────
+function ProductCard({ product, onQuote, T }: { product: typeof productSolutions[0]; onQuote: (t: string) => void; T: ReturnType<typeof createThemeTokens> }) {
   const [hovered, setHovered] = useState(false);
   return (
     <motion.div
@@ -267,6 +297,7 @@ function ProductCard({ product, onQuote }: { product: typeof productSolutions[0]
 export default function ShrastiEnterprisesHome() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activeTab,        setActiveTab]         = useState("overview");
+  const [theme,            setTheme]              = useState<ThemeMode>("light");
   const [quoteStep,        setQuoteStep]          = useState(1);
   const [selectedProduct,  setSelectedProduct]    = useState("BOPP Tapes");
   const [volume,           setVolume]             = useState("");
@@ -277,6 +308,8 @@ export default function ShrastiEnterprisesHome() {
   const [mobileOpen,       setMobileOpen]        = useState(false);
   const [mousePos,         setMousePos]          = useState({ x: -2000, y: -2000 });
   const [openTerm,         setOpenTerm]          = useState<number | null>(null);
+  
+  const T = createThemeTokens(theme);
 
   const { scrollYProgress } = useScroll();
   const smoothProgress      = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -290,6 +323,27 @@ export default function ShrastiEnterprisesHome() {
     });
   }, []);
 
+  // Initialize theme from localStorage or system preference
+  useEffect(() => {
+    const stored = localStorage.getItem("theme-preference") as ThemeMode | null;
+    if (stored) {
+      setTheme(stored);
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setTheme(prefersDark ? "dark" : "light");
+    }
+  }, []);
+
+  // Persist theme changes and update HTML element
+  useEffect(() => {
+    localStorage.setItem("theme-preference", theme);
+    const html = document.documentElement;
+    html.style.transition = "background-color 0.3s ease, color 0.3s ease";
+    html.style.backgroundColor = theme === "dark" ? "#0A0A0A" : "#F7F4EE";
+    html.style.color = theme === "dark" ? "#F7F7F7" : "#0D1F4E";
+  }, [theme]);
+
+  // Handle mobile menu resize
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 1024) setMobileOpen(false); };
     window.addEventListener("resize", onResize);
@@ -341,17 +395,24 @@ export default function ShrastiEnterprisesHome() {
   return (
     <div
       onMouseMove={handleMouseMove}
-      style={{ background: T.bg, color: T.text, fontFamily: "var(--font-dm-sans), sans-serif", minHeight: "100vh" }}
+      style={{ 
+        background: T.bg, 
+        color: T.text, 
+        fontFamily: "var(--font-dm-sans), sans-serif", 
+        minHeight: "100vh",
+        transition: "background-color 0.3s ease, color 0.3s ease",
+      }}
     >
       <style>{`
         html { scroll-behavior: smooth; }
-        ::selection { background: rgba(26,82,212,0.18); color: #0D1F4E; }
+        ::selection { background: ${theme === "dark" ? "rgba(212,175,55,0.25)" : "rgba(26,82,212,0.18)"}; color: ${theme === "dark" ? "#D4AF37" : "#0D1F4E"}; }
         input, select, textarea { font-family: var(--font-dm-sans), sans-serif; } // Consistent font for form elements.
         @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.4)} } // Unused animation, consider removing if not needed.
         .cursor-glow-hidden-on-mobile { display: none; }
         @media (min-width: 1024px) { .cursor-glow-hidden-on-mobile { display: block; } } // Hide cursor glow on smaller screens
         .desktop-hero-image { display: none; }
         @media (min-width: 768px) { .desktop-hero-image { display: block; } .mobile-hero-image { display: none; } }
+        * { transition-property: background-color, border-color, color; transition-duration: 0.3s; transition-timing-function: ease; }
       `}</style>
       {/* Cursor glow */}
       <div style={{
@@ -374,9 +435,11 @@ export default function ShrastiEnterprisesHome() {
       ══════════════════════════════════════════ */}
       <header style={{
         position: "fixed", top: 0, width: "100%", zIndex: 50,
-        background: "rgba(247,244,238,0.92)", backdropFilter: "blur(20px)",
+        background: theme === "dark" ? "rgba(10,10,10,0.92)" : "rgba(247,244,238,0.92)", 
+        backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${T.divider}`,
         overflow: "hidden",
+        transition: "background-color 0.3s ease, border-color 0.3s ease",
       }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(8px, 3vw, 24px)", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <motion.a href="#" style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}><ShrastiLogo size="md" /></motion.a>
@@ -399,13 +462,44 @@ export default function ShrastiEnterprisesHome() {
               className="hidden lg:inline-flex"
               style={{
                 background: `linear-gradient(135deg, ${T.blue}, ${T.blueLight})`,
-                color: "#fff", borderRadius: 10, padding: "10px 24px",
+                color: theme === "dark" ? "#0A0A0A" : "#fff", borderRadius: 10, padding: "10px 24px",
                 fontSize: 13, fontWeight: 800, letterSpacing: "0.07em",
                 textTransform: "uppercase", textDecoration: "none",
               }}
             >
               Request Quote
             </motion.a>
+
+            {/* Theme Toggle Button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              style={{
+                background: "none", border: "none", cursor: "pointer", padding: 8, 
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: T.text, transition: "color 0.3s ease",
+              }}
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              ) : (
+                <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                  <circle cx={12} cy={12} r={5} />
+                  <line x1={12} y1={1} x2={12} y2={3} />
+                  <line x1={12} y1={21} x2={12} y2={23} />
+                  <line x1={4.22} y1={4.22} x2={5.64} y2={5.64} />
+                  <line x1={18.36} y1={18.36} x2={19.78} y2={19.78} />
+                  <line x1={1} y1={12} x2={3} y2={12} />
+                  <line x1={21} y1={12} x2={23} y2={12} />
+                  <line x1={4.22} y1={19.78} x2={5.64} y2={18.36} />
+                  <line x1={18.36} y1={5.64} x2={19.78} y2={4.22} />
+                </svg>
+              )}
+            </motion.button>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -440,13 +534,43 @@ export default function ShrastiEnterprisesHome() {
               <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: 4 }}>
                 {navLinks.map(l => (
                   <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
-                    style={{ padding: "12px 0", fontSize: 15, fontWeight: 700, color: T.navy, textDecoration: "none", borderBottom: `1px solid ${T.divider}`, letterSpacing: "0.04em" }}
+                    style={{ padding: "12px 0", fontSize: 15, fontWeight: 700, color: T.text, textDecoration: "none", borderBottom: `1px solid ${T.divider}`, letterSpacing: "0.04em" }}
                   >{l.label}</a>
                 ))}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 0", borderBottom: `1px solid ${T.divider}` }}>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: T.textMid }}>Theme</span>
+                  <button
+                    onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                    style={{
+                      background: "none", border: "none", cursor: "pointer", padding: 6, 
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: T.text, transition: "color 0.3s ease",
+                    }}
+                    aria-label="Toggle theme"
+                  >
+                    {theme === "light" ? (
+                      <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                      </svg>
+                    ) : (
+                      <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                        <circle cx={12} cy={12} r={5} />
+                        <line x1={12} y1={1} x2={12} y2={3} />
+                        <line x1={12} y1={21} x2={12} y2={23} />
+                        <line x1={4.22} y1={4.22} x2={5.64} y2={5.64} />
+                        <line x1={18.36} y1={18.36} x2={19.78} y2={19.78} />
+                        <line x1={1} y1={12} x2={3} y2={12} />
+                        <line x1={21} y1={12} x2={23} y2={12} />
+                        <line x1={4.22} y1={19.78} x2={5.64} y2={18.36} />
+                        <line x1={18.36} y1={5.64} x2={19.78} y2={4.22} />
+                      </svg>
+                    )}
+                  </button>
+                </div>
                 <a href="tel:+918449350005" style={{
                   marginTop: 12, textAlign: "center", padding: "13px 0", borderRadius: 10,
                   background: `linear-gradient(135deg, ${T.blue}, ${T.blueLight})`,
-                  color: "#fff", fontWeight: 800, fontSize: 14, textDecoration: "none", letterSpacing: "0.05em",
+                  color: theme === "dark" ? "#0A0A0A" : "#fff", fontWeight: 800, fontSize: 14, textDecoration: "none", letterSpacing: "0.05em",
                 }}>Call: +91 84493 50005</a>
               </div>
             </motion.div>
@@ -461,7 +585,8 @@ export default function ShrastiEnterprisesHome() {
         position: "relative", width: "100vw", 
         height: "100svh",
         overflow: "hidden",
-        backgroundColor: "#F7F4EE",
+        backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
+        transition: "background-color 0.3s ease",
       }}>
         {/* Desktop/Tablet Image - hero-products.jpg for 768px and above */}
         <Image
@@ -518,8 +643,8 @@ export default function ShrastiEnterprisesHome() {
                 flexDirection: "column",
                 gap: 0,
               }}>
-              <span style={{ color: "#F5F1E8", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: "0 4px 12px rgba(0,0,0,0.2)" }}>SHRASTI</span>
-              <span style={{ background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.15))" }}>ENTERPRISES</span>
+              <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: theme === "dark" ? "0 4px 12px rgba(0,0,0,0.5)" : "0 4px 12px rgba(0,0,0,0.2)" }}>SHRASTI</span>
+              <span style={{ background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", filter: theme === "dark" ? "drop-shadow(0 2px 8px rgba(212,175,55,0.3))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))" }}>ENTERPRISES</span>
             </motion.div>
 
             {/* Main Headline - Two Lines with Colors */}
@@ -531,9 +656,9 @@ export default function ShrastiEnterprisesHome() {
                 filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.3))",
               }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 1.0 }}>
-  {/* Line 1: Deep Navy */}
+  {/* Line 1: Deep Navy / Light Gray in Dark */}
   <span style={{ 
-    color: "#1A2F5C",
+    color: theme === "dark" ? "#E8E8E8" : "#1A2F5C",
     fontWeight: 900,
     fontSize: "clamp(32px, 5vw, 64px)",
     letterSpacing: "-0.03em"
@@ -541,9 +666,9 @@ export default function ShrastiEnterprisesHome() {
     Next-Gen
   </span>
   
-              {/* Line 2: Bright Off-White */}
+              {/* Line 2: Bright Off-White / Light White in Dark */}
   <span style={{ 
-    color: "#F5F1E8",
+    color: theme === "dark" ? "#F7F7F7" : "#F5F1E8",
     fontWeight: 900,
     fontSize: "clamp(32px, 5.5vw, 72px)",
     letterSpacing: "-0.02em"
@@ -551,7 +676,7 @@ export default function ShrastiEnterprisesHome() {
     Packaging
   </span>
   
-  {/* Line 3: Rich Champagne Gold */}
+  {/* Line 3: Rich Champagne Gold (same in both) */}
   <span style={{ 
     color: "#D4AF37",
     fontWeight: 900,
@@ -566,10 +691,10 @@ export default function ShrastiEnterprisesHome() {
             {/* Supporting Text - Expanded with manufacturing context */}
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
               style={{
-                fontSize: "clamp(13px, 1.4vw, 17px)", color: "#E8E4D8", lineHeight: 1.7,
+                fontSize: "clamp(13px, 1.4vw, 17px)", color: theme === "dark" ? "rgba(255,255,255,0.75)" : "#E8E4D8", lineHeight: 1.7,
                 fontWeight: 400, maxWidth: "clamp(280px, 90%, 420px)", margin: 0,
               }}>
-              <span style={{ color: "#F5F1E8" }}>Industrial-grade</span> BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our <span style={{ color: "#D4AF37" }}>SIDCUL Haridwar</span> facility. <span style={{ color: "#D4AF37" }}>Direct Pricing</span>. <span style={{ color: "#F5F1E8" }}>Premium Quality</span> verified to micron precision. Trusted by bulk buyers across North India.
+              <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Industrial-grade</span> BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our <span style={{ color: "#D4AF37" }}>SIDCUL Haridwar</span> facility. <span style={{ color: "#D4AF37" }}>Direct Pricing</span>. <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Premium Quality</span> verified to micron precision. Trusted by bulk buyers across North India.
             </motion.p>
 
             {/* Glass Panel Background */}
@@ -580,12 +705,13 @@ export default function ShrastiEnterprisesHome() {
                 left: "clamp(20px, 6vw, 60px)",
                 right: "clamp(20px, 6vw, 40px)",
                 maxWidth: "480px",
-                background: "rgba(255, 255, 255, 0.06)",
+                background: theme === "dark" ? "rgba(30,30,30,0.6)" : "rgba(255, 255, 255, 0.06)",
                 backdropFilter: "blur(12px)",
-                border: "1px solid rgba(255, 255, 255, 0.12)",
+                border: theme === "dark" ? "1px solid rgba(212,175,55,0.2)" : "1px solid rgba(255, 255, 255, 0.12)",
                 borderRadius: 24,
                 padding: "24px",
                 zIndex: 5,
+                transition: "all 0.3s ease",
               }}>
 
             {/* CTAs */}
@@ -595,9 +721,9 @@ export default function ShrastiEnterprisesHome() {
                 href="#product-matrix"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
-                  background: `linear-gradient(135deg, #D4AF37, #E8C84A)`, color: "#1A2F5C", fontWeight: 800,
+                  background: `linear-gradient(135deg, #D4AF37, #E8C84A)`, color: theme === "dark" ? "#0A0A0A" : "#1A2F5C", fontWeight: 800,
                   fontSize: "clamp(11px, 2.2vw, 13px)", letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none",
-                  boxShadow: `0 8px 20px rgba(212, 175, 55, 0.25)`, cursor: "pointer",
+                  boxShadow: theme === "dark" ? `0 8px 20px rgba(212, 175, 55, 0.35)` : `0 8px 20px rgba(212, 175, 55, 0.25)`, cursor: "pointer",
                 }}>
                 Explore Inventory <span>→</span>
               </motion.a>
@@ -605,11 +731,12 @@ export default function ShrastiEnterprisesHome() {
                 href="tel:+918449350005"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
-                  border: `1.5px solid rgba(255, 255, 255, 0.25)`, background: "rgba(255, 255, 255, 0.1)",
-                  backdropFilter: "blur(10px)", color: "#F5F1E8", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
+                  border: theme === "dark" ? `1.5px solid rgba(212, 175, 55, 0.3)` : `1.5px solid rgba(255, 255, 255, 0.25)`, 
+                  background: theme === "dark" ? "rgba(45,45,45,0.4)" : "rgba(255, 255, 255, 0.1)",
+                  backdropFilter: "blur(10px)", color: theme === "dark" ? "#F7F7F7" : "#F5F1E8", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
                   letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
                   transition: "all 0.2s ease",
-                  boxShadow: "0 4px 12px rgba(255, 255, 255, 0.08)",
+                  boxShadow: theme === "dark" ? "0 4px 12px rgba(212, 175, 55, 0.15)" : "0 4px 12px rgba(255, 255, 255, 0.08)",
                 }}>
                 <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                 Call Plant
@@ -622,7 +749,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           TRUST BAR
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.navy, borderTop: `3px solid ${T.gold}` }}>
+      <section style={{ background: T.navy, borderTop: `3px solid ${T.gold}`, transition: "background-color 0.3s ease" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "18px 24px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "8px 32px", alignItems: "center" }}>
             {trustBadges.map((b, i) => (
@@ -632,7 +759,7 @@ export default function ShrastiEnterprisesHome() {
                 <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${T.gold}22`, border: `1px solid ${T.gold}55`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <svg width={17} height={17} fill="none" stroke={T.gold} viewBox="0 0 24 24" strokeWidth={1.6}><path strokeLinecap="round" strokeLinejoin="round" d={b.d} /></svg>
                 </div>
-                <span style={{ fontSize: 12, fontWeight: 700, color: "#E8E0CC", letterSpacing: "0.1em", textTransform: "uppercase" }}>{b.label}</span>
+                <span style={{ fontSize: 12, fontWeight: 700, color: T.textMid, letterSpacing: "0.1em", textTransform: "uppercase" }}>{b.label}</span>
               </motion.div>
             ))}
           </div>
@@ -742,7 +869,7 @@ export default function ShrastiEnterprisesHome() {
             {layoutMode === "grid" ? (
               <motion.div key="grid" variants={stagger} initial="hidden" animate="visible" exit={{ opacity: 0 }}
                 style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(310px, 1fr))", gap: 24 }}>
-                {filtered.map(p => <ProductCard key={p.id} product={p} onQuote={handleQuote} />)}
+                {filtered.map(p => <ProductCard key={p.id} product={p} onQuote={handleQuote} T={T} />)}
               </motion.div>
             ) : (
               <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -1111,7 +1238,7 @@ export default function ShrastiEnterprisesHome() {
       <footer style={{ background: T.footerBg, padding: "80px 24px 36px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)` }} />
 
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 40, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 40, paddingBottom: 40, borderBottom: `1px solid ${T.divider}` }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <ShrastiLogo size="lg" dark />
             <p style={{ fontSize: 14, color: T.footerText, lineHeight: 1.75, fontWeight: 400 }}>
@@ -1123,9 +1250,9 @@ export default function ShrastiEnterprisesHome() {
                 { href: "mailto:contact@shrastienterprises.com", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "Email Us" },
               ].map(c => (
                 <a key={c.href} href={c.href}
-                  style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 14px", borderRadius: 8, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", color: T.footerText, fontSize: 12, fontWeight: 600, textDecoration: "none", transition: "all 0.2s" }}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "8px 14px", borderRadius: 8, background: theme === "dark" ? "rgba(212,175,55,0.1)" : "rgba(255,255,255,0.07)", border: theme === "dark" ? "1px solid rgba(212,175,55,0.15)" : "1px solid rgba(255,255,255,0.1)", color: T.footerText, fontSize: 12, fontWeight: 600, textDecoration: "none", transition: "all 0.2s" }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = `${T.gold}22`; (e.currentTarget as HTMLElement).style.color = T.gold; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)"; (e.currentTarget as HTMLElement).style.color = T.footerText; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = theme === "dark" ? "rgba(212,175,55,0.1)" : "rgba(255,255,255,0.07)"; (e.currentTarget as HTMLElement).style.color = T.footerText; }}
                 >
                   <svg width={13} height={13} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={c.icon} /></svg>
                   {c.label}
@@ -1167,8 +1294,8 @@ export default function ShrastiEnterprisesHome() {
         </div>
 
         <div style={{ maxWidth: 1280, margin: "24px auto 0", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
-          <p style={{ fontSize: 12, color: "rgba(200,208,228,0.5)", fontWeight: 500 }}>© {new Date().getFullYear()} Shrasti Enterprises™. All rights reserved.</p>
-          <p style={{ fontSize: 12, color: "rgba(200,208,228,0.35)", fontWeight: 500 }}>Built with Next.js · Framer Motion · Tailwind CSS</p>
+          <p style={{ fontSize: 12, color: theme === "dark" ? "rgba(212,175,55,0.4)" : "rgba(200,208,228,0.5)", fontWeight: 500 }}>© {new Date().getFullYear()} Shrasti Enterprises™. All rights reserved.</p>
+          <p style={{ fontSize: 12, color: theme === "dark" ? "rgba(212,175,55,0.25)" : "rgba(200,208,228,0.35)", fontWeight: 500 }}>Built with Next.js · Framer Motion · Tailwind CSS</p>
         </div>
       </footer>
     </div>
