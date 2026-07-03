@@ -583,7 +583,7 @@ export default function ShrastiEnterprisesHome() {
       ══════════════════════════════════════════ */}
       <section id="about-plant" style={{
         position: "relative", width: "100vw", 
-        height: "100svh",
+        height: "max(100svh, 100dvh)",
         overflow: "hidden",
         backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
         transition: "background-color 0.3s ease",
@@ -596,7 +596,7 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="desktop-hero-image"
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "left center" }}
         />
         {/* Mobile Image - hero-products-mobile.jpg for below 768px */}
         <Image
@@ -606,13 +606,29 @@ export default function ShrastiEnterprisesHome() {
           sizes="100vw"
           priority
           className="mobile-hero-image"
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center center" }}
         />
         {/* Overlay gradient for text readability */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
+          background: "linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.08) 60%, transparent 100%)",
           pointerEvents: "none"
+        }} />
+
+        {/* Subtle Glass Panel Behind Text Content */}
+        <div style={{
+          position: "absolute",
+          top: "clamp(70px, 12vh, 120px)",
+          left: "clamp(16px, 5vw, 48px)",
+          right: "clamp(16px, 5vw, 36px)",
+          maxWidth: "560px",
+          background: "rgba(255, 255, 255, 0.04)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.08)",
+          borderRadius: 28,
+          padding: "clamp(20px, 4vw, 40px)",
+          zIndex: 4,
+          pointerEvents: "none",
         }} />
 
         {/* Text Content Overlay - responsive positioning */}
@@ -768,7 +784,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ═══════════════��═══��══��═══════════════════
           METRICS
-      ═══════════════���═══════════���═════════��════ */}
+      ═══════════════���═══════════���═���═══════��════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
