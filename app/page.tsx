@@ -629,7 +629,8 @@ export default function ShrastiEnterprisesHome() {
       <section id="about-plant" style={{
         position: "relative", width: "100vw", 
         height: "100svh",
-        overflow: "hidden",
+        minHeight: "560px",
+        overflow: "visible",
         backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
         transition: "background-color 0.3s ease",
       }}>
@@ -658,22 +659,6 @@ export default function ShrastiEnterprisesHome() {
           position: "absolute", inset: 0,
           background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
           pointerEvents: "none"
-        }} />
-
-        {/* Subtle Glassmorphism Layer - Behind Text Content Only */}
-        <div style={{
-          position: "absolute",
-          top: "clamp(70px, 12vh, 130px)",
-          left: "clamp(16px, 5vw, 50px)",
-          maxWidth: "560px",
-          width: "clamp(85%, 100%, 560px)",
-          background: theme === "dark" ? "rgba(20,20,20,0.08)" : "rgba(255, 255, 255, 0.08)",
-          backdropFilter: "blur(12px)",
-          border: theme === "dark" ? "1px solid rgba(212,175,55,0.08)" : "1px solid rgba(255, 255, 255, 0.1)",
-          borderRadius: 24,
-          padding: "clamp(28px, 5vw, 44px)",
-          zIndex: 3,
-          pointerEvents: "none",
         }} />
 
         {/* Text Content Overlay - responsive positioning */}
@@ -758,7 +743,7 @@ export default function ShrastiEnterprisesHome() {
               <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Industrial-grade</span> BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our <span style={{ color: "#D4AF37" }}>SIDCUL Haridwar</span> facility. <span style={{ color: "#D4AF37" }}>Direct Pricing</span>. <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Premium Quality</span> verified to micron precision. Trusted by bulk buyers across North India.
             </motion.p>
 
-            {/* Glass Panel Background */}
+            {/* CTA Buttons Container */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
               style={{
                 position: "absolute",
@@ -766,11 +751,6 @@ export default function ShrastiEnterprisesHome() {
                 left: "clamp(20px, 6vw, 60px)",
                 right: "clamp(20px, 6vw, 40px)",
                 maxWidth: "480px",
-                background: theme === "dark" ? "rgba(30,30,30,0.6)" : "rgba(255, 255, 255, 0.06)",
-                backdropFilter: "blur(12px)",
-                border: theme === "dark" ? "1px solid rgba(212,175,55,0.2)" : "1px solid rgba(255, 255, 255, 0.12)",
-                borderRadius: 24,
-                padding: "24px",
                 zIndex: 5,
                 transition: "all 0.3s ease",
               }}>
