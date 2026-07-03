@@ -40,9 +40,10 @@ export default function RootLayout({
   return (
     <html 
       lang="en" 
-      className={`scroll-smooth bg-[#02050e] ${playfair.variable} ${dmSans.variable} ${geistMono.variable}`}
+      className={`scroll-smooth ${playfair.variable} ${dmSans.variable} ${geistMono.variable}`}
+      style={{ backgroundColor: "#F7F4EE" }}
     >
-      <body className="text-slate-100 antialiased selection:bg-amber-500/20 selection:text-amber-300">
+      <body className="antialiased" style={{ margin: 0, padding: 0 }}>
         {children}
       </body>
     </html>
