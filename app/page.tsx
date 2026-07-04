@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import type { MouseEvent } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   motion,
   AnimatePresence,
