@@ -749,14 +749,19 @@ export default function ShrastiEnterprisesHome() {
   SHRASTI
 </span>
               <span style={{ 
-  color: "#D4AF37", 
+  background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", 
+  backgroundClip: "text", 
+  WebkitBackgroundClip: "text", 
+  WebkitTextFillColor: "transparent", 
   display: "block", 
   fontSize: "clamp(20px, 3.7vw, 48px)", 
   fontWeight: 900, 
   letterSpacing: "0.04em", 
   textTransform: "uppercase", 
   lineHeight: "1.0", 
-  textShadow: "-1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF, 0 2px 4px rgba(255, 255, 255, 0.8)" 
+  filter: theme === "dark" 
+    ? "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.7))" 
+    : "drop-shadow(0 2px 3px rgba(30, 41, 59, 0.9)) drop-shadow(0 5px 12px rgba(30, 41, 59, 0.4))" 
 }}>
   ENTERPRISES
 </span>
