@@ -748,7 +748,25 @@ export default function ShrastiEnterprisesHome() {
 }}>
   SHRASTI
 </span>
-              <span style={{ background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", filter: theme === "dark" ? "drop-shadow(0 2px 8px rgba(212,175,55,0.3))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))" }}>ENTERPRISES</span>
+              <span style={{ 
+  color: "#FFFFFF",
+  display: "block", 
+  fontSize: "clamp(20px, 3.7vw, 48px)", 
+  fontWeight: 900, 
+  letterSpacing: "0.04em", 
+  textTransform: "uppercase", 
+  lineHeight: "1.0", // Adjusted from 0.8 to give the glowing shadows breathing room
+  textShadow: theme === "dark" 
+    ? `0 2px 4px rgba(214, 175, 55, 0.4),
+       0 4px 12px rgba(214, 175, 55, 0.3),
+       0 12px 24px rgba(214, 175, 55, 0.2),
+       0 20px 40px rgba(0, 0, 0, 0.6)`
+    : `0 2px 4px rgba(201, 160, 40, 0.5),
+       0 4px 12px rgba(201, 160, 40, 0.3),
+       0 8px 20px rgba(13, 31, 78, 0.12)`
+}}>
+  ENTERPRISES
+</span>
             </motion.div>
 
             {/* Main Headline - Two Lines with Colors */}
