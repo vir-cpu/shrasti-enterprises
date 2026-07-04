@@ -760,8 +760,8 @@ export default function ShrastiEnterprisesHome() {
   textTransform: "uppercase", 
   lineHeight: "1.0", 
   filter: theme === "dark" 
-    ? "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.7))" 
-    : "drop-shadow(0 2px 3px rgba(30, 41, 59, 0.9)) drop-shadow(0 5px 12px rgba(30, 41, 59, 0.4))" 
+    ? "drop-shadow(0 2px 6px rgba(74, 46, 24, 0.85)) drop-shadow(0 6px 18px rgba(74, 46, 24, 0.55))" 
+    : "drop-shadow(0 2px 4px rgba(74, 46, 24, 0.95)) drop-shadow(0 4px 12px rgba(74, 46, 24, 0.45))" 
 }}>
   ENTERPRISES
 </span>
