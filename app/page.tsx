@@ -829,9 +829,7 @@ export default function ShrastiEnterprisesHome() {
   style={{
     width: "40%",
     // Dark mode: metallic navy, Light mode: very faint transparency
-    background: theme === "dark" 
-      ? "linear-gradient(135deg, #0a1428 0%, #152545 100%)" 
-      : "rgba(255, 255, 255, 0.02)",
+    background: "rgba(255, 255, 255, 0.02)",
     backdropFilter: "blur(5px)",
     WebkitBackdropFilter: "blur(5px)",
     // Golden border effect
@@ -840,14 +838,12 @@ export default function ShrastiEnterprisesHome() {
       : "1px solid rgba(212, 175, 55, 0.2)",
     borderRadius: "8px",
     padding: "12px",
-    boxShadow: theme === "dark" 
-      ? "0 4px 20px rgba(0, 0, 0, 0.5)" 
-      : "0 4px 20px rgba(0, 0, 0, 0.1)",
+    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
   }}
 >
   <p style={{
     fontSize: "clamp(12px, 1.2vw, 15px)", 
-    color:  "#F5F1E8", 
+    color:  "#0278ff", 
     lineHeight: 1.3, // Reduced spacing between lines
     fontWeight: 400, 
     margin: 0,
