@@ -756,7 +756,7 @@ export default function ShrastiEnterprisesHome() {
   letterSpacing: "0.04em", 
   textTransform: "uppercase", 
   lineHeight: "1.0", 
-  textShadow: "0 0 4px #FFFFFF, 0 0 8px #FFFFFF, 0 4px 8px rgba(0, 0, 0, 0.25)" 
+  textShadow: "-1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF, 0 2px 4px rgba(255, 255, 255, 0.8)" 
 }}>
   ENTERPRISES
 </span>
