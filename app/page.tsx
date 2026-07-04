@@ -730,7 +730,7 @@ export default function ShrastiEnterprisesHome() {
                 gap: 0,
               }}>
               <span style={{ 
-  color: "#FFFFFF", // Bright white for both modes
+  color: "#FFFFFF",
   display: "block", 
   fontSize: "clamp(45px, 6.5vw, 75px)", 
   fontWeight: 900, 
@@ -738,13 +738,13 @@ export default function ShrastiEnterprisesHome() {
   textTransform: "uppercase", 
   lineHeight: "1.0",
   textShadow: theme === "dark" 
-    ? `0 0 2px rgba(232, 200, 74, 0.6),   /* Sharp Golden Edge */
-       0 0 10px rgba(214, 175, 55, 0.5),  /* Bright Inner Glow */
-       0 2px 20px rgba(214, 175, 55, 0.4), /* Deep Ambient Gold Aura */
-       0 12px 30px rgba(0, 0, 0, 0.85)`   /* Dark Separation Shadow */
-    : `0 0 2px rgba(201, 160, 40, 0.8),   /* Sharp Dark-Gold Edge */
-       0 0 12px rgba(201, 160, 40, 0.4),  /* Metallic Core Glow */
-       0 4px 20px rgba(13, 31, 78, 0.15)`  /* Soft Navy Room Contrast */
+    ? `0 2px 4px rgba(214, 175, 55, 0.4),
+       0 4px 12px rgba(214, 175, 55, 0.3),
+       0 12px 24px rgba(214, 175, 55, 0.2),
+       0 20px 40px rgba(0, 0, 0, 0.6)`
+    : `0 2px 4px rgba(201, 160, 40, 0.5),
+       0 4px 12px rgba(201, 160, 40, 0.3),
+       0 8px 20px rgba(13, 31, 78, 0.12)`
 }}>
   SHRASTI
 </span>
