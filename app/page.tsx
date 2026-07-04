@@ -684,9 +684,18 @@ export default function ShrastiEnterprisesHome() {
   }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 20, pointerEvents: "auto" }}>
             {/* Badge */}
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}>
-              <span style={{ width: 7, height: 7, borderRadius: "50%", background: T.gold }} />
+            import { motion } from "framer-motion";
+            <motion.div 
+              initial={{ opacity: 0, y: 12 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.12 }}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}
+            >
+              <motion.span 
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                style={{ width: 7, height: 7, borderRadius: "50%", background: T.gold }} 
+              />
               Haridwar Factory Direct
             </motion.div>
 
