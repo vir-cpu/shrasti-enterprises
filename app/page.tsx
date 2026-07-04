@@ -733,7 +733,7 @@ export default function ShrastiEnterprisesHome() {
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
               style={{
                 marginBottom: 0,
-                lineHeight: 1.15,
+                lineHeight: 0.85,
                 display: "flex",
                 flexDirection: "column",
                 gap: 0,
@@ -745,7 +745,7 @@ export default function ShrastiEnterprisesHome() {
   fontWeight: 900, 
   letterSpacing: "0.08em", 
   textTransform: "uppercase", 
-  lineHeight: "1.0",
+  lineHeight: "0.85",
   textShadow: theme === "dark" 
     ? `0 2px 4px rgba(214, 175, 55, 0.4),
        0 4px 12px rgba(214, 175, 55, 0.3),
@@ -767,7 +767,7 @@ export default function ShrastiEnterprisesHome() {
   fontWeight: 900, 
   letterSpacing: "0.04em", 
   textTransform: "uppercase", 
-  lineHeight: "1.0", 
+  lineHeight: "0.85", 
   filter: theme === "dark" 
     ? "drop-shadow(0 2px 6px rgba(74, 46, 24, 0.85)) drop-shadow(0 6px 18px rgba(74, 46, 24, 0.55))" 
     : "drop-shadow(0 2px 4px rgba(74, 46, 24, 0.95)) drop-shadow(0 4px 12px rgba(74, 46, 24, 0.45))" 
@@ -780,11 +780,11 @@ export default function ShrastiEnterprisesHome() {
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.20, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
   style={{
     fontFamily: "var(--font-montserrat), sans-serif",
-    fontSize: "clamp(30px, 4vw, 52px)", fontWeight: 900, lineHeight: 1.15,
+    fontSize: "clamp(30px, 4vw, 52px)", fontWeight: 900, lineHeight: 0.85,
     letterSpacing: "-0.02em", margin: 0,
     filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
   }}>
-  <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 1.0 }}>
+  <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.85 }}>
     
     {/* Line 1: Navy with subtle anchor */}
     <span style={{ 
@@ -822,13 +822,31 @@ export default function ShrastiEnterprisesHome() {
 </motion.h1>
 
             {/* Supporting Text - Expanded with manufacturing context */}
-            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
-              style={{
-                fontSize: "clamp(13px, 1.4vw, 17px)", color: theme === "dark" ? "rgba(255,255,255,0.75)" : "#E8E4D8", lineHeight: 1.7,
-                fontWeight: 400, maxWidth: "clamp(280px, 90%, 420px)", margin: 0,
-              }}>
-              <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Industrial-grade</span> BOPP tapes, stretch films, and custom poly solutions. 24/7 production from our <span style={{ color: "#D4AF37" }}>SIDCUL Haridwar</span> facility. <span style={{ color: "#D4AF37" }}>Direct Pricing</span>. <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8" }}>Premium Quality</span> verified to micron precision. Trusted by bulk buyers across North India.
-            </motion.p>
+            <div style={{
+  background: "rgba(255, 255, 255, 0.08)",
+  backdropFilter: "blur(12px)",
+  WebkitBackdropFilter: "blur(12px)",
+  border: "1px solid rgba(255, 255, 255, 0.15)",
+  borderRadius: "16px",
+  padding: "24px",
+  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+  maxWidth: "fit-content"
+}}>
+  <motion.p 
+    initial={{ opacity: 0, y: 16 }} 
+    animate={{ opacity: 1, y: 0 }} 
+    transition={{ delay: 0.7 }}
+    style={{
+      fontSize: "clamp(14px, 1.5vw, 18px)", 
+      color: "#F5F1E8", 
+      lineHeight: 1.5,
+      fontWeight: 400, 
+      margin: 0,
+    }}
+  >
+    We manufacture premium BOPP tapes, stretch films, and custom plastic packaging. Our facility in <span style={{ color: "#D4AF37", fontWeight: 600 }}>SIDCUL Haridwar</span> runs day and night to give you direct factory pricing. We verify every product for exact thickness, which is why bulk buyers across North India trust us.
+  </motion.p>
+</div>
             </div>
 
             {/* CTA Buttons Container - positioned at bottom of hero */}
