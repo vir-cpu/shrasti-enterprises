@@ -632,11 +632,22 @@ export default function ShrastiEnterprisesHome() {
   backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
   transition: "background-color 0.3s ease",
 }}>
+  {/* Embedded CSS to cleanly handle image visibility without asset clashing */}
+  <style>{`
+    @media (max-width: 767px) {
+      .desktop-hero-image { display: none !important; }
+      .mobile-hero-image { display: block !important; }
+    }
+    @media (min-width: 768px) {
+      .desktop-hero-image { display: block !important; }
+      .mobile-hero-image { display: none !important; }
+    }
+  `}</style>
   
   <div style={{
     position: "relative",
     width: "100%",
-    height: "80vh", 
+    height: "110dvh", /* Upgraded to dynamic viewport height for mobile stability */
     overflow: "hidden",
     backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
   }}>
@@ -644,22 +655,25 @@ export default function ShrastiEnterprisesHome() {
       src="/hero-products.jpg"
       alt="Shrasti Enterprises premium packaging solutions"
       fill
-      sizes="(min-width: 768px) 100vw, 0px"
+      sizes="100vw" /* Cleaned up since global visibility is handled by CSS classes */
       priority
       className="desktop-hero-image"
-      style={{ objectFit: "cover", objectPosition: "right" }} 
+      style={{ objectFit: "cover", objectPosition: "right center" }} 
     />
     <Image
       src="/hero-products-mobile.jpg"
       alt="Shrasti Enterprises premium packaging solutions"
       fill
-      sizes="(max-width: 767px) 100vw, 0px"
+      sizes="100vw"
       priority
       className="mobile-hero-image"
-      style={{ objectFit: "cover", objectPosition: "center" }}
+      style={{ objectFit: "cover", objectPosition: "right center" }}
     />
+    
+    {/* Dark overlay for typography contrast */}
     <div style={{
-      position: "absolute", inset: 0,
+      position: "absolute", 
+      inset: 0,
       background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
       pointerEvents: "none",
       zIndex: 2,
