@@ -769,44 +769,48 @@ export default function ShrastiEnterprisesHome() {
 
             {/* Main Headline - Two Lines with Colors */}
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.20, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
-              style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 900, lineHeight: 1.15,
-                letterSpacing: "-0.02em", margin: 0,
-                filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.3))",
-              }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 1.0 }}>
-  {/* Line 1: Deep Navy / Light Gray in Dark */}
-  <span style={{ 
-    color: theme === "dark" ? "#E8E8E8" : "#1A2F5C",
-    fontWeight: 900,
-    fontSize: "clamp(32px, 5vw, 64px)",
-    letterSpacing: "-0.03em"
+  style={{
+    fontFamily: "var(--font-montserrat), sans-serif",
+    fontSize: "clamp(30px, 4vw, 52px)", fontWeight: 900, lineHeight: 1.15,
+    letterSpacing: "-0.02em", margin: 0,
+    filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
   }}>
-    Next-Gen
-  </span>
-  
-              {/* Line 2: Bright Off-White / Light White in Dark */}
-  <span style={{ 
-    color: theme === "dark" ? "#F7F7F7" : "#F5F1E8",
-    fontWeight: 900,
-    fontSize: "clamp(32px, 5.5vw, 72px)",
-    letterSpacing: "-0.02em"
-  }}>
-    Packaging
-  </span>
-  
-  {/* Line 3: Rich Champagne Gold (same in both) */}
-  <span style={{ 
-    color: "#D4AF37",
-    fontWeight: 900,
-    fontSize: "clamp(32px, 5vw, 64px)",
-    letterSpacing: "-0.03em"
-  }}>
-    Systems
-  </span>
-</div>
-            </motion.h1>
+  <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 1.0 }}>
+    
+    {/* Line 1: Navy with subtle anchor */}
+    <span style={{ 
+      color: theme === "dark" ? "#E8E8E8" : "#1A2F5C",
+      fontWeight: 900,
+      fontSize: "clamp(28px, 3.5vw, 46px)",
+      letterSpacing: "-0.03em",
+      textShadow: theme === "dark" ? "none" : "0 2px 4px rgba(26, 47, 92, 0.2)"
+    }}>
+      Next-Gen
+    </span>
+    
+    {/* Line 2: Off-White with Heavy Charcoal Shadow for Contrast */}
+    <span style={{ 
+      color: theme === "dark" ? "#F7F7F7" : "#FFFFFF",
+      fontWeight: 900,
+      fontSize: "clamp(32px, 4.5vw, 54px)",
+      letterSpacing: "-0.02em",
+      textShadow: theme === "dark" ? "none" : "0 2px 4px rgba(30, 30, 30, 0.8), 0 4px 10px rgba(0, 0, 0, 0.4)"
+    }}>
+      Packaging
+    </span>
+    
+    {/* Line 3: Gold with Deep Bronze Anchor */}
+    <span style={{ 
+      color: "#D4AF37",
+      fontWeight: 900,
+      fontSize: "clamp(28px, 3.5vw, 46px)",
+      letterSpacing: "-0.03em",
+      textShadow: theme === "dark" ? "none" : "0 2px 4px rgba(74, 46, 24, 0.95), 0 4px 12px rgba(74, 46, 24, 0.45)"
+    }}>
+      Systems
+    </span>
+  </div>
+</motion.h1>
 
             {/* Supporting Text - Expanded with manufacturing context */}
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
