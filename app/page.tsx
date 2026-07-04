@@ -629,17 +629,14 @@ export default function ShrastiEnterprisesHome() {
       <section id="about-plant" style={{
   position: "relative", 
   width: "100%", 
-  display: "flex",
-  flexDirection: "column",
   backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
   transition: "background-color 0.3s ease",
 }}>
   
-  {/* Set a specific height here, like 75vh or 80vh */}
   <div style={{
     position: "relative",
     width: "100%",
-    height: "75vh", 
+    height: "80vh", 
     overflow: "hidden",
     backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
   }}>
@@ -659,7 +656,7 @@ export default function ShrastiEnterprisesHome() {
       sizes="(max-width: 767px) 100vw, 0px"
       priority
       className="mobile-hero-image"
-      style={{ objectFit: "cover", objectPosition: "center center" }}
+      style={{ objectFit: "cover", objectPosition: "center" }}
     />
     <div style={{
       position: "absolute", inset: 0,
