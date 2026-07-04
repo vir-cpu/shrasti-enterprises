@@ -685,18 +685,40 @@ export default function ShrastiEnterprisesHome() {
             <div style={{ display: "flex", flexDirection: "column", gap: 20, pointerEvents: "auto" }}>
             {/* Badge */}
             <motion.div 
-              initial={{ opacity: 0, y: 12 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.12 }}
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}
-            >
-              <motion.span 
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                style={{ width: 7, height: 7, borderRadius: "50%", background: T.gold }} 
-              />
-              Haridwar Factory Direct
-            </motion.div>
+  initial={{ opacity: 0, y: 12 }} 
+  animate={{ opacity: 1, y: 0 }} 
+  transition={{ delay: 0.12 }}
+  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}
+>
+  <motion.span 
+    animate={{ 
+      background: [
+        "#FFFFFF",             // Bright White
+        T.gold,                // Gold
+        "#3b82f6",             // Metallic Blue Base
+        "#93c5fd",             // Metallic Blue High Shine
+        "#3b82f6",             // Metallic Blue Base
+        "#FFFFFF"              // Loop back to White
+      ],
+      boxShadow: [
+        "0 0 8px 2px rgba(255,255,255,0.8)",    // White Glow
+        `0 0 8px 2px ${T.goldGlow || "rgba(212,175,55,0.6)"}`, // Gold Glow
+        "0 0 4px 1px rgba(59,130,246,0.6)",     // Blue Glow Base
+        "0 0 12px 3px rgba(147,197,253,0.9)",   // Blue Metallic High Flash
+        "0 0 4px 1px rgba(59,130,246,0.6)",     // Blue Glow Base
+        "0 0 8px 2px rgba(255,255,255,0.8)"     // Loop back to White Glow
+      ]
+    }}
+    transition={{ 
+      repeat: Infinity, 
+      duration: 4, 
+      ease: "easeInOut",
+      times: [0, 0.25, 0.5, 0.6, 0.7, 1] // Micro-timed for a sharp metallic flash during the blue phase
+    }}
+    style={{ width: 7, height: 7, borderRadius: "50%" }} 
+  />
+  Haridwar Factory Direct
+</motion.div>
 
             {/* Company Name - Two Lines, Heading Size */}
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
