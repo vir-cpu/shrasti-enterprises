@@ -822,34 +822,39 @@ export default function ShrastiEnterprisesHome() {
 </motion.h1>
 
             {/* Supporting Text - Expanded with manufacturing context */}
-            <div style={{
-  width: "40%",
-  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%)",
-  backdropFilter: "blur(12px)",
-  WebkitBackdropFilter: "blur(12px)",
-  borderTop: "1px solid rgba(255, 255, 255, 0.25)",
-  borderLeft: "1px solid rgba(255, 255, 255, 0.25)",
-  borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
-  borderRight: "1px solid rgba(255, 255, 255, 0.05)",
-  borderRadius: "16px",
-  padding: "24px",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
-}}>
-  <motion.p 
-    initial={{ opacity: 0, y: 16 }} 
-    animate={{ opacity: 1, y: 0 }} 
-    transition={{ delay: 0.7 }}
-    style={{
-      fontSize: "clamp(14px, 1.5vw, 18px)", 
-      color: "#F5F1E8", 
-      lineHeight: 1.5,
-      fontWeight: 400, 
-      margin: 0,
-    }}
-  >
+            <motion.div 
+  initial={{ opacity: 0, y: 16 }} 
+  animate={{ opacity: 1, y: 0 }} 
+  transition={{ delay: 0.7, duration: 0.6 }}
+  style={{
+    width: "40%",
+    // Dark mode: metallic navy, Light mode: very faint transparency
+    background: theme === "dark" 
+      ? "linear-gradient(135deg, #0a1428 0%, #152545 100%)" 
+      : "rgba(255, 255, 255, 0.05)",
+    backdropFilter: "blur(10px)",
+    WebkitBackdropFilter: "blur(10px)",
+    // Golden border effect
+    border: theme === "dark" 
+      ? "1px solid rgba(212, 175, 55, 0.3)" 
+      : "1px solid rgba(212, 175, 55, 0.2)",
+    borderRadius: "12px",
+    padding: "16px",
+    boxShadow: theme === "dark" 
+      ? "0 4px 20px rgba(0, 0, 0, 0.5)" 
+      : "0 4px 20px rgba(0, 0, 0, 0.1)",
+  }}
+>
+  <p style={{
+    fontSize: "clamp(12px, 1.2vw, 15px)", 
+    color: theme === "dark" ? "#E8E8E8" : "#F5F1E8", 
+    lineHeight: 1.3, // Reduced spacing between lines
+    fontWeight: 400, 
+    margin: 0,
+  }}>
     We manufacture premium Bopp tapes, stretch films, and custom plastic packaging. Our facility in <span style={{ color: "#D4AF37", fontWeight: 600 }}>Sidcul Haridwar</span> runs day and night to give you direct factory pricing. We verify every product for exact thickness, which is why bulk buyers across North India trust us.
-  </motion.p>
-</div>
+  </p>
+</motion.div>
             </div>
 
             {/* CTA Buttons Container - positioned at bottom of hero */}
