@@ -893,7 +893,7 @@ export default function ShrastiEnterprisesHome() {
               </motion.a>
           </motion.div>
               </div>
-        </div>
+        </motion.div>
       </section>
       {/* ══════════════════════════════════════════
           TRUST BAR
