@@ -830,8 +830,8 @@ export default function ShrastiEnterprisesHome() {
     width: "40%",
     // Dark mode: metallic navy, Light mode: very faint transparency
     background: "rgba(255, 255, 255, 0.02)",
-    backdropFilter: "blur(5px)",
-    WebkitBackdropFilter: "blur(5px)",
+    backdropFilter: "blur(2px)",
+    WebkitBackdropFilter: "blur(2px)",
     // Golden border effect
     border: theme === "dark" 
       ? "1px solid rgba(212, 175, 55, 0.3)" 
@@ -843,15 +843,15 @@ export default function ShrastiEnterprisesHome() {
 >
   <p style={{
     fontSize: "clamp(12px, 1.2vw, 15px)", 
-    color:  "#0278ff", 
+    color:  "#1A2F5C", 
     lineHeight: 1.3, // Reduced spacing between lines
     fontWeight: 400, 
     margin: 0,
   }}>
-    We manufacture premium Bopp tapes, stretch films, and custom plastic packaging. Our facility in <span style={{ color: "#1A2F5C", fontWeight: 600 }}>Sidcul Haridwar</span> runs day and night to give you direct factory pricing. We verify every product for exact thickness, which is why bulk buyers across North India trust us.
+    We manufacture premium Bopp tapes, stretch films, and custom plastic packaging. Our facility in <span style={{ color: "#faedb9", fontWeight: 600 }}>Sidcul Haridwar</span> runs day and night to give you direct factory pricing. We verify every product for exact thickness, which is why bulk buyers across North India trust us.
   </p>
 </motion.div>
-            </div>
+           
 
             {/* CTA Buttons Container - positioned at bottom of hero */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
