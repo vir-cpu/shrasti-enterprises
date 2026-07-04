@@ -730,21 +730,21 @@ export default function ShrastiEnterprisesHome() {
                 gap: 0,
               }}>
               <span style={{ 
-  background: theme === "dark" 
-    ? "linear-gradient(180deg, #FFFFFF 30%, #A3A3A3 100%)" // Silver Chrome
-    : `linear-gradient(180deg, ${T.navy} 40%, #1A3070 100%)`, // Deep Sapphire
-  backgroundClip: "text", 
-  WebkitBackgroundClip: "text", 
-  WebkitTextFillColor: "transparent", 
+  color: "#FFFFFF", // Bright white for both modes
   display: "block", 
   fontSize: "clamp(45px, 6.5vw, 75px)", 
   fontWeight: 900, 
-  letterSpacing: "0.06em", 
+  letterSpacing: "0.08em", 
   textTransform: "uppercase", 
   lineHeight: "1.0",
-  filter: theme === "dark" 
-    ? "drop-shadow(0 4px 12px rgba(255,255,255,0.1))" 
-    : "drop-shadow(0 4px 10px rgba(13,31,78,0.2))"
+  textShadow: theme === "dark" 
+    ? `0 0 2px rgba(232, 200, 74, 0.6),   /* Sharp Golden Edge */
+       0 0 10px rgba(214, 175, 55, 0.5),  /* Bright Inner Glow */
+       0 2px 20px rgba(214, 175, 55, 0.4), /* Deep Ambient Gold Aura */
+       0 12px 30px rgba(0, 0, 0, 0.85)`   /* Dark Separation Shadow */
+    : `0 0 2px rgba(201, 160, 40, 0.8),   /* Sharp Dark-Gold Edge */
+       0 0 12px rgba(201, 160, 40, 0.4),  /* Metallic Core Glow */
+       0 4px 20px rgba(13, 31, 78, 0.15)`  /* Soft Navy Room Contrast */
 }}>
   SHRASTI
 </span>
