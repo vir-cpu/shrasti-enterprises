@@ -732,7 +732,7 @@ export default function ShrastiEnterprisesHome() {
             {/* Company Name - Two Lines, Heading Size */}
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
               style={{
-                marginBottom: 12,
+                marginBottom: 0,
                 lineHeight: 1.15,
                 display: "flex",
                 flexDirection: "column",
