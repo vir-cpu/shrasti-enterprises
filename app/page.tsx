@@ -647,7 +647,7 @@ export default function ShrastiEnterprisesHome() {
   <div style={{
     position: "relative",
     width: "100%",
-    height: "110dvh", /* Upgraded to dynamic viewport height for mobile stability */
+    height: "100dvh", /* Upgraded to dynamic viewport height for mobile stability */
     overflow: "hidden",
     backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
   }}>
