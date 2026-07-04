@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import type { MouseEvent } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   motion,
   AnimatePresence,
@@ -684,7 +685,6 @@ export default function ShrastiEnterprisesHome() {
   }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 20, pointerEvents: "auto" }}>
             {/* Badge */}
-            import { motion } from "framer-motion";
             <motion.div 
               initial={{ opacity: 0, y: 12 }} 
               animate={{ opacity: 1, y: 0 }} 
