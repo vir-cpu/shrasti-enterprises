@@ -691,38 +691,17 @@ export default function ShrastiEnterprisesHome() {
             </motion.div>
 
             {/* Company Name - Two Lines, Heading Size */}
-            <motion.div
-  initial={{ opacity: 0, y: 16 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.14 }}
-  style={{
-    marginBottom: 12,
-    lineHeight: 1.1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",   // Optional: center if you want
-  }}
->
-  <h1 className="shasti-title">
-    SHRASTI
-  </h1>
-  
-  <span style={{
-    background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)",
-    backgroundClip: "text",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    display: "block",
-    fontSize: "clamp(22px, 3.8vw, 48px)",
-    fontWeight: 900,
-    letterSpacing: 0.08,
-    textTransform: "uppercase",
-    marginTop: "-8px",
-    filter: theme === "dark" ? "drop-shadow(0 2px 8px rgba(212,175,55,0.4))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))"
-  }}>
-    ENTERPRISES
-  </span>
-</motion.div>
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
+              style={{
+                marginBottom: 12,
+                lineHeight: 1.15,
+                display: "flex",
+                flexDirection: "column",
+                gap: 0,
+              }}>
+              <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: theme === "dark" ? "0 4px 12px rgba(0,0,0,0.5)" : "0 4px 12px rgba(0,0,0,0.2)" }}>SHRASTI</span>
+              <span style={{ background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", filter: theme === "dark" ? "drop-shadow(0 2px 8px rgba(212,175,55,0.3))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))" }}>ENTERPRISES</span>
+            </motion.div>
 
             {/* Main Headline - Two Lines with Colors */}
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.20, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
@@ -837,9 +816,9 @@ export default function ShrastiEnterprisesHome() {
         </div>
       </section>
 
-      {/* ═══════════════��═══��══��═══════════════════
+      {/* ═══════════════  ═══  ══  ═══════════════════
           METRICS
-      ═════════��═════���═══════════���═���═══════��════ */}
+      ═════════  ═════   ═══════════   ═   ═══════  ════ */}
       <section style={{ background: T.bgAlt, padding: "100px 24px 92px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {factoryStats.map((s, i) => (
@@ -1025,7 +1004,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
-      ══════════════����════════����══════════════════ */}
+      ══════════════    ════════    ══════════════════ */}
       <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
@@ -1214,7 +1193,7 @@ export default function ShrastiEnterprisesHome() {
 
       {/* ══════════════════════════════════════════
           TERMS & CONDITIONS
-      ═════════════════════════════════════��════ */}
+      ═════════════════════════════════════  ════ */}
       <section id="terms-conditions" style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bgAlt} 100%)`, padding: "100px 24px 96px", borderTop: `2px solid ${T.gold}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52, textAlign: "center" }}>
