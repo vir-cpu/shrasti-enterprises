@@ -729,7 +729,20 @@ export default function ShrastiEnterprisesHome() {
                 flexDirection: "column",
                 gap: 0,
               }}>
-              <span style={{ color: theme === "dark" ? "#F7F7F7" : "#F5F1E8", display: "block", fontSize: "clamp(45px, 6.5vw, 75px)", fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", textShadow: theme === "dark" ? "0 4px 12px rgba(0,0,0,0.5)" : "0 4px 12px rgba(0,0,0,0.2)" }}>SHRASTI</span>
+              <span style={{ 
+  color: theme === "dark" ? "#FFFFFF" : T.navy, // Using your theme's deep navy for light mode adds massive contrast
+  display: "block", 
+  fontSize: "clamp(45px, 6.5vw, 75px)", 
+  fontWeight: 900, 
+  letterSpacing: "0.08em", // Slightly wider tracking for an industrial feel
+  textTransform: "uppercase", 
+  lineHeight: "1.0",
+  textShadow: theme === "dark" 
+    ? `0 1px 0 #333, 0 2px 0 #222, 0 3px 0 #111, 0 4px 0 #000, 0 12px 20px rgba(0,0,0,0.8)` // 3D layered shadow
+    : `0 4px 16px ${T.blueGlow || "rgba(13,31,78,0.15)"}`
+}}>
+  SHRASTI
+</span>
               <span style={{ background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", fontSize: "clamp(20px, 3.7vw, 48px)", fontWeight: 900, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: "0.8", filter: theme === "dark" ? "drop-shadow(0 2px 8px rgba(212,175,55,0.3))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))" }}>ENTERPRISES</span>
             </motion.div>
 
