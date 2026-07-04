@@ -788,22 +788,22 @@ export default function ShrastiEnterprisesHome() {
     
     {/* Line 1: Navy with subtle anchor */}
     <span style={{ 
-      color: theme === "dark" ? "#E8E8E8" : "#1A2F5C",
+      color: theme === "dark" ? "#1A2F5C" : "#245dd6",
       fontWeight: 900,
       fontSize: "clamp(28px, 3.5vw, 46px)",
       letterSpacing: "-0.03em",
-      textShadow: theme === "dark" ? "none" : "0 2px 4px rgba(26, 47, 92, 0.2)"
+      textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 0.4)" : "0 2px 4px rgba(26, 47, 92, 0.2)"
     }}>
       Next-Gen
     </span>
     
     {/* Line 2: Off-White with Heavy Charcoal Shadow for Contrast */}
     <span style={{ 
-      color: theme === "dark" ? "#F7F7F7" : "#FFFFFF",
+      color: "#FFFFFF",
       fontWeight: 900,
       fontSize: "clamp(32px, 4.5vw, 54px)",
       letterSpacing: "-0.02em",
-      textShadow: theme === "dark" ? "none" : "0 2px 4px rgba(30, 30, 30, 0.8), 0 4px 10px rgba(0, 0, 0, 0.4)"
+      textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 0.4)" : "0 2px 4px rgba(30, 30, 30, 0.8), 0 4px 10px rgba(0, 0, 0, 0.4)"
     }}>
       Packaging
     </span>
@@ -814,7 +814,7 @@ export default function ShrastiEnterprisesHome() {
       fontWeight: 900,
       fontSize: "clamp(28px, 3.5vw, 46px)",
       letterSpacing: "-0.03em",
-      textShadow: theme === "dark" ? "none" : "0 2px 4px rgba(74, 46, 24, 0.95), 0 4px 12px rgba(74, 46, 24, 0.45)"
+      textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 0.4)" : "0 2px 4px rgba(74, 46, 24, 0.95), 0 4px 12px rgba(74, 46, 24, 0.45)"
     }}>
       Systems
     </span>
