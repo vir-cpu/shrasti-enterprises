@@ -207,3 +207,15 @@ html {
     text-align: center;
   }
 }
+/* CTAs stack vertically on mobile */
+@media (max-width: 767px) {
+  .cta-call-plant-wrapper {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
+
+  .cta-call-plant-wrapper a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
