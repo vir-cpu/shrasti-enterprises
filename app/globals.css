@@ -1,43 +1,45 @@
 @import 'tailwindcss';
 
+/* ========== LIGHT MODE (default) ========== */
 :root {
-  --background: #0A0A0A;
-  --foreground: #F5F0E0;
-  --card: #1A1A1A;
-  --card-foreground: #F5F0E0;
-  --popover: #1A1A1A;
-  --popover-foreground: #F5F0E0;
+  --background: #F7F4EE;
+  --foreground: #1A2F5C;
+  --card: #FFFFFF;
+  --card-foreground: #1A2F5C;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A2F5C;
   --primary: #D4AF37;
   --primary-foreground: #0A0A0A;
   --secondary: #B8860B;
-  --secondary-foreground: #F5F0E0;
-  --muted: #2A2A2A;
-  --muted-foreground: #888888;
+  --secondary-foreground: #1A2F5C;
+  --muted: #F0EDE5;
+  --muted-foreground: #6B7280;
   --accent: #FFD700;
   --accent-foreground: #0A0A0A;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #2A2A2A;
-  --input: #2A2A2A;
+  --border: #E5E1D8;
+  --input: #E5E1D8;
   --ring: #D4AF37;
   --chart-1: #D4AF37;
-  --chart-2: #FFD700;
+  --chart-2: #245dd6;
   --chart-3: #B8860B;
-  --chart-4: #C8B560;
+  --chart-4: #1A2F5C;
   --chart-5: #F5F0E0;
   --radius: 0.625rem;
-  --sidebar: #0A0A0A;
-  --sidebar-foreground: #F5F0E0;
+  --sidebar: #F7F4EE;
+  --sidebar-foreground: #1A2F5C;
   --sidebar-primary: #D4AF37;
   --sidebar-primary-foreground: #0A0A0A;
   --sidebar-accent: #FFD700;
   --sidebar-accent-foreground: #0A0A0A;
-  --sidebar-border: #2A2A2A;
+  --sidebar-border: #E5E1D8;
   --sidebar-ring: #D4AF37;
   --font-playfair: 'Playfair Display', serif;
   --font-dm-sans: 'DM Sans', sans-serif;
 }
 
+/* ========== DARK MODE ========== */
 .dark {
   --background: #0A0A0A;
   --foreground: #F5F0E0;
@@ -73,6 +75,7 @@
   --sidebar-ring: #D4AF37;
 }
 
+/* ========== Tailwind color mapping ========== */
 :root {
   --font-sans: 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
@@ -114,9 +117,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Grain texture overlay */
+/* ========== Base styles ========== */
 html {
   background-color: var(--color-background);
+  scroll-behavior: smooth;
 }
 
 @layer base {
@@ -126,61 +130,24 @@ html {
     position: relative;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: -1;
-  }
-
   * {
     border-color: var(--color-border);
     outline-color: rgba(212, 175, 55, 0.5);
   }
 }
 
-/* Shimmer animation */
+/* ========== Keyframes ========== */
 @keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
 }
 
-/* Float animation */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
-/* Pulse animation */
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
-  }
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Font utility classes */
+/* ========== Utility classes ========== */
 .font-playfair {
   font-family: var(--font-playfair);
 }
@@ -189,30 +156,19 @@ html {
   font-family: var(--font-dm-sans);
 }
 
-/* Ensure nav is hidden on mobile */
+/* ========== Responsive ========== */
 @media (max-width: 1023px) {
   nav {
     display: none !important;
   }
 }
 
-/* Hero images responsive display */
-/* Desktop/Tablet: Show desktop image for 768px and above */
 @media (min-width: 768px) {
-  .desktop-hero-image {
-    display: block !important;
-  }
-  .mobile-hero-image {
-    display: none !important;
-  }
+  .desktop-hero-image { display: block !important; }
+  .mobile-hero-image { display: none !important; }
 }
 
-/* Mobile: Show mobile image below 768px */
 @media (max-width: 767px) {
-  .desktop-hero-image {
-    display: none !important;
-  }
-  .mobile-hero-image {
-    display: block !important;
-  }
+  .desktop-hero-image { display: none !important; }
+  .mobile-hero-image { display: block !important; }
 }
