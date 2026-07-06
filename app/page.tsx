@@ -787,15 +787,22 @@ export default function ShrastiEnterprisesHome() {
   <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.85 }}>
     
     {/* Line 1: Navy with subtle anchor */}
-    <span style={{ 
-      color: theme === "dark" ? "#1A2F5C" : "#245dd6",
-      fontWeight: 900,
-      fontSize: "clamp(28px, 3.5vw, 46px)",
-      letterSpacing: "-0.03em",
-      textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 1.4)" : "0 2px 4px rgba(26, 47, 92, 1.0)"
-    }}>
-      Next-Gen
-    </span>
+    <span style={{
+  background: theme === "dark"
+    ? "linear-gradient(135deg, #60A5FA, #A78BFA, #818CF8)"
+    : "linear-gradient(135deg, #245dd6, #7C3AED, #3B82F6)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+  fontWeight: 900,
+  fontSize: "clamp(28px, 3.5vw, 46px)",
+  letterSpacing: "-0.03em",
+  filter: theme === "dark"
+    ? "drop-shadow(0 0 12px rgba(96, 165, 250, 0.5))"
+    : "drop-shadow(0 0 10px rgba(36, 93, 214, 0.35))",
+}}>
+  Next-Gen
+</span>
     
     {/* Line 2: Off-White with Heavy Charcoal Shadow for Contrast */}
     <span style={{ 
