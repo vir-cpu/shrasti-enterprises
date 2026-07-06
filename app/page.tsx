@@ -924,17 +924,22 @@ export default function ShrastiEnterprisesHome() {
            
 
             {/* CTA Buttons Container - positioned at bottom of hero */}
-            <motion.div
-  whileHover={{ scale: 1.06, y: -2 }}
-  whileTap={{ scale: 0.95 }}
-  transition={{ type: "spring", stiffness: 400, damping: 25, mass: 0.5 }}
+            <motion.div 
+  initial={{ opacity: 0, y: 20 }} 
+  animate={{ opacity: 1, y: 0 }} 
+  transition={{ delay: 0.35, duration: 0.6 }}
   style={{
-    display: "inline-flex",
-    perspective: 800,            // ← makes rotateX actually look 3D
-    transformStyle: "preserve-3d",
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "clamp(8px, 2vw, 12px)",
+    zIndex: 5,
+    pointerEvents: "auto",
   }}
 >
+  {/* ========== PRIMARY CTA — EXPLORE INVENTORY ========== */}
   <motion.a
+    whileHover={{ scale: 1.06, y: -2, rotateX:-2 }}
+    whileTap={{ scale: 0.95 }}
     href="#product-matrix"
     className="primary-cta"
     style={{
@@ -946,9 +951,9 @@ export default function ShrastiEnterprisesHome() {
       borderRadius: 15,
       border: "1px solid rgba(255,255,255,.28)",
       background: theme === "dark"
-        ? "linear-gradient(135deg, #A8780A 0%, #D4AF37 22%, #FFF1B8 50%, #D4AF37 78%, #8C6805 100%)"
-        : "linear-gradient(135deg, #B88B14 0%, #E3C34D 45%, #FFF3C7 60%, #D4AF37 100%)",
-      backgroundSize: "100% 100%",    // ← fixed: was 200% with no animation
+      ? "linear-gradient(135deg, #A8780A 0%, #D4AF37 22%, #FFF1B8 50%, #D4AF37 78%, #8C6805 100%)"
+      : "linear-gradient(135deg, #B88B14 0%, #E3C34D 45%, #FFF3C7 60%, #D4AF37 100%)",
+      backgroundSize: theme === "dark" ? "200% 100%" : "100% 100%",
       color: theme === "dark" ? "#0A0A0A" : "#1A2F5C",
       fontWeight: 800,
       fontSize: "clamp(11px, 2.2vw, 13px)",
@@ -956,18 +961,14 @@ export default function ShrastiEnterprisesHome() {
       textTransform: "uppercase",
       textDecoration: "none",
       boxShadow: `
-        0 14px 34px rgba(212,175,55,.28),
-        0 6px 16px rgba(0,0,0,.20),
-        inset 0 1px 0 rgba(255,255,255,.45),
-        inset 0 -2px 3px rgba(140,104,5,.20)`,
+      0 14px 34px rgba(212,175,55,.28),
+      0 6px 16px rgba(0,0,0,.20),
+      inset 0 1px 0 rgba(255,255,255,.45),
+      inset 0 -2px 3px rgba(140,104,5,.20)`,
       textShadow: "0 1px 0 rgba(255,255,255,.35), 0 2px 4px rgba(0,0,0,.18)",
       cursor: "pointer",
       overflow: "hidden",
       zIndex: 1,
-      // GPU promotion — kills jitter
-      backfaceVisibility: "hidden",
-      WebkitFontSmoothing: "antialiased",
-      transform: "translateZ(0)",
     }}
   >
     {/* Shimmer sweep — loops every 3s, slides across then resets */}
