@@ -800,7 +800,7 @@ export default function ShrastiEnterprisesHome() {
         
         <span style={{
   color: "#FFFFFF",
-  fontWeight: 900,
+  fontWeight: 700,
   fontSize: "clamp(28px, 3.5vw, 46px)",
   letterSpacing: "-0.03em",
   textShadow: theme === "dark"
@@ -821,7 +821,7 @@ export default function ShrastiEnterprisesHome() {
         
         <span style={{ 
           color: "#FFFFFF",
-          fontWeight: 900,
+          fontWeight: 700,
           fontSize: "clamp(32px, 4.5vw, 54px)",
           letterSpacing: "-0.02em",
           textShadow: theme === "dark" 
@@ -833,7 +833,7 @@ export default function ShrastiEnterprisesHome() {
         
         <span style={{ 
           color: theme === "dark" ? "#FCD34D" : "#D4AF37",
-          fontWeight: 900,
+          fontWeight: 700,
           fontSize: "clamp(28px, 3.5vw, 46px)",
           letterSpacing: "-0.03em",
           textShadow: theme === "dark" 
