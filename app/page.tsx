@@ -938,6 +938,7 @@ export default function ShrastiEnterprisesHome() {
 >
   {/* ========== PRIMARY CTA — EXPLORE INVENTORY ========== */}
   <motion.a
+    whileHover={{ scale: 1.06, y: -2 }}
     whileTap={{ scale: 0.95 }}
     href="#product-matrix"
     className="primary-cta"
