@@ -172,3 +172,38 @@ html {
   .desktop-hero-image { display: none !important; }
   .mobile-hero-image { display: block !important; }
 }
+
+/* Product list — stack vertically on mobile */
+@media (max-width: 767px) {
+  .product-list-item {
+    flex-direction: column !important;
+  }
+
+  .product-list-item .product-list-image {
+    width: 100% !important;
+    min-height: 160px !important;
+    height: 180px !important;
+  }
+
+  .product-list-content {
+    flex-direction: column !important;
+    padding: 16px 18px !important;
+    gap: 12px !important;
+  }
+
+  .product-list-content > div,
+  .product-list-content > p {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .product-list-quote {
+    align-items: flex-start !important;
+    width: 100%;
+  }
+
+  .product-list-quote button {
+    width: 100%;
+    text-align: center;
+  }
+}
