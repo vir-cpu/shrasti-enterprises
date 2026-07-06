@@ -697,7 +697,7 @@ export default function ShrastiEnterprisesHome() {
   initial={{ opacity: 0, y: 12 }} 
   animate={{ opacity: 1, y: 0 }} 
   transition={{ delay: 0.12 }}
-  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border: `1px solid ${T.gold}AA`, background: "rgba(255, 255, 255, 0.12)", backdropFilter: "blur(8px)", color: "#FFF", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}
+  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border:  1px solid rgba(252, 211, 77, 0.25)`, background: "rgba(252, 211, 77, 0.1)", backdropFilter: "blur(8px)", color: "#FCD34D", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}
 >
   <motion.span 
     animate={{ 
@@ -789,8 +789,8 @@ export default function ShrastiEnterprisesHome() {
     {/* Line 1: Navy with subtle anchor */}
     <span style={{
   background: theme === "dark"
-    ? "linear-gradient(135deg, #60A5FA, #A78BFA, #818CF8)"
-    : "linear-gradient(135deg, #245dd6, #7C3AED, #3B82F6)",
+    ? "linear-gradient(135deg, #60A5FA, #A78BFA)"
+    : "linear-gradient(135deg, #245dd6, #7C3AED)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
@@ -798,8 +798,8 @@ export default function ShrastiEnterprisesHome() {
   fontSize: "clamp(28px, 3.5vw, 46px)",
   letterSpacing: "-0.03em",
   filter: theme === "dark"
-    ? "drop-shadow(0 0 12px rgba(96, 165, 250, 0.5))"
-    : "drop-shadow(0 0 10px rgba(36, 93, 214, 0.35))",
+    ? "drop-shadow(0 0 12px rgba(96, 165, 250, 0.4))"
+  : "drop-shadow(0 0 10px rgba(36, 93, 214, 0.35))",
 }}>
   Next-Gen
 </span>
@@ -837,12 +837,12 @@ export default function ShrastiEnterprisesHome() {
     width: "40%",
     // Light translucent — background clearly visible through it
     background: theme === "dark"
-      ? "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))"
-      : "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(240,243,255,0.15))",
-    backdropFilter: "blur(6px)",
-    WebkitBackdropFilter: "blur(6px)",
+      ? "linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.20))"
+      : "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(240,243,255,0.10))",
+    backdropFilter: "blur(4px)",
+    WebkitBackdropFilter: "blur(4px)",
     border: theme === "dark"
-      ? "1px solid rgba(212, 175, 55, 0.2)"
+      ? "1px solid rgba(212, 175, 55, 0.15)"
       : "1px solid rgba(36, 93, 214, 0.1)",
     borderLeft: theme === "dark"
       ? "3px solid rgba(212, 175, 55, 0.5)"
@@ -850,15 +850,15 @@ export default function ShrastiEnterprisesHome() {
     borderRadius: "8px",
     padding: "16px 18px",
     boxShadow: theme === "dark"
-      ? "0 2px 12px rgba(0, 0, 0, 0.2)"
-      : "0 2px 12px rgba(0, 0, 0, 0.04)",
+      ? "0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)"
+  : "0 2px 12px rgba(0, 0, 0, 0.04)",
   }}
 >
   <p style={{
     fontSize: "clamp(11.5px, 1.15vw, 14.5px)",
-    color: theme === "dark" ? "#C8D6E5" : "#2D3748",
+    color: theme === "dark" ? "#E2E8F0" : "#2D3748"  // body text — use slate-200, not gray
     lineHeight: 1.65,
-    fontWeight: 400,
+    fontWeight: 500,
     margin: 0,
     letterSpacing: "0.01em",
   }}>
