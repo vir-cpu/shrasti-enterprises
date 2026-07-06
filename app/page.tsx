@@ -1423,20 +1423,21 @@ export default function ShrastiEnterprisesHome() {
                   <motion.div key={p.id} layout
                     initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
                     transition={{ delay: i * 0.02 }}
+                    className="product-list-item"
                     style={{ background: T.bgSection, borderRadius: 18, border: `1.5px solid ${T.border}`, overflow: "hidden", display: "flex", transition: "all 0.16s ease" }}
                     onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.gold; el.style.boxShadow = `0 0 0 3px ${T.goldGlow}, 0 12px 36px rgba(13,31,78,0.12)`; el.style.transform = "translateY(-4px)"; }}
                     onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.border; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}
                   >
-                    <div style={{ position: "relative", width: 180, minHeight: 140, flexShrink: 0, overflow: "hidden" }}>
+                    <div className="product-list-image" style={{ position: "relative", width: 180, minHeight: 140, flexShrink: 0, overflow: "hidden" }}>
                       <Image src={p.image} alt={p.title} fill className="object-contain" sizes="180px" />
                     </div>
-                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", flex: 1, padding: "24px 28px", gap: 18 }}>
+                    <div className="product-list-content" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", flex: 1, padding: "24px 28px", gap: 18 }}>
                       <div style={{ minWidth: 220 }}>
                         <span style={{ fontSize: 15, fontWeight: 800, color: T.gold, letterSpacing: "0.18em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>{p.category}</span>
                         <h3 style={{ fontSize: 30, fontWeight: 900, color: T.navy, margin: 0, lineHeight: 1.2 }}>{p.title}</h3>
                       </div>
                       <p style={{ fontSize: 16, color: T.textMid, flex: 1, minWidth: 220, lineHeight: 1.8, margin: 0 }}>{p.desc}</p>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12, flexShrink: 0 }}>
+                      <div className="product-list-quote" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12, flexShrink: 0 }}>
                         <span style={{ fontSize: 12, fontWeight: 700, color: T.textSoft, fontFamily: "var(--font-montserrat), sans-serif", letterSpacing: "0.08em" }}>{p.spec}</span>
                         <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} onClick={() => handleQuote(p.title)}
                           style={{ padding: "12px 26px", borderRadius: 12, border: "none", background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontSize: 15, fontWeight: 900, letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", boxShadow: `0 6px 20px ${T.goldGlow}` }}>
