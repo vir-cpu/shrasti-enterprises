@@ -49,11 +49,28 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html 
-      lang="en" 
+    <html
+      lang="en"
       className={`scroll-smooth ${playfair.variable} ${dmSans.variable} ${geistMono.variable} ${montserrat.variable}`}
-      // Remove hardcoded bgColor — let your theme system handle it
+      suppressHydrationWarning
     >
+      {/* THIS runs before anything renders — no flash */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch(e) {}
+            })();
+          `,
+        }}
+      />
       <body className="antialiased" style={{ margin: 0, padding: 0 }}>
         {children}
       </body>
