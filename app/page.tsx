@@ -835,27 +835,74 @@ export default function ShrastiEnterprisesHome() {
   transition={{ delay: 0.7, duration: 0.6 }}
   style={{
     width: "40%",
-    // Dark mode: metallic navy, Light mode: very faint transparency
-    background: "rgba(255, 255, 255, 0.02)",
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)",
-    // Golden border effect
-    border: theme === "dark" 
-      ? "1px solid rgba(212, 175, 55, 0.3)" 
-      : "1px solid rgba(212, 175, 55, 0.2)",
+    // Frosted glass — actually visible now
+    background: theme === "dark"
+      ? "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))"
+      : "linear-gradient(135deg, rgba(255,255,255,0.75), rgba(245,247,255,0.65))",
+    backdropFilter: "blur(12px)",
+    WebkitBackdropFilter: "blur(12px)",
+    border: theme === "dark"
+      ? "1px solid rgba(212, 175, 55, 0.25)"
+      : "1px solid rgba(36, 93, 214, 0.12)",
+    borderLeft: theme === "dark"
+      ? "3px solid rgba(212, 175, 55, 0.6)"
+      : "3px solid #245dd6",
     borderRadius: "8px",
-    padding: "12px",
-    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+    padding: "16px 18px",
+    boxShadow: theme === "dark"
+      ? "0 4px 24px rgba(0, 0, 0, 0.3)"
+      : "0 4px 24px rgba(36, 93, 214, 0.08), 0 1px 3px rgba(0,0,0,0.06)",
   }}
 >
   <p style={{
-    fontSize: "clamp(12px, 1.2vw, 15px)", 
-    color:  "#1A2F5C", 
-    lineHeight: 1.3, // Reduced spacing between lines
-    fontWeight: 400, 
+    fontSize: "clamp(11.5px, 1.15vw, 14.5px)",
+    color: theme === "dark" ? "#C8D6E5" : "#2D3748",
+    lineHeight: 1.65,
+    fontWeight: 400,
     margin: 0,
+    letterSpacing: "0.01em",
   }}>
-    We manufacture premium Bopp tapes, stretch films, and custom plastic packaging. Our facility in <span style={{ color: "#faedb9", fontWeight: 600 }}>Sidcul Haridwar</span> runs day and night to give you direct factory pricing. We verify every product for exact thickness, which is why bulk buyers across North India trust us.
+    We manufacture premium{" "}
+    <span style={{
+      color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+      fontWeight: 600,
+    }}>BOPP tapes</span>,{" "}
+    <span style={{
+      color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+      fontWeight: 600,
+    }}>stretch films</span>, and{" "}
+    <span style={{
+      color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+      fontWeight: 600,
+    }}>custom plastic packaging</span>.
+    Our facility in{" "}
+    <span style={{
+      color: theme === "dark" ? "#FBBF24" : "#92400E",
+      fontWeight: 700,
+      borderBottom: theme === "dark"
+        ? "1px solid rgba(251, 191, 36, 0.4)"
+        : "1px solid rgba(146, 64, 14, 0.3)",
+      paddingBottom: "1px",
+    }}>Sidcul Haridwar</span>{" "}
+    runs day and night to give you{" "}
+    <span style={{
+      fontWeight: 600,
+      color: theme === "dark" ? "#A7F3D0" : "#065F46",
+    }}>direct factory pricing</span>.
+    We verify every product for{" "}
+    <span style={{
+      fontWeight: 600,
+      color: theme === "dark" ? "#A7F3D0" : "#065F46",
+    }}>exact thickness</span>, which is why bulk buyers across{" "}
+    <span style={{
+      fontWeight: 700,
+      color: theme === "dark" ? "#FBBF24" : "#92400E",
+      borderBottom: theme === "dark"
+        ? "1px solid rgba(251, 191, 36, 0.4)"
+        : "1px solid rgba(146, 64, 14, 0.3)",
+      paddingBottom: "1px",
+    }}>North India</span>{" "}
+    trust us.
   </p>
 </motion.div>
            
