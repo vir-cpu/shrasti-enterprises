@@ -938,7 +938,7 @@ export default function ShrastiEnterprisesHome() {
 >
   {/* ========== PRIMARY CTA — EXPLORE INVENTORY ========== */}
   <motion.a
-    whileHover={{ scale: 1.06, y: -4 }}
+    whileHover={{ scale: 1.06, y: -2, rotateX:-2 }}
     whileTap={{ scale: 0.95 }}
     href="#product-matrix"
     className="primary-cta"
@@ -948,10 +948,11 @@ export default function ShrastiEnterprisesHome() {
       alignItems: "center",
       gap: "clamp(4px, 1vw, 8px)",
       padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)",
-      borderRadius: 12,
+      borderRadius: 15,
+      border: "1px solid rgba(255,255,255,.28)",
       background: theme === "dark"
-        ? "linear-gradient(135deg, #D4AF37, #F5D76E, #D4AF37)"
-        : "linear-gradient(135deg, #D4AF37, #E8C84A)",
+      ? "linear-gradient(135deg, #A8780A 0%, #D4AF37 22%, #FFF1B8 50%, #D4AF37 78%, #8C6805 100%)"
+      : "linear-gradient(135deg, #B88B14 0%, #E3C34D 45%, #FFF3C7 60%, #D4AF37 100%)",
       backgroundSize: theme === "dark" ? "200% 100%" : "100% 100%",
       color: theme === "dark" ? "#0A0A0A" : "#1A2F5C",
       fontWeight: 800,
@@ -959,6 +960,12 @@ export default function ShrastiEnterprisesHome() {
       letterSpacing: "0.06em",
       textTransform: "uppercase",
       textDecoration: "none",
+      boxShadow: `
+      0 14px 34px rgba(212,175,55,.28),
+      0 6px 16px rgba(0,0,0,.20),
+      inset 0 1px 0 rgba(255,255,255,.45),
+      inset 0 -2px 3px rgba(140,104,5,.20)`,
+      textShadow: "0 1px 0 rgba(255,255,255,.35), 0 2px 4px rgba(0,0,0,.18)",
       cursor: "pointer",
       overflow: "hidden",
       zIndex: 1,
@@ -980,7 +987,7 @@ export default function ShrastiEnterprisesHome() {
         position: "absolute",
         top: 0,
         left: 0,
-        width: "60%",
+        width: "28%",
         height: "100%",
         background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.45), rgba(255,255,255,0.1), transparent)",
         transform: "skewX(-20deg)",
@@ -1017,34 +1024,6 @@ export default function ShrastiEnterprisesHome() {
         zIndex: 0,
       }}
     />
-
-    {/* Sparkle particles — tiny dots that flash randomly */}
-    {[...Array(4)].map((_, i) => (
-      <motion.div
-        key={i}
-        animate={{
-          opacity: [0, 0, 1, 0, 0, 0],
-          scale: [0, 0, 1.2, 0, 0, 0],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          delay: i * 0.7,
-          ease: "easeInOut",
-        }}
-        style={{
-          position: "absolute",
-          width: 3,
-          height: 3,
-          borderRadius: "50%",
-          background: theme === "dark" ? "#FFF8DC" : "#FFFFFF",
-          top: `${20 + i * 18}%`,
-          left: `${15 + i * 20}%`,
-          pointerEvents: "none",
-          zIndex: 3,
-          boxShadow: "0 0 4px rgba(255,255,255,0.8)",
-        }}
-      />
     ))}
 
     {/* Label text */}
