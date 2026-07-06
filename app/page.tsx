@@ -835,23 +835,23 @@ export default function ShrastiEnterprisesHome() {
   transition={{ delay: 0.7, duration: 0.6 }}
   style={{
     width: "40%",
-    // Frosted glass — actually visible now
+    // Light translucent — background clearly visible through it
     background: theme === "dark"
-      ? "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))"
-      : "linear-gradient(135deg, rgba(255,255,255,0.75), rgba(245,247,255,0.65))",
-    backdropFilter: "blur(12px)",
-    WebkitBackdropFilter: "blur(12px)",
+      ? "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))"
+      : "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(240,243,255,0.15))",
+    backdropFilter: "blur(6px)",
+    WebkitBackdropFilter: "blur(6px)",
     border: theme === "dark"
-      ? "1px solid rgba(212, 175, 55, 0.25)"
-      : "1px solid rgba(36, 93, 214, 0.12)",
+      ? "1px solid rgba(212, 175, 55, 0.2)"
+      : "1px solid rgba(36, 93, 214, 0.1)",
     borderLeft: theme === "dark"
-      ? "3px solid rgba(212, 175, 55, 0.6)"
-      : "3px solid #245dd6",
+      ? "3px solid rgba(212, 175, 55, 0.5)"
+      : "3px solid rgba(36, 93, 214, 0.35)",
     borderRadius: "8px",
     padding: "16px 18px",
     boxShadow: theme === "dark"
-      ? "0 4px 24px rgba(0, 0, 0, 0.3)"
-      : "0 4px 24px rgba(36, 93, 214, 0.08), 0 1px 3px rgba(0,0,0,0.06)",
+      ? "0 2px 12px rgba(0, 0, 0, 0.2)"
+      : "0 2px 12px rgba(0, 0, 0, 0.04)",
   }}
 >
   <p style={{
