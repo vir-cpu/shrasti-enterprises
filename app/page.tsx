@@ -799,6 +799,7 @@ export default function ShrastiEnterprisesHome() {
       <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.85 }}>
         
         <span style={{
+         display: "inline-block",
           background: theme === "dark"
             ? "linear-gradient(135deg, #60A5FA, #A78BFA)"
             : "linear-gradient(135deg, #245dd6, #7C3AED)",
@@ -876,15 +877,15 @@ export default function ShrastiEnterprisesHome() {
       }}>
         We manufacture premium{" "}
         <span style={{
-          color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+          color: theme === "dark" ? "#93C5FD" : "#0e308f",
           fontWeight: 600,
         }}>BOPP tapes</span>,{" "}
         <span style={{
-          color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+          color: theme === "dark" ? "#93C5FD" : "#0e308f",
           fontWeight: 600,
         }}>stretch films</span>, and{" "}
         <span style={{
-          color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+          color: theme === "dark" ? "#93C5FD" : "#0e308f",
           fontWeight: 600,
         }}>custom plastic packaging</span>.
         Our facility in{" "}
