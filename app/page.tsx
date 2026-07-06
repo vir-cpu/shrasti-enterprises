@@ -1024,7 +1024,6 @@ export default function ShrastiEnterprisesHome() {
         zIndex: 0,
       }}
     />
-    ))}
 
     {/* Label text */}
     <span style={{ position: "relative", zIndex: 4 }}>Explore Inventory</span>
@@ -1220,23 +1219,92 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           TRUST BAR
       ══════════════════════════════════════════ */}
-      <section style={{ background: T.navy, borderTop: `3px solid ${T.gold}`, transition: "background-color 0.3s ease" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "18px 24px" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "8px 32px", alignItems: "center" }}>
-            {trustBadges.map((b, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.025 }}
-                whileHover={{ scale: 1.06 }}
-                style={{ display: "flex", alignItems: "center", gap: 10, cursor: "default" }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${T.gold}22`, border: `1px solid ${T.gold}55`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <svg width={17} height={17} fill="none" stroke={T.gold} viewBox="0 0 24 24" strokeWidth={1.6}><path strokeLinecap="round" strokeLinejoin="round" d={b.d} /></svg>
-                </div>
-                <span style={{ fontSize: 12, fontWeight: 700, color: T.textMid, letterSpacing: "0.1em", textTransform: "uppercase" }}>{b.label}</span>
-              </motion.div>
-            ))}
+      <section style={{
+  background: theme === "dark"
+    ? "linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98))"
+    : T.navy,
+  borderTop: theme === "dark"
+    ? "3px solid rgba(212, 175, 55, 0.4)"
+    : `3px solid ${T.gold}`,
+  transition: "background-color 0.3s ease, border-color 0.3s ease",
+  overflow: "hidden",
+}}>
+  <div style={{
+    maxWidth: 1280,
+    margin: "0 auto",
+    padding: theme === "dark" ? "16px 16px" : "18px 24px",
+  }}>
+    <div style={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      gap: theme === "dark" ? "10px 20px" : "8px 32px",
+      alignItems: "center",
+    }}>
+      {trustBadges.map((b, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.03 }}
+          whileHover={{ scale: 1.05 }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "clamp(6px, 2vw, 10px)",
+            cursor: "default",
+            // On very small screens, give each badge a min-width so they don't awkwardly wrap mid-text
+            minWidth: 0,
+            flex: "0 1 auto",
+          }}
+        >
+          {/* Icon circle */}
+          <div style={{
+            width: "clamp(30px, 5vw, 36px)",
+            height: "clamp(30px, 5vw, 36px)",
+            borderRadius: "50%",
+            background: theme === "dark"
+              ? "rgba(212, 175, 55, 0.08)"
+              : `${T.gold}22`,
+            border: theme === "dark"
+              ? "1px solid rgba(212, 175, 55, 0.2)"
+              : `1px solid ${T.gold}55`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}>
+            <svg
+              width="clamp(13px, 2vw, 17px)"
+              height="clamp(13px, 2vw, 17px)"
+              fill="none"
+              stroke={theme === "dark" ? "#FCD34D" : T.gold}
+              viewBox="0 0 24 24"
+              strokeWidth={1.6}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d={b.d} />
+            </svg>
           </div>
-        </div>
-      </section>
 
+          {/* Label */}
+          <span style={{
+            fontSize: "clamp(9px, 2.2vw, 12px)",
+            fontWeight: 700,
+            color: theme === "dark" ? "#CBD5E1" : T.textMid,
+            letterSpacing: theme === "dark"
+              ? "0.08em"
+              : "0.1em",
+            textTransform: "uppercase",
+            whiteSpace: "nowrap",
+          }}>
+            {b.label}
+          </span>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
       {/* ═══════════════  ═══  ══  ═══════════════════
           METRICS
       ═════════  ═════   ═══════════   ═   ═══════  ════ */}
