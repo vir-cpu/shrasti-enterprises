@@ -672,239 +672,251 @@ export default function ShrastiEnterprisesHome() {
     
     {/* Dark overlay for typography contrast */}
     <div style={{
-      position: "absolute", 
-      inset: 0,
-      background: "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
-      pointerEvents: "none",
-      zIndex: 2,
-    }} />
-
-          {/* Text Content Overlay - responsive positioning */}
-          <motion.div style={{
-    position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
-    display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between",
-    paddingTop: "clamp(90px, 15vh, 140px)",
-    paddingLeft: "clamp(20px, 6vw, 60px)",
-    paddingRight: "clamp(20px, 6vw, 40px)",
-    paddingBottom: "clamp(100px, 15vh, 160px)",
-    zIndex: 10,
-    maxWidth: "clamp(95%, calc(95% - 0px), 50%)",
-    pointerEvents: "none",
-  }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20, pointerEvents: "auto" }}>
-            {/* Badge */}
-            <motion.div 
-  initial={{ opacity: 0, y: 12 }} 
-  animate={{ opacity: 1, y: 0 }} 
-  transition={{ delay: 0.12 }}
-  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 999, border:  1px solid rgba(252, 211, 77, 0.25)`, background: "rgba(252, 211, 77, 0.1)", backdropFilter: "blur(8px)", color: "#FCD34D", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", width: "fit-content" }}
->
-  <motion.span 
-    animate={{ 
-      background: [
-        "#FFFFFF",             // Bright White
-        T.gold,                // Gold
-        "#3b82f6",             // Metallic Blue Base
-        "#93c5fd",             // Metallic Blue High Shine
-        "#3b82f6",             // Metallic Blue Base
-        "#FFFFFF"              // Loop back to White
-      ],
-      boxShadow: [
-        "0 0 8px 2px rgba(255,255,255,0.8)",    // White Glow
-        `0 0 8px 2px ${T.goldGlow || "rgba(212,175,55,0.6)"}`, // Gold Glow
-        "0 0 4px 1px rgba(59,130,246,0.6)",     // Blue Glow Base
-        "0 0 12px 3px rgba(147,197,253,0.9)",   // Blue Metallic High Flash
-        "0 0 4px 1px rgba(59,130,246,0.6)",     // Blue Glow Base
-        "0 0 8px 2px rgba(255,255,255,0.8)"     // Loop back to White Glow
-      ]
-    }}
-    transition={{ 
-      repeat: Infinity, 
-      duration: 4, 
-      ease: "easeInOut",
-      times: [0, 0.25, 0.5, 0.6, 0.7, 1] // Micro-timed for a sharp metallic flash during the blue phase
-    }}
-    style={{ width: 7, height: 7, borderRadius: "50%" }} 
-  />
-  Haridwar Factory Direct
-</motion.div>
-
-            {/* Company Name - Two Lines, Heading Size */}
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
-              style={{
-                marginBottom: 0,
-                lineHeight: 0.85,
-                display: "flex",
-                flexDirection: "column",
-                gap: 0,
-              }}>
-              <span style={{ 
-  color: "#FFFFFF",
-  display: "block", 
-  fontSize: "clamp(45px, 6.5vw, 75px)", 
-  fontWeight: 900, 
-  letterSpacing: "0.08em", 
-  textTransform: "uppercase", 
-  lineHeight: "0.85",
-  textShadow: theme === "dark" 
-    ? `0 2px 4px rgba(214, 175, 55, 0.4),
-       0 4px 12px rgba(214, 175, 55, 0.3),
-       0 12px 24px rgba(214, 175, 55, 0.2),
-       0 20px 40px rgba(0, 0, 0, 0.6)`
-    : `0 2px 4px rgba(201, 160, 40, 0.5),
-       0 4px 12px rgba(201, 160, 40, 0.3),
-       0 8px 20px rgba(13, 31, 78, 0.12)`
-}}>
-  SHRASTI
-</span>
-              <span style={{ 
-  background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", 
-  backgroundClip: "text", 
-  WebkitBackgroundClip: "text", 
-  WebkitTextFillColor: "transparent", 
-  display: "block", 
-  fontSize: "clamp(20px, 3.7vw, 48px)", 
-  fontWeight: 900, 
-  letterSpacing: "0.04em", 
-  textTransform: "uppercase", 
-  lineHeight: "0.85", 
-  filter: theme === "dark" 
-    ? "drop-shadow(0 2px 6px rgba(74, 46, 24, 0.85)) drop-shadow(0 6px 18px rgba(74, 46, 24, 0.55))" 
-    : "drop-shadow(0 2px 4px rgba(74, 46, 24, 0.95)) drop-shadow(0 4px 12px rgba(74, 46, 24, 0.45))" 
-}}>
-  ENTERPRISES
-</span>
-            </motion.div>
-
-            {/* Main Headline - Two Lines with Colors */}
-            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.20, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
-  style={{
-    fontFamily: "var(--font-montserrat), sans-serif",
-    fontSize: "clamp(30px, 4vw, 52px)", fontWeight: 900, lineHeight: 0.85,
-    letterSpacing: "-0.02em", margin: 0,
-    filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
-  }}>
-  <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.85 }}>
-    
-    {/* Line 1: Navy with subtle anchor */}
-    <span style={{
+  position: "absolute", 
+  inset: 0,
   background: theme === "dark"
-    ? "linear-gradient(135deg, #60A5FA, #A78BFA)"
-    : "linear-gradient(135deg, #245dd6, #7C3AED)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-  fontWeight: 900,
-  fontSize: "clamp(28px, 3.5vw, 46px)",
-  letterSpacing: "-0.03em",
-  filter: theme === "dark"
-    ? "drop-shadow(0 0 12px rgba(96, 165, 250, 0.4))"
-  : "drop-shadow(0 0 10px rgba(36, 93, 214, 0.35))",
-}}>
-  Next-Gen
-</span>
-    
-    {/* Line 2: Off-White with Heavy Charcoal Shadow for Contrast */}
-    <span style={{ 
-      color: "#FFFFFF",
-      fontWeight: 900,
-      fontSize: "clamp(32px, 4.5vw, 54px)",
-      letterSpacing: "-0.02em",
-      textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 0.4)" : "0 2px 4px rgba(30, 30, 30, 0.8), 0 4px 10px rgba(0, 0, 0, 0.4)"
-    }}>
-      Packaging
-    </span>
-    
-    {/* Line 3: Gold with Deep Bronze Anchor */}
-    <span style={{ 
-      color: "#D4AF37",
-      fontWeight: 900,
-      fontSize: "clamp(28px, 3.5vw, 46px)",
-      letterSpacing: "-0.03em",
-      textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 0.4)" : "0 2px 4px rgba(74, 46, 24, 0.95), 0 4px 12px rgba(74, 46, 24, 0.45)"
-    }}>
-      Systems
-    </span>
-  </div>
-</motion.h1>
+    ? "linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)"
+    : "linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
+  pointerEvents: "none",
+  zIndex: 2,
+}} />
 
-            {/* Supporting Text - Expanded with manufacturing context */}
-            <motion.div 
-  initial={{ opacity: 0, y: 16 }} 
-  animate={{ opacity: 1, y: 0 }} 
-  transition={{ delay: 0.7, duration: 0.6 }}
-  style={{
-    width: "40%",
-    // Light translucent — background clearly visible through it
-    background: theme === "dark"
-      ? "linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.20))"
-      : "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(240,243,255,0.10))",
-    backdropFilter: "blur(4px)",
-    WebkitBackdropFilter: "blur(4px)",
-    border: theme === "dark"
-      ? "1px solid rgba(212, 175, 55, 0.15)"
-      : "1px solid rgba(36, 93, 214, 0.1)",
-    borderLeft: theme === "dark"
-      ? "3px solid rgba(212, 175, 55, 0.5)"
-      : "3px solid rgba(36, 93, 214, 0.35)",
-    borderRadius: "8px",
-    padding: "16px 18px",
-    boxShadow: theme === "dark"
-      ? "0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)"
-  : "0 2px 12px rgba(0, 0, 0, 0.04)",
-  }}
->
-  <p style={{
-    fontSize: "clamp(11.5px, 1.15vw, 14.5px)",
-    color: theme === "dark" ? "#E2E8F0" : "#2D3748"  // body text — use slate-200, not gray
-    lineHeight: 1.65,
-    fontWeight: 500,
-    margin: 0,
-    letterSpacing: "0.01em",
-  }}>
-    We manufacture premium{" "}
-    <span style={{
-      color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
-      fontWeight: 600,
-    }}>BOPP tapes</span>,{" "}
-    <span style={{
-      color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
-      fontWeight: 600,
-    }}>stretch films</span>, and{" "}
-    <span style={{
-      color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
-      fontWeight: 600,
-    }}>custom plastic packaging</span>.
-    Our facility in{" "}
-    <span style={{
-      color: theme === "dark" ? "#FBBF24" : "#92400E",
-      fontWeight: 700,
-      borderBottom: theme === "dark"
-        ? "1px solid rgba(251, 191, 36, 0.4)"
-        : "1px solid rgba(146, 64, 14, 0.3)",
-      paddingBottom: "1px",
-    }}>Sidcul Haridwar</span>{" "}
-    runs day and night to give you{" "}
-    <span style={{
-      fontWeight: 600,
-      color: theme === "dark" ? "#A7F3D0" : "#065F46",
-    }}>direct factory pricing</span>.
-    We verify every product for{" "}
-    <span style={{
-      fontWeight: 600,
-      color: theme === "dark" ? "#A7F3D0" : "#065F46",
-    }}>exact thickness</span>, which is why bulk buyers across{" "}
-    <span style={{
-      fontWeight: 700,
-      color: theme === "dark" ? "#FBBF24" : "#92400E",
-      borderBottom: theme === "dark"
-        ? "1px solid rgba(251, 191, 36, 0.4)"
-        : "1px solid rgba(146, 64, 14, 0.3)",
-      paddingBottom: "1px",
-    }}>North India</span>{" "}
-    trust us.
-  </p>
-</motion.div>
+{/* Text Content Overlay */}
+<motion.div style={{
+  position: "absolute", left: 0, top: 0, width: "100%", height: "100%",
+  display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between",
+  paddingTop: "clamp(90px, 15vh, 140px)",
+  paddingLeft: "clamp(20px, 6vw, 60px)",
+  paddingRight: "clamp(20px, 6vw, 40px)",
+  paddingBottom: "clamp(100px, 15vh, 160px)",
+  zIndex: 10,
+  maxWidth: "clamp(95%, calc(95% - 0px), 50%)",
+  pointerEvents: "none",
+}}>
+  <div style={{ display: "flex", flexDirection: "column", gap: 20, pointerEvents: "auto" }}>
+
+    {/* Badge */}
+    <motion.div 
+      initial={{ opacity: 0, y: 12 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ delay: 0.12 }}
+      style={{ 
+        display: "inline-flex", alignItems: "center", gap: 8, 
+        padding: "6px 14px", borderRadius: 999, 
+        border: "1px solid rgba(252, 211, 77, 0.25)", 
+        background: "rgba(252, 211, 77, 0.1)", 
+        backdropFilter: "blur(8px)", 
+        color: "#FCD34D", fontSize: 11, fontWeight: 700, 
+        letterSpacing: "0.08em", textTransform: "uppercase", 
+        width: "fit-content" 
+      }}
+    >
+      <motion.span 
+        animate={{ 
+          background: [
+            "#FFFFFF",
+            T.gold,
+            "#3b82f6",
+            "#93c5fd",
+            "#3b82f6",
+            "#FFFFFF"
+          ],
+          boxShadow: [
+            "0 0 8px 2px rgba(255,255,255,0.8)",
+            `0 0 8px 2px ${T.goldGlow || "rgba(212,175,55,0.6)"}`,
+            "0 0 4px 1px rgba(59,130,246,0.6)",
+            "0 0 12px 3px rgba(147,197,253,0.9)",
+            "0 0 4px 1px rgba(59,130,246,0.6)",
+            "0 0 8px 2px rgba(255,255,255,0.8)"
+          ]
+        }}
+        transition={{ 
+          repeat: Infinity, duration: 4, ease: "easeInOut",
+          times: [0, 0.25, 0.5, 0.6, 0.7, 1]
+        }}
+        style={{ width: 7, height: 7, borderRadius: "50%" }} 
+      />
+      Haridwar Factory Direct
+    </motion.div>
+
+    {/* Company Name */}
+    <motion.div 
+      initial={{ opacity: 0, y: 16 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ delay: 0.14 }}
+      style={{ marginBottom: 0, lineHeight: 0.85, display: "flex", flexDirection: "column", gap: 0 }}
+    >
+      <span style={{ 
+        color: "#FFFFFF",
+        display: "block", 
+        fontSize: "clamp(45px, 6.5vw, 75px)", 
+        fontWeight: 900, 
+        letterSpacing: "0.08em", 
+        textTransform: "uppercase", 
+        lineHeight: "0.85",
+        textShadow: theme === "dark" 
+          ? `0 2px 4px rgba(214, 175, 55, 0.4),
+             0 4px 12px rgba(214, 175, 55, 0.3),
+             0 12px 24px rgba(214, 175, 55, 0.2),
+             0 20px 40px rgba(0, 0, 0, 0.6)`
+          : `0 2px 4px rgba(201, 160, 40, 0.5),
+             0 4px 12px rgba(201, 160, 40, 0.3),
+             0 8px 20px rgba(13, 31, 78, 0.12)`
+      }}>
+        SHRASTI
+      </span>
+      <span style={{ 
+        background: "linear-gradient(135deg, #E8C84A 0%, #D4AF37 100%)", 
+        backgroundClip: "text", 
+        WebkitBackgroundClip: "text", 
+        WebkitTextFillColor: "transparent", 
+        display: "block", 
+        fontSize: "clamp(20px, 3.7vw, 48px)", 
+        fontWeight: 900, 
+        letterSpacing: "0.04em", 
+        textTransform: "uppercase", 
+        lineHeight: "0.85", 
+        filter: theme === "dark" 
+          ? "drop-shadow(0 2px 6px rgba(74, 46, 24, 0.85)) drop-shadow(0 6px 18px rgba(74, 46, 24, 0.55))" 
+          : "drop-shadow(0 2px 4px rgba(74, 46, 24, 0.95)) drop-shadow(0 4px 12px rgba(74, 46, 24, 0.45))" 
+      }}>
+        ENTERPRISES
+      </span>
+    </motion.div>
+
+    {/* Main Headline */}
+    <motion.h1 
+      initial={{ opacity: 0, y: 24 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ delay: 0.20, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
+      style={{
+        fontFamily: "var(--font-montserrat), sans-serif",
+        fontSize: "clamp(30px, 4vw, 52px)", fontWeight: 900, lineHeight: 0.85,
+        letterSpacing: "-0.02em", margin: 0,
+        filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
+      }}
+    >
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.85 }}>
+        
+        <span style={{
+          background: theme === "dark"
+            ? "linear-gradient(135deg, #60A5FA, #A78BFA)"
+            : "linear-gradient(135deg, #245dd6, #7C3AED)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          fontWeight: 900,
+          fontSize: "clamp(28px, 3.5vw, 46px)",
+          letterSpacing: "-0.03em",
+          filter: theme === "dark"
+            ? "drop-shadow(0 0 12px rgba(96, 165, 250, 0.4))"
+            : "drop-shadow(0 0 10px rgba(36, 93, 214, 0.35))",
+        }}>
+          Next-Gen
+        </span>
+        
+        <span style={{ 
+          color: "#FFFFFF",
+          fontWeight: 900,
+          fontSize: "clamp(32px, 4.5vw, 54px)",
+          letterSpacing: "-0.02em",
+          textShadow: theme === "dark" 
+            ? "0 2px 4px rgba(26, 47, 92, 0.4), 0 4px 12px rgba(0,0,0,0.5)" 
+            : "0 2px 4px rgba(30, 30, 30, 0.8), 0 4px 10px rgba(0, 0, 0, 0.4)"
+        }}>
+          Packaging
+        </span>
+        
+        <span style={{ 
+          color: theme === "dark" ? "#FCD34D" : "#D4AF37",
+          fontWeight: 900,
+          fontSize: "clamp(28px, 3.5vw, 46px)",
+          letterSpacing: "-0.03em",
+          textShadow: theme === "dark" 
+            ? "0 2px 8px rgba(252, 211, 77, 0.3), 0 4px 16px rgba(0,0,0,0.5)"
+            : "0 2px 4px rgba(74, 46, 24, 0.95), 0 4px 12px rgba(74, 46, 24, 0.45)"
+        }}>
+          Systems
+        </span>
+      </div>
+    </motion.h1>
+
+    {/* Supporting Text Card */}
+    <motion.div 
+      initial={{ opacity: 0, y: 16 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ delay: 0.7, duration: 0.6 }}
+      style={{
+        width: "40%",
+        background: theme === "dark"
+          ? "linear-gradient(135deg, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.2))"
+          : "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(240,243,255,0.15))",
+        backdropFilter: theme === "dark" ? "blur(8px)" : "blur(4px)",
+        WebkitBackdropFilter: theme === "dark" ? "blur(8px)" : "blur(4px)",
+        border: theme === "dark"
+          ? "1px solid rgba(148, 163, 184, 0.12)"
+          : "1px solid rgba(36, 93, 214, 0.1)",
+        borderLeft: theme === "dark"
+          ? "3px solid rgba(252, 211, 77, 0.45)"
+          : "3px solid rgba(36, 93, 214, 0.35)",
+        borderRadius: "8px",
+        padding: "16px 18px",
+        boxShadow: theme === "dark"
+          ? "0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.04)"
+          : "0 2px 12px rgba(0, 0, 0, 0.04)",
+      }}
+    >
+      <p style={{
+        fontSize: "clamp(11.5px, 1.15vw, 14.5px)",
+        color: theme === "dark" ? "#E2E8F0" : "#2D3748",
+        lineHeight: 1.65,
+        fontWeight: 500,
+        margin: 0,
+        letterSpacing: "0.01em",
+      }}>
+        We manufacture premium{" "}
+        <span style={{
+          color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+          fontWeight: 600,
+        }}>BOPP tapes</span>,{" "}
+        <span style={{
+          color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+          fontWeight: 600,
+        }}>stretch films</span>, and{" "}
+        <span style={{
+          color: theme === "dark" ? "#93C5FD" : "#1D4ED8",
+          fontWeight: 600,
+        }}>custom plastic packaging</span>.
+        Our facility in{" "}
+        <span style={{
+          color: theme === "dark" ? "#FCD34D" : "#92400E",
+          fontWeight: 700,
+          borderBottom: theme === "dark"
+            ? "1px solid rgba(252, 211, 77, 0.4)"
+            : "1px solid rgba(146, 64, 14, 0.3)",
+          paddingBottom: "1px",
+        }}>Sidcul Haridwar</span>{" "}
+        runs day and night to give you{" "}
+        <span style={{
+          fontWeight: 600,
+          color: theme === "dark" ? "#6EE7B7" : "#065F46",
+        }}>direct factory pricing</span>.
+        We verify every product for{" "}
+        <span style={{
+          fontWeight: 600,
+          color: theme === "dark" ? "#6EE7B7" : "#065F46",
+        }}>exact thickness</span>, which is why bulk buyers across{" "}
+        <span style={{
+          fontWeight: 700,
+          color: theme === "dark" ? "#FCD34D" : "#92400E",
+          borderBottom: theme === "dark"
+            ? "1px solid rgba(252, 211, 77, 0.4)"
+            : "1px solid rgba(146, 64, 14, 0.3)",
+          paddingBottom: "1px",
+        }}>North India</span>{" "}
+        trust us.
+      </p>
+    </motion.div>
            
 
             {/* CTA Buttons Container - positioned at bottom of hero */}
