@@ -1,22 +1,33 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans, Geist_Mono } from 'next/font/google'
+import { Playfair_Display, DM_Sans, Geist_Mono, Montserrat } from 'next/font/google'
 import './globals.css'
 
 const playfair = Playfair_Display({ 
   subsets: ["latin"],
   variable: "--font-playfair",
-  weight: ["400", "500", "600", "700", "800", "900"]
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 const dmSans = DM_Sans({ 
   subsets: ["latin"],
   variable: "--font-dm-sans",
-  weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
+  display: "swap",
+});
+
+// ← This was missing — your hero uses it
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -40,8 +51,8 @@ export default function RootLayout({
   return (
     <html 
       lang="en" 
-      className={`scroll-smooth ${playfair.variable} ${dmSans.variable} ${geistMono.variable}`}
-      style={{ backgroundColor: "#F7F4EE" }}
+      className={`scroll-smooth ${playfair.variable} ${dmSans.variable} ${geistMono.variable} ${montserrat.variable}`}
+      // Remove hardcoded bgColor — let your theme system handle it
     >
       <body className="antialiased" style={{ margin: 0, padding: 0 }}>
         {children}
