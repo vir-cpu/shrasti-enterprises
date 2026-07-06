@@ -1051,6 +1051,7 @@ export default function ShrastiEnterprisesHome() {
       →
     </motion.span>
   </motion.a>
+    </div>
 
   {/* ========== SECONDARY CTA — CALL PLANT ========== */}
   <motion.a
