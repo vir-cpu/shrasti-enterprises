@@ -799,22 +799,25 @@ export default function ShrastiEnterprisesHome() {
       <div style={{ display: "flex", flexDirection: "column", gap: "0.05em", lineHeight: 0.85 }}>
         
         <span style={{
-         display: "inline-block",
-          background: theme === "dark"
-            ? "linear-gradient(135deg, #60A5FA, #A78BFA)"
-            : "linear-gradient(135deg, #245dd6, #7C3AED)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          fontWeight: 900,
-          fontSize: "clamp(28px, 3.5vw, 46px)",
-          letterSpacing: "-0.03em",
-          filter: theme === "dark"
-            ? "drop-shadow(0 0 12px rgba(96, 165, 250, 0.4))"
-            : "drop-shadow(0 0 10px rgba(36, 93, 214, 0.35))",
-        }}>
-          Next-Gen
-        </span>
+  color: "#FFFFFF",
+  fontWeight: 900,
+  fontSize: "clamp(28px, 3.5vw, 46px)",
+  letterSpacing: "-0.03em",
+  textShadow: theme === "dark"
+    ? `0 0 1px rgba(255,255,255,0.9),
+       0 0 8px rgba(212, 175, 55, 0.6),
+       0 0 20px rgba(212, 175, 55, 0.25),
+       0 2px 4px rgba(26, 47, 92, 0.8),
+       0 6px 16px rgba(26, 47, 92, 0.5),
+       0 12px 32px rgba(0, 0, 0, 0.7)`
+    : `0 0 1px rgba(255,255,255,1),
+       0 0 6px rgba(36, 93, 214, 0.5),
+       0 2px 4px rgba(26, 47, 92, 0.9),
+       0 4px 12px rgba(26, 47, 92, 0.4),
+       0 8px 20px rgba(201, 160, 40, 0.15)`,
+}}>
+  Next-Gen
+</span>
         
         <span style={{ 
           color: "#FFFFFF",
