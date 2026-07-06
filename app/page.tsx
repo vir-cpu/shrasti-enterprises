@@ -966,6 +966,8 @@ export default function ShrastiEnterprisesHome() {
       inset 0 1px 0 rgba(255,255,255,.45),
       inset 0 -2px 3px rgba(140,104,5,.20)`,
       textShadow: "0 1px 0 rgba(255,255,255,.35), 0 2px 4px rgba(0,0,0,.18)",
+      willChange: "transform, box-shadow",
+      transform: "translateZ(0)"
       cursor: "pointer",
       overflow: "hidden",
       zIndex: 1,
