@@ -924,44 +924,316 @@ export default function ShrastiEnterprisesHome() {
            
 
             {/* CTA Buttons Container - positioned at bottom of hero */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "clamp(8px, 2vw, 12px)",
-                zIndex: 5,
-                pointerEvents: "auto",
-              }}>
-              <motion.a whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.95 }}
-                href="#product-matrix"
-                className="primary-cta"
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
-                  background: `linear-gradient(135deg, #D4AF37, #E8C84A)`, color: theme === "dark" ? "#0A0A0A" : "#1A2F5C", fontWeight: 800,
-                  fontSize: "clamp(11px, 2.2vw, 13px)", letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none",
-                  boxShadow: theme === "dark" ? `0 8px 20px rgba(212, 175, 55, 0.35)` : `0 8px 20px rgba(212, 175, 55, 0.25)`, 
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                }}>
-                Explore Inventory <span>→</span>
-              </motion.a>
-              <motion.a whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.95 }}
-                href="tel:+918449350005"
-                className="secondary-cta"
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: "clamp(4px, 1vw, 8px)", padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)", borderRadius: 12,
-                  border: theme === "dark" ? `1.5px solid rgba(212, 175, 55, 0.3)` : `1.5px solid rgba(255, 255, 255, 0.25)`, 
-                  background: theme === "dark" ? "rgba(45,45,45,0.4)" : "rgba(255, 255, 255, 0.1)",
-                  backdropFilter: "blur(10px)", color: theme === "dark" ? "#F7F7F7" : "#F5F1E8", fontWeight: 800, fontSize: "clamp(11px, 2.2vw, 13px)",
-                  letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  boxShadow: theme === "dark" ? "0 4px 12px rgba(212, 175, 55, 0.15)" : "0 4px 12px rgba(255, 255, 255, 0.08)",
-                }}>
+            <motion.div 
+  initial={{ opacity: 0, y: 20 }} 
+  animate={{ opacity: 1, y: 0 }} 
+  transition={{ delay: 0.35, duration: 0.6 }}
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "clamp(8px, 2vw, 12px)",
+    zIndex: 5,
+    pointerEvents: "auto",
+  }}
+>
+  {/* ========== PRIMARY CTA — EXPLORE INVENTORY ========== */}
+  <motion.a
+    whileHover={{ scale: 1.06, y: -4 }}
+    whileTap={{ scale: 0.95 }}
+    href="#product-matrix"
+    className="primary-cta"
+    style={{
+      position: "relative",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "clamp(4px, 1vw, 8px)",
+      padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)",
+      borderRadius: 12,
+      background: theme === "dark"
+        ? "linear-gradient(135deg, #D4AF37, #F5D76E, #D4AF37)"
+        : "linear-gradient(135deg, #D4AF37, #E8C84A)",
+      backgroundSize: theme === "dark" ? "200% 100%" : "100% 100%",
+      color: theme === "dark" ? "#0A0A0A" : "#1A2F5C",
+      fontWeight: 800,
+      fontSize: "clamp(11px, 2.2vw, 13px)",
+      letterSpacing: "0.06em",
+      textTransform: "uppercase",
+      textDecoration: "none",
+      cursor: "pointer",
+      overflow: "hidden",
+      zIndex: 1,
+    }}
+  >
+    {/* Shimmer sweep — loops every 3s, slides across then resets */}
+    <motion.div
+      animate={{
+        x: ["-120%", "220%"],
+        opacity: [0, 1, 1, 0],
+      }}
+      transition={{
+        duration: 2.8,
+        repeat: Infinity,
+        repeatDelay: 1.5,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "60%",
+        height: "100%",
+        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.45), rgba(255,255,255,0.1), transparent)",
+        transform: "skewX(-20deg)",
+        pointerEvents: "none",
+        zIndex: 2,
+      }}
+    />
 
-                <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                Call Plant
-              </motion.a>
-          </motion.div>
+    {/* Breathing glow — pulses the gold shadow */}
+    <motion.div
+      animate={{
+        boxShadow: theme === "dark"
+          ? [
+              "0 0 15px rgba(212, 175, 55, 0.0)",
+              "0 0 25px rgba(212, 175, 55, 0.5), 0 8px 30px rgba(212, 175, 55, 0.3)",
+              "0 0 15px rgba(212, 175, 55, 0.0)",
+            ]
+          : [
+              "0 0 10px rgba(212, 175, 55, 0.0)",
+              "0 0 20px rgba(212, 175, 55, 0.35), 0 8px 24px rgba(212, 175, 55, 0.2)",
+              "0 0 10px rgba(212, 175, 55, 0.0)",
+            ],
+      }}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      style={{
+        position: "absolute",
+        inset: -2,
+        borderRadius: 14,
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
+
+    {/* Sparkle particles — tiny dots that flash randomly */}
+    {[...Array(4)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{
+          opacity: [0, 0, 1, 0, 0, 0],
+          scale: [0, 0, 1.2, 0, 0, 0],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          delay: i * 0.7,
+          ease: "easeInOut",
+        }}
+        style={{
+          position: "absolute",
+          width: 3,
+          height: 3,
+          borderRadius: "50%",
+          background: theme === "dark" ? "#FFF8DC" : "#FFFFFF",
+          top: `${20 + i * 18}%`,
+          left: `${15 + i * 20}%`,
+          pointerEvents: "none",
+          zIndex: 3,
+          boxShadow: "0 0 4px rgba(255,255,255,0.8)",
+        }}
+      />
+    ))}
+
+    {/* Label text */}
+    <span style={{ position: "relative", zIndex: 4 }}>Explore Inventory</span>
+
+    {/* Animated arrow — bounces right then rests */}
+    <motion.span
+      animate={{
+        x: [0, 4, 0],
+        opacity: [1, 1, 0.6, 1],
+      }}
+      transition={{
+        duration: 1.8,
+        repeat: Infinity,
+        repeatDelay: 2,
+        ease: "easeInOut",
+      }}
+      style={{ position: "relative", zIndex: 4, display: "inline-flex" }}
+    >
+      →
+    </motion.span>
+  </motion.a>
+
+  {/* ========== SECONDARY CTA — CALL PLANT ========== */}
+  <motion.a
+    whileHover={{ scale: 1.06, y: -4 }}
+    whileTap={{ scale: 0.95 }}
+    href="tel:+918449350005"
+    className="secondary-cta"
+    style={{
+      position: "relative",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "clamp(4px, 1vw, 8px)",
+      padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)",
+      borderRadius: 12,
+      border: theme === "dark"
+        ? "1.5px solid rgba(212, 175, 55, 0.25)"
+        : "1.5px solid rgba(255, 255, 255, 0.25)",
+      background: theme === "dark"
+        ? "rgba(45, 45, 45, 0.4)"
+        : "rgba(255, 255, 255, 0.1)",
+      backdropFilter: "blur(10px)",
+      color: theme === "dark" ? "#F7F7F7" : "#F5F1E8",
+      fontWeight: 800,
+      fontSize: "clamp(11px, 2.2vw, 13px)",
+      letterSpacing: "0.06em",
+      textTransform: "uppercase",
+      textDecoration: "none",
+      cursor: "pointer",
+      overflow: "hidden",
+      zIndex: 1,
+    }}
+  >
+    {/* Border trace — a gold light that traces the perimeter */}
+    <motion.div
+      animate={{
+        backgroundPosition: [
+          "0% 0%",
+          "100% 0%",
+          "100% 100%",
+          "0% 100%",
+          "0% 0%",
+        ],
+        opacity: [0.4, 1, 0.4, 1, 0.4],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      style={{
+        position: "absolute",
+        inset: -1.5,
+        borderRadius: 13,
+        padding: 1.5,
+        background: theme === "dark"
+          ? `linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent) 0% 0% / 50% 50% no-repeat, border-box`
+          : `linear-gradient(90deg, transparent, rgba(36, 93, 214, 0.5), transparent) 0% 0% / 50% 50% no-repeat, border-box`,
+        WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+        WebkitMaskComposite: "xor",
+        maskComposite: "exclude",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
+
+    {/* Breathing border glow */}
+    <motion.div
+      animate={{
+        boxShadow: theme === "dark"
+          ? [
+              "0 0 0px rgba(212, 175, 55, 0)",
+              "0 0 18px rgba(212, 175, 55, 0.2), inset 0 0 12px rgba(212, 175, 55, 0.05)",
+              "0 0 0px rgba(212, 175, 55, 0)",
+            ]
+          : [
+              "0 0 0px rgba(36, 93, 214, 0)",
+              "0 0 14px rgba(36, 93, 214, 0.15), inset 0 0 10px rgba(36, 93, 214, 0.05)",
+              "0 0 0px rgba(36, 93, 214, 0)",
+            ],
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatDelay: 1,
+      }}
+      style={{
+        position: "absolute",
+        inset: -1,
+        borderRadius: 13,
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
+
+    {/* Phone icon with pulsing rings */}
+    <span style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
+      {/* Ring 1 */}
+      <motion.div
+        animate={{
+          scale: [1, 1.8, 1],
+          opacity: [0.5, 0, 0.5],
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeOut",
+        }}
+        style={{
+          position: "absolute",
+          width: 16,
+          height: 16,
+          borderRadius: "50%",
+          border: `1px solid ${theme === "dark" ? "rgba(212, 175, 55, 0.4)" : "rgba(36, 93, 214, 0.3)"}`,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Ring 2 — delayed */}
+      <motion.div
+        animate={{
+          scale: [1, 2.2, 1],
+          opacity: [0.3, 0, 0.3],
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeOut",
+          delay: 0.8,
+        }}
+        style={{
+          position: "absolute",
+          width: 16,
+          height: 16,
+          borderRadius: "50%",
+          border: `1px solid ${theme === "dark" ? "rgba(212, 175, 55, 0.25)" : "rgba(36, 93, 214, 0.2)"}`,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Actual icon */}
+      <svg
+        width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        style={{ position: "relative", zIndex: 1 }}
+      >
+        <motion.path
+          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+          strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+          fill="none"
+          stroke="currentColor"
+          animate={{
+            stroke: theme === "dark"
+              ? ["#F7F7F7", "#FCD34D", "#F7F7F7"]
+              : ["#F5F1E8", "#245dd6", "#F5F1E8"],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            repeatDelay: 1.5,
+          }}
+        />
+      </svg>
+    </span>
+
+    {/* Label */}
+    <span style={{ position: "relative", zIndex: 2 }}>Call Plant</span>
+  </motion.a>
+</motion.div>
               </div>
         </motion.div>
         </div>
