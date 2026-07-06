@@ -936,14 +936,15 @@ export default function ShrastiEnterprisesHome() {
     pointerEvents: "auto",
   }}
 >
-  {/* ========== PRIMARY CTA — EXPLORE INVENTORY ========== */}
-  <div 
-    onMouseEnter={() => {}} // Acts as a stable hit-box
-    style={{ display: "inline-flex" }}
-    >
-    <motion.a
-    whileHover={{ scale: 1.06, y: -2 }}
-    whileTap={{ scale: 0.95 }}
+
+{/* ═══ PRIMARY CTA — EXPLORE INVENTORY ═══ */}
+<motion.div
+  whileHover={{ scale: 1.03, y: -3 }}
+  whileTap={{ scale: 0.97 }}
+  transition={{ type: "spring", stiffness: 400, damping: 25, mass: 0.5 }}
+  style={{ display: "inline-flex" }}
+>
+  <motion.a
     href="#product-matrix"
     className="primary-cta"
     style={{
@@ -955,125 +956,103 @@ export default function ShrastiEnterprisesHome() {
       borderRadius: 15,
       border: "1px solid rgba(255,255,255,.28)",
       background: theme === "dark"
-      ? "linear-gradient(135deg, #A8780A 0%, #D4AF37 22%, #FFF1B8 50%, #D4AF37 78%, #8C6805 100%)"
-      : "linear-gradient(135deg, #B88B14 0%, #E3C34D 45%, #FFF3C7 60%, #D4AF37 100%)",
-      backgroundSize: theme === "dark" ? "200% 100%" : "100% 100%",
+        ? "linear-gradient(135deg, #A8780A 0%, #D4AF37 22%, #FFF1B8 50%, #D4AF37 78%, #8C6805 100%)"
+        : "linear-gradient(135deg, #B88B14 0%, #E3C34D 45%, #FFF3C7 60%, #D4AF37 100%)",
       color: theme === "dark" ? "#0A0A0A" : "#1A2F5C",
       fontWeight: 800,
       fontSize: "clamp(11px, 2.2vw, 13px)",
       letterSpacing: "0.06em",
       textTransform: "uppercase",
       textDecoration: "none",
-      boxShadow: `
-      0 14px 34px rgba(212,175,55,.28),
-      0 6px 16px rgba(0,0,0,.20),
-      inset 0 1px 0 rgba(255,255,255,.45),
-      inset 0 -2px 3px rgba(140,104,5,.20)`,
+      boxShadow: theme === "dark"
+        ? `0 8px 24px rgba(212,175,55,.3), 0 2px 8px rgba(0,0,0,.3),
+           inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 3px rgba(140,104,5,.15)`
+        : `0 8px 24px rgba(212,175,55,.25), 0 2px 8px rgba(0,0,0,.1),
+           inset 0 1px 0 rgba(255,255,255,.45), inset 0 -2px 3px rgba(140,104,5,.20)`,
       textShadow: "0 1px 0 rgba(255,255,255,.35), 0 2px 4px rgba(0,0,0,.18)",
-      willChange: "transform, box-shadow",
-      transform: "translateZ(0)",
       cursor: "pointer",
       overflow: "hidden",
       zIndex: 1,
+      backfaceVisibility: "hidden",
+      WebkitFontSmoothing: "antialiased",
+      willChange: "transform",
     }}
   >
-    {/* Shimmer sweep — loops every 3s, slides across then resets */}
+    {/* Shine sweep */}
     <motion.div
-      animate={{
-        x: ["-120%", "220%"],
-        opacity: [0, 1, 1, 0],
-      }}
+      animate={{ x: ["-120%", "220%"], opacity: [0, 0.8, 0.8, 0] }}
       transition={{
-        duration: 2.8,
-        repeat: Infinity,
-        repeatDelay: 1.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 2.8, repeat: Infinity, repeatDelay: 2,
+        ease: [0.25, 0.46, 0.45, 0.94], delay: 2,
       }}
       style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "28%",
-        height: "100%",
-        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.45), rgba(255,255,255,0.1), transparent)",
-        transform: "skewX(-20deg)",
-        pointerEvents: "none",
-        zIndex: 2,
+        position: "absolute", top: 0, left: 0, width: "60%", height: "100%",
+        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)",
+        transform: "skewX(-20deg)", pointerEvents: "none", zIndex: 2,
       }}
     />
 
-    {/* Breathing glow — pulses the gold shadow */}
+    {/* Border glow — opacity only */}
     <motion.div
-      animate={{
-        boxShadow: theme === "dark"
-          ? [
-              "0 0 15px rgba(212, 175, 55, 0.0)",
-              "0 0 25px rgba(212, 175, 55, 0.5), 0 8px 30px rgba(212, 175, 55, 0.3)",
-              "0 0 15px rgba(212, 175, 55, 0.0)",
-            ]
-          : [
-              "0 0 10px rgba(212, 175, 55, 0.0)",
-              "0 0 20px rgba(212, 175, 55, 0.35), 0 8px 24px rgba(212, 175, 55, 0.2)",
-              "0 0 10px rgba(212, 175, 55, 0.0)",
-            ],
-      }}
+      animate={{ opacity: [0.3, 0.8, 0.3] }}
       transition={{
-        duration: 2.5,
-        repeat: Infinity,
-        ease: "easeInOut",
+        duration: 2.5, repeat: Infinity, ease: "easeInOut",
+        repeatDelay: 1.5, delay: 2.5,
       }}
       style={{
-        position: "absolute",
-        inset: -2,
-        borderRadius: 14,
-        pointerEvents: "none",
-        zIndex: 0,
+        position: "absolute", inset: 0, borderRadius: 15,
+        border: "1.5px solid rgba(255,255,255,0.4)",
+        pointerEvents: "none", zIndex: 3,
       }}
     />
 
-    {/* Label text */}
     <span style={{ position: "relative", zIndex: 4 }}>Explore Inventory</span>
 
-    {/* Animated arrow — bounces right then rests */}
     <motion.span
-      animate={{
-        x: [0, 4, 0],
-        opacity: [1, 1, 0.6, 1],
-      }}
+      animate={{ x: [0, 3, 0] }}
       transition={{
-        duration: 1.8,
-        repeat: Infinity,
-        repeatDelay: 2,
-        ease: "easeInOut",
+        duration: 1.5, repeat: Infinity, repeatDelay: 2.5,
+        ease: "easeInOut", delay: 3,
       }}
-      style={{ position: "relative", zIndex: 4, display: "inline-flex" }}
+      style={{
+        position: "relative", zIndex: 4,
+        display: "inline-flex", alignItems: "center", justifyContent: "center",
+        width: "1.2em", height: "1em", overflow: "hidden",
+      }}
     >
       →
     </motion.span>
   </motion.a>
-    </div>
+</motion.div>
 
-  {/* ========== SECONDARY CTA — CALL PLANT ========== */}
+{/* ═══ SECONDARY CTA — CALL PLANT ═══ */}
+<motion.div
+  whileHover={{ scale: 1.03, y: -3 }}
+  whileTap={{ scale: 0.97 }}
+  transition={{ type: "spring", stiffness: 400, damping: 25, mass: 0.5 }}
+  style={{ display: "inline-flex", flex: "1 1 100%" }}
+  className="cta-call-plant-wrapper"
+>
   <motion.a
-    whileHover={{ scale: 1.06, y: -4 }}
-    whileTap={{ scale: 0.95 }}
     href="tel:+918449350005"
     className="secondary-cta"
     style={{
       position: "relative",
       display: "inline-flex",
       alignItems: "center",
+      justifyContent: "center",
       gap: "clamp(4px, 1vw, 8px)",
       padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)",
       borderRadius: 12,
       border: theme === "dark"
         ? "1.5px solid rgba(212, 175, 55, 0.25)"
-        : "1.5px solid rgba(255, 255, 255, 0.25)",
+        : "1.5px solid rgba(26, 47, 92, 0.3)",
       background: theme === "dark"
         ? "rgba(45, 45, 45, 0.4)"
-        : "rgba(255, 255, 255, 0.1)",
+        : "rgba(26, 47, 92, 0.08)",
       backdropFilter: "blur(10px)",
-      color: theme === "dark" ? "#F7F7F7" : "#F5F1E8",
+      // Navy-blue-metallic in light, off-white in dark
+      color: theme === "dark" ? "#F7F7F7" : "#1A2F5C",
       fontWeight: 800,
       fontSize: "clamp(11px, 2.2vw, 13px)",
       letterSpacing: "0.06em",
@@ -1082,115 +1061,49 @@ export default function ShrastiEnterprisesHome() {
       cursor: "pointer",
       overflow: "hidden",
       zIndex: 1,
+      backfaceVisibility: "hidden",
+      WebkitFontSmoothing: "antialiased",
+      willChange: "transform",
+      width: "100%",
     }}
   >
-    {/* Border trace — a gold light that traces the perimeter */}
+    {/* Border glow — opacity only */}
     <motion.div
-      animate={{
-        backgroundPosition: [
-          "0% 0%",
-          "100% 0%",
-          "100% 100%",
-          "0% 100%",
-          "0% 0%",
-        ],
-        opacity: [0.4, 1, 0.4, 1, 0.4],
-      }}
+      animate={{ opacity: [0.2, 0.7, 0.2] }}
       transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: "linear",
+        duration: 3, repeat: Infinity, ease: "easeInOut",
+        repeatDelay: 1.5, delay: 2.5,
       }}
       style={{
-        position: "absolute",
-        inset: -1.5,
-        borderRadius: 13,
-        padding: 1.5,
-        background: theme === "dark"
-          ? `linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent) 0% 0% / 50% 50% no-repeat, border-box`
-          : `linear-gradient(90deg, transparent, rgba(36, 93, 214, 0.5), transparent) 0% 0% / 50% 50% no-repeat, border-box`,
-        WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-        WebkitMaskComposite: "xor",
-        maskComposite: "exclude",
-        pointerEvents: "none",
-        zIndex: 0,
+        position: "absolute", inset: 0, borderRadius: 12,
+        border: `1px solid ${theme === "dark" ? "rgba(212,175,55,0.4)" : "rgba(26,47,92,0.35)"}`,
+        pointerEvents: "none", zIndex: 0,
       }}
     />
 
-    {/* Breathing border glow */}
-    <motion.div
-      animate={{
-        boxShadow: theme === "dark"
-          ? [
-              "0 0 0px rgba(212, 175, 55, 0)",
-              "0 0 18px rgba(212, 175, 55, 0.2), inset 0 0 12px rgba(212, 175, 55, 0.05)",
-              "0 0 0px rgba(212, 175, 55, 0)",
-            ]
-          : [
-              "0 0 0px rgba(36, 93, 214, 0)",
-              "0 0 14px rgba(36, 93, 214, 0.15), inset 0 0 10px rgba(36, 93, 214, 0.05)",
-              "0 0 0px rgba(36, 93, 214, 0)",
-            ],
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-        repeatDelay: 1,
-      }}
-      style={{
-        position: "absolute",
-        inset: -1,
-        borderRadius: 13,
-        pointerEvents: "none",
-        zIndex: 0,
-      }}
-    />
-
-    {/* Phone icon with pulsing rings */}
-    <span style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
-      {/* Ring 1 */}
+    {/* Phone icon with rings */}
+    <span style={{
+      position: "relative", display: "inline-flex",
+      alignItems: "center", justifyContent: "center", zIndex: 2,
+    }}>
       <motion.div
-        animate={{
-          scale: [1, 1.8, 1],
-          opacity: [0.5, 0, 0.5],
-        }}
-        transition={{
-          duration: 2.5,
-          repeat: Infinity,
-          ease: "easeOut",
-        }}
+        animate={{ scale: [1, 1.6, 1], opacity: [0.4, 0, 0.4] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 2.5 }}
         style={{
-          position: "absolute",
-          width: 16,
-          height: 16,
-          borderRadius: "50%",
-          border: `1px solid ${theme === "dark" ? "rgba(212, 175, 55, 0.4)" : "rgba(36, 93, 214, 0.3)"}`,
+          position: "absolute", width: 16, height: 16, borderRadius: "50%",
+          border: `1px solid ${theme === "dark" ? "rgba(212,175,55,0.3)" : "rgba(26,47,92,0.25)"}`,
           pointerEvents: "none",
         }}
       />
-      {/* Ring 2 — delayed */}
       <motion.div
-        animate={{
-          scale: [1, 2.2, 1],
-          opacity: [0.3, 0, 0.3],
-        }}
-        transition={{
-          duration: 2.5,
-          repeat: Infinity,
-          ease: "easeOut",
-          delay: 0.8,
-        }}
+        animate={{ scale: [1, 2, 1], opacity: [0.2, 0, 0.2] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 3.3 }}
         style={{
-          position: "absolute",
-          width: 16,
-          height: 16,
-          borderRadius: "50%",
-          border: `1px solid ${theme === "dark" ? "rgba(212, 175, 55, 0.25)" : "rgba(36, 93, 214, 0.2)"}`,
+          position: "absolute", width: 16, height: 16, borderRadius: "50%",
+          border: `1px solid ${theme === "dark" ? "rgba(212,175,55,0.15)" : "rgba(26,47,92,0.15)"}`,
           pointerEvents: "none",
         }}
       />
-      {/* Actual icon */}
       <svg
         width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"
         style={{ position: "relative", zIndex: 1 }}
@@ -1198,28 +1111,21 @@ export default function ShrastiEnterprisesHome() {
         <motion.path
           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
           strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-          fill="none"
-          stroke="currentColor"
+          fill="none" stroke="currentColor"
           animate={{
             stroke: theme === "dark"
               ? ["#F7F7F7", "#FCD34D", "#F7F7F7"]
-              : ["#F5F1E8", "#245dd6", "#F5F1E8"],
+              : ["#1A2F5C", "#3B6CB5", "#1A2F5C"],
           }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            repeatDelay: 1.5,
-          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5, delay: 3 }}
         />
       </svg>
     </span>
 
-    {/* Label */}
     <span style={{ position: "relative", zIndex: 2 }}>Call Plant</span>
   </motion.a>
 </motion.div>
-              </div>
+            </div>
         </motion.div>
         </div>
       </section>
