@@ -788,35 +788,14 @@ export default function ShrastiEnterprisesHome() {
     
     {/* Line 1: Navy with subtle anchor */}
     <span style={{ 
-  position: 'relative',
-  display: 'inline-block',
-  color: theme === "dark" ? "#1A2F5C" : "#245dd6",
-  fontWeight: 900,
-  fontSize: "clamp(28px, 3.5vw, 46px)",
-  letterSpacing: "-0.03em",
-  textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 0.4)" : "0 2px 4px rgba(26, 47, 92, 0.2)",
-  zIndex: 1,
-  padding: '0 8px',
-  margin: '0 -8px'
-}}>
-  Next-Gen
-  <span style={{
-    position: 'absolute',
-    content: '""',
-    left: 0,
-    right: 0,
-    top: '15%',
-    bottom: '15%',
-    background: theme === "dark" 
-      ? 'linear-gradient(90deg, rgba(200,215,235,0.15) 0%, rgba(230,235,245,0.3) 50%, rgba(200,215,235,0.15) 100%)' 
-      : 'linear-gradient(90deg, rgba(200,215,235,0.3) 0%, rgba(230,235,245,0.6) 50%, rgba(200,215,235,0.3) 100%)',
-    borderRadius: '50%',
-    filter: 'blur(8px)',
-    zIndex: -1,
-    opacity: 0.8,
-    transform: 'rotate(-5deg)'
-  }} />
-</span>
+      color: theme === "dark" ? "#1A2F5C" : "#245dd6",
+      fontWeight: 900,
+      fontSize: "clamp(28px, 3.5vw, 46px)",
+      letterSpacing: "-0.03em",
+      textShadow: theme === "dark" ? "0 2px 4px rgba(26, 47, 92, 1.4)" : "0 2px 4px rgba(26, 47, 92, 1.0)"
+    }}>
+      Next-Gen
+    </span>
     
     {/* Line 2: Off-White with Heavy Charcoal Shadow for Contrast */}
     <span style={{ 
