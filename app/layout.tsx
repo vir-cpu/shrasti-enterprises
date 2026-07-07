@@ -55,6 +55,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       {/* THIS runs before anything renders — no flash */}
+      <head>
       <script
         dangerouslySetInnerHTML={{
           __html: `
@@ -71,6 +72,7 @@ export default function RootLayout({
           `,
         }}
       />
+      </head>
       <body className="antialiased" style={{ margin: 0, padding: 0 }}>
         {children}
       </body>
