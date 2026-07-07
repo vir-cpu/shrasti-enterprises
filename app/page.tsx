@@ -1125,10 +1125,11 @@ export default function ShrastiEnterprisesHome() {
     <span style={{ position: "relative", zIndex: 2 }}>Call Plant</span>
   </motion.a>
 </motion.div>
+              </motion.div>
             </div>
         </motion.div>
-        </div>
       </section>
+        
       {/* ══════════════════════════════════════════
           TRUST BAR
       ══════════════════════════════════════════ */}
