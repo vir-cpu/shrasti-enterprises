@@ -638,10 +638,11 @@ export default function ShrastiEnterprisesHome() {
     @media (max-width: 767px) {
       .cta-row {
         flex-direction: column !important;
-        width: 100% !important;
+        align-items: flex-start !important;
+        width: auto !important;
       }
       .cta-row > a {
-        width: 100% !important;
+        width: auto !important;
         justify-content: center !important;
       }
     }
