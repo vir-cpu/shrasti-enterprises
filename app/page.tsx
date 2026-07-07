@@ -571,7 +571,7 @@ export default function ShrastiEnterprisesHome() {
             >
               <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: 4 }}>
                   {navLinks.map(l => (
-                  <a key={l.href} href={l.href} onClick={(e) => { e.preventDefault(); setMobileOpen(false); const id = e.currentTarget.getAttribute("href"); requestAnimationFrame(() => { document.querySelector(id)?.scrollIntoView({ behavior: "smooth" }); }); }}
+                  <a key={l.href} href={l.href} onClick={(e) => { e.preventDefault(); setMobileOpen(false); const id = e.currentTarget.getAttribute("href"); if (!id) return; requestAnimationFrame(() => { document.querySelector(id)?.scrollIntoView({ behavior: "smooth" }); }); }}
                     style={{ padding: "12px 0", fontSize: 15, fontWeight: 700, color: T.text, textDecoration: "none", borderBottom: `1px solid ${T.divider}`, letterSpacing: "0.04em" }}
                   >{l.label}</a>
                 ))}
