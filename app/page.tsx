@@ -254,13 +254,14 @@ function ProductCard({ product, onQuote, T }: { product: typeof productSolutions
         />
       </div>
 
-      <div style={{ padding: "22px 24px 20px", display: "flex", flexDirection: "column", flex: 1, gap: 12 }}>
+      <div style={{ padding: "16px 24px 18px", display: "flex", flexDirection: "column", flex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-          <h3 style={{ fontSize: 20, fontWeight: 800, color: T.navy, lineHeight: 1.2 }}>{product.title}</h3>
+          <h3 style={{ fontSize: 20, fontWeight: 700, color: T.navy, lineHeight: 1.2, margin: "0 0 4px" }}>{product.title}
+          </h3>
           <span style={{ fontSize: 11, fontWeight: 600, color: T.textSoft, fontFamily: "var(--font-montserrat), sans-serif", marginTop: 3, whiteSpace: "nowrap" }}>{product.spec}</span>
         </div>
-        <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.7, fontWeight: 400, flex: 1 }}>{product.desc}</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.7, fontWeight: 400, flex: 1, margin: "4px 0 10px" }}>{product.desc}</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 10 }}>
           {product.features.map((f) => (
             <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: T.textSoft, fontWeight: 500 }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: T.gold, flexShrink: 0 }} />
@@ -268,7 +269,7 @@ function ProductCard({ product, onQuote, T }: { product: typeof productSolutions
             </div>
           ))}
         </div>
-        <div style={{ borderTop: `1px solid ${T.divider}`, paddingTop: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: T.textSoft, letterSpacing: "0.08em", textTransform: "uppercase" }}>{product.tag}</span>
           <motion.button
             whileHover={{ scale: 1.06 }}
@@ -277,9 +278,9 @@ function ProductCard({ product, onQuote, T }: { product: typeof productSolutions
             style={{
               background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`,
               color: T.navy, border: "none", borderRadius: 8,
-              padding: "8px 18px", fontSize: 12, fontWeight: 800,
-              letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer",
-              boxShadow: hovered ? `0 4px 18px ${T.goldGlow}` : "none",
+              padding: "8px 18px", fontSize: 13, fontWeight: 600,
+              letterSpacing: "0.07em", textTransform: "uppercase", cursor: "pointer",
+              boxShadow: hovered ? `0 4px 18px ${T.goldGlow}` : "none", whiteSpace: "nowrap",
               transition: "box-shadow 0.16s",
             }}
           >
@@ -440,14 +441,6 @@ export default function ShrastiEnterprisesHome() {
           to { opacity: 1; transform: translateX(0); }
         }
         
-        .primary-cta {
-          background: linear-gradient(90deg, #D4AF37 0%, #E8C84A 50%, #D4AF37 100%);
-          background-size: 200% 100%;
-          animation: breathingGlow 4s ease-in-out infinite;
-        }
-        .primary-cta:hover {
-          animation: goldenShimmer 2s linear infinite, breathingGlow 4s ease-in-out infinite;
-        }
         
         .secondary-cta:hover {
           animation: softGlow 3s ease-in-out infinite;
@@ -508,7 +501,7 @@ export default function ShrastiEnterprisesHome() {
               style={{
                 background: `linear-gradient(135deg, ${T.blue}, ${T.blueLight})`,
                 color: theme === "dark" ? "#0A0A0A" : "#fff", borderRadius: 10, padding: "10px 24px",
-                fontSize: 13, fontWeight: 800, letterSpacing: "0.07em",
+                fontSize: 13, fontWeight: 600, letterSpacing: "0.07em",
                 textTransform: "uppercase", textDecoration: "none",
               }}
             >
@@ -577,8 +570,8 @@ export default function ShrastiEnterprisesHome() {
               style={{ overflow: "hidden", borderTop: `1px solid ${T.divider}`, background: T.bg, position: "absolute", top: "72px", left: 0, right: 0, zIndex: 49 }}
             >
               <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: 4 }}>
-                {navLinks.map(l => (
-                  <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
+                  {navLinks.map(l => (
+                  <a key={l.href} href={l.href} onClick={(e) => { e.preventDefault(); setMobileOpen(false); const id = e.currentTarget.getAttribute("href"); requestAnimationFrame(() => { document.querySelector(id)?.scrollIntoView({ behavior: "smooth" }); }); }}
                     style={{ padding: "12px 0", fontSize: 15, fontWeight: 700, color: T.text, textDecoration: "none", borderBottom: `1px solid ${T.divider}`, letterSpacing: "0.04em" }}
                   >{l.label}</a>
                 ))}
@@ -615,7 +608,7 @@ export default function ShrastiEnterprisesHome() {
                 <a href="tel:+918449350005" style={{
                   marginTop: 12, textAlign: "center", padding: "13px 0", borderRadius: 10,
                   background: `linear-gradient(135deg, ${T.blue}, ${T.blueLight})`,
-                  color: theme === "dark" ? "#0A0A0A" : "#fff", fontWeight: 800, fontSize: 14, textDecoration: "none", letterSpacing: "0.05em",
+                  color: theme === "dark" ? "#0A0A0A" : "#fff", fontWeight: 600, fontSize: 14, textDecoration: "none", letterSpacing: "0.05em",
                 }}>Call: +91 84493 50005</a>
               </div>
             </motion.div>
@@ -626,7 +619,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           HERO — Image-Dominant Overlay Layout
       ══════════════════════════════════════════ */}
-      <section id="about-plant" style={{
+      <section id="about-plant" style={{ scrollMarginTop: 80,
   position: "relative", 
   width: "100%", 
   backgroundColor: theme === "dark" ? "#0A0A0A" : "#F7F4EE",
@@ -641,6 +634,16 @@ export default function ShrastiEnterprisesHome() {
     @media (min-width: 768px) {
       .desktop-hero-image { display: block !important; }
       .mobile-hero-image { display: none !important; }
+    }
+    @media (max-width: 767px) {
+      .cta-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .cta-row > a {
+        width: 100% !important;
+        justify-content: center !important;
+      }
     }
   `}</style>
   
@@ -703,32 +706,32 @@ export default function ShrastiEnterprisesHome() {
       style={{ 
         display: "inline-flex", alignItems: "center", gap: 8, 
         padding: "6px 14px", borderRadius: 999, 
-        border: "1px solid rgba(252, 211, 77, 0.25)", 
-        background: "rgba(252, 211, 77, 0.1)", 
+        border: "1px solid rgba(255, 255, 255, 0.25)", 
+        background: "rgba(255, 255, 255, 0.1)", 
         backdropFilter: "blur(8px)", 
-        color: "#FCD34D", fontSize: 11, fontWeight: 700, 
+        color: "#1A52D4", fontSize: 11, fontWeight: 700, 
         letterSpacing: "0.08em", textTransform: "uppercase", 
         width: "fit-content" 
       }}
     >
       <motion.span 
         animate={{ 
-          background: [
-            "#FFFFFF",
-            T.gold,
-            "#3b82f6",
-            "#93c5fd",
-            "#3b82f6",
-            "#FFFFFF"
-          ],
-          boxShadow: [
-            "0 0 8px 2px rgba(255,255,255,0.8)",
-            `0 0 8px 2px ${T.goldGlow || "rgba(212,175,55,0.6)"}`,
-            "0 0 4px 1px rgba(59,130,246,0.6)",
-            "0 0 12px 3px rgba(147,197,253,0.9)",
-            "0 0 4px 1px rgba(59,130,246,0.6)",
-            "0 0 8px 2px rgba(255,255,255,0.8)"
-          ]
+            background: [
+              "#FFFFFF",
+              "#D4AF37",
+              "#3b82f6",
+              "#93c5fd",
+              "#3b82f6",
+              "#FFFFFF"
+            ],
+            boxShadow: [
+              "0 0 8px 2px rgba(255,255,255,0.8)",
+              "0 0 8px 2px rgba(212,175,55,0.6)",
+              "0 0 4px 1px rgba(59,130,246,0.6)",
+              "0 0 12px 3px rgba(147,197,253,0.9)",
+              "0 0 4px 1px rgba(59,130,246,0.6)",
+              "0 0 8px 2px rgba(255,255,255,0.8)"
+            ]
         }}
         transition={{ 
           repeat: Infinity, duration: 4, ease: "easeInOut",
@@ -790,8 +793,7 @@ export default function ShrastiEnterprisesHome() {
       animate={{ opacity: 1, y: 0 }} 
       transition={{ delay: 0.20, type: "spring", stiffness: 140, damping: 18, mass: 0.75 }}
       style={{
-        fontFamily: "var(--font-montserrat), sans-serif",
-        fontSize: "clamp(30px, 4vw, 52px)", fontWeight: 900, lineHeight: 0.85,
+        fontSize: "clamp(30px, 4vw, 52px)", fontWeight: 700, lineHeight: 0.85,
         letterSpacing: "-0.02em", margin: 0,
         filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
       }}
@@ -925,6 +927,7 @@ export default function ShrastiEnterprisesHome() {
 
             {/* CTA Buttons Container - positioned at bottom of hero */}
             <motion.div 
+  className="cta-row"
   initial={{ opacity: 0, y: 20 }} 
   animate={{ opacity: 1, y: 0 }} 
   transition={{ delay: 0.35, duration: 0.6 }}
@@ -937,15 +940,10 @@ export default function ShrastiEnterprisesHome() {
   }}
 >
   {/* ========== PRIMARY CTA — EXPLORE INVENTORY ========== */}
-  <div 
-    onMouseEnter={() => {}} // Acts as a stable hit-box
-    style={{ display: "inline-flex" }}
-    >
-    <motion.a
+  <motion.a
     whileHover={{ scale: 1.06, y: -2 }}
     whileTap={{ scale: 0.95 }}
     href="#product-matrix"
-    className="primary-cta"
     style={{
       position: "relative",
       display: "inline-flex",
@@ -959,7 +957,7 @@ export default function ShrastiEnterprisesHome() {
       : "linear-gradient(135deg, #B88B14 0%, #E3C34D 45%, #FFF3C7 60%, #D4AF37 100%)",
       backgroundSize: theme === "dark" ? "200% 100%" : "100% 100%",
       color: theme === "dark" ? "#0A0A0A" : "#1A2F5C",
-      fontWeight: 800,
+      fontWeight: 600,
       fontSize: "clamp(11px, 2.2vw, 13px)",
       letterSpacing: "0.06em",
       textTransform: "uppercase",
@@ -970,7 +968,6 @@ export default function ShrastiEnterprisesHome() {
       inset 0 1px 0 rgba(255,255,255,.45),
       inset 0 -2px 3px rgba(140,104,5,.20)`,
       textShadow: "0 1px 0 rgba(255,255,255,.35), 0 2px 4px rgba(0,0,0,.18)",
-      willChange: "transform, box-shadow",
       transform: "translateZ(0)",
       cursor: "pointer",
       overflow: "hidden",
@@ -996,7 +993,7 @@ export default function ShrastiEnterprisesHome() {
         width: "28%",
         height: "100%",
         background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.45), rgba(255,255,255,0.1), transparent)",
-        transform: "skewX(-20deg)",
+        skewX: "-20deg",
         pointerEvents: "none",
         zIndex: 2,
       }}
@@ -1024,8 +1021,8 @@ export default function ShrastiEnterprisesHome() {
       }}
       style={{
         position: "absolute",
-        inset: -2,
-        borderRadius: 14,
+        inset: 0,
+        borderRadius: 15,
         pointerEvents: "none",
         zIndex: 0,
       }}
@@ -1051,7 +1048,6 @@ export default function ShrastiEnterprisesHome() {
       →
     </motion.span>
   </motion.a>
-    </div>
 
   {/* ========== SECONDARY CTA — CALL PLANT ========== */}
   <motion.a
@@ -1066,15 +1062,11 @@ export default function ShrastiEnterprisesHome() {
       gap: "clamp(4px, 1vw, 8px)",
       padding: "clamp(10px, 2.2vw, 14px) clamp(16px, 4vw, 28px)",
       borderRadius: 12,
-      border: theme === "dark"
-        ? "1.5px solid rgba(212, 175, 55, 0.25)"
-        : "1.5px solid rgba(255, 255, 255, 0.25)",
-      background: theme === "dark"
-        ? "rgba(45, 45, 45, 0.4)"
-        : "rgba(255, 255, 255, 0.1)",
+      border: "1.5px solid rgba(255, 255, 255, 0.9)",
+      background: "rgba(255, 255, 255, 0.05)",
       backdropFilter: "blur(10px)",
-      color: theme === "dark" ? "#F7F7F7" : "#F5F1E8",
-      fontWeight: 800,
+      color: "#1A52D4",
+      fontWeight: 600,
       fontSize: "clamp(11px, 2.2vw, 13px)",
       letterSpacing: "0.06em",
       textTransform: "uppercase",
@@ -1106,9 +1098,7 @@ export default function ShrastiEnterprisesHome() {
         inset: -1.5,
         borderRadius: 13,
         padding: 1.5,
-        background: theme === "dark"
-          ? `linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent) 0% 0% / 50% 50% no-repeat, border-box`
-          : `linear-gradient(90deg, transparent, rgba(36, 93, 214, 0.5), transparent) 0% 0% / 50% 50% no-repeat, border-box`,
+        background: `linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent) 0% 0% / 50% 50% no-repeat, border-box`,
         WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
         WebkitMaskComposite: "xor",
         maskComposite: "exclude",
@@ -1120,17 +1110,11 @@ export default function ShrastiEnterprisesHome() {
     {/* Breathing border glow */}
     <motion.div
       animate={{
-        boxShadow: theme === "dark"
-          ? [
-              "0 0 0px rgba(212, 175, 55, 0)",
-              "0 0 18px rgba(212, 175, 55, 0.2), inset 0 0 12px rgba(212, 175, 55, 0.05)",
-              "0 0 0px rgba(212, 175, 55, 0)",
-            ]
-          : [
-              "0 0 0px rgba(36, 93, 214, 0)",
-              "0 0 14px rgba(36, 93, 214, 0.15), inset 0 0 10px rgba(36, 93, 214, 0.05)",
-              "0 0 0px rgba(36, 93, 214, 0)",
-            ],
+        boxShadow: [
+          "0 0 0px rgba(255, 255, 255, 0)",
+          "0 0 14px rgba(255, 255, 255, 0.25), inset 0 0 10px rgba(255, 255, 255, 0.1)",
+          "0 0 0px rgba(255, 255, 255, 0)",
+        ],
       }}
       transition={{
         duration: 3,
@@ -1165,7 +1149,7 @@ export default function ShrastiEnterprisesHome() {
           width: 16,
           height: 16,
           borderRadius: "50%",
-          border: `1px solid ${theme === "dark" ? "rgba(212, 175, 55, 0.4)" : "rgba(36, 93, 214, 0.3)"}`,
+          border: "1px solid rgba(255, 255, 255, 0.4)",
           pointerEvents: "none",
         }}
       />
@@ -1186,7 +1170,7 @@ export default function ShrastiEnterprisesHome() {
           width: 16,
           height: 16,
           borderRadius: "50%",
-          border: `1px solid ${theme === "dark" ? "rgba(212, 175, 55, 0.25)" : "rgba(36, 93, 214, 0.2)"}`,
+          border: "1px solid rgba(255, 255, 255, 0.3)",
           pointerEvents: "none",
         }}
       />
@@ -1201,15 +1185,13 @@ export default function ShrastiEnterprisesHome() {
           fill="none"
           stroke="currentColor"
           animate={{
-            stroke: theme === "dark"
-              ? ["#F7F7F7", "#FCD34D", "#F7F7F7"]
-              : ["#F5F1E8", "#245dd6", "#F5F1E8"],
+            stroke: ["#FFFFFF", "#1A52D4", "#FFFFFF", "#1A52D4"],
           }}
           transition={{
-            duration: 3,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
-            repeatDelay: 1.5,
+            repeatDelay: 3,
           }}
         />
       </svg>
@@ -1343,7 +1325,7 @@ export default function ShrastiEnterprisesHome() {
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
               Why Partner With Us
             </div>
-            <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 700, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
               Built for Industrial Buyers
             </h2>
             <p style={{ fontSize: 17, color: T.textMid, maxWidth: 540, margin: "0 auto", lineHeight: 1.7, fontWeight: 400 }}>
@@ -1363,7 +1345,7 @@ export default function ShrastiEnterprisesHome() {
                 <div style={{ width: 48, height: 48, borderRadius: 12, background: `${T.blue}10`, border: `1.5px solid ${T.blue}22`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
                   <svg width={22} height={22} fill="none" stroke={T.blue} viewBox="0 0 24 24" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d={item.icon} /></svg>
                 </div>
-                <h3 style={{ fontSize: 20, fontWeight: 900, color: T.navy, marginBottom: 12, lineHeight: 1.25 }}>{item.title}</h3>
+                <h3 style={{ fontSize: 20, fontWeight: 700, color: T.navy, marginBottom: 12, lineHeight: 1.25 }}>{item.title}</h3>
                 <p style={{ fontSize: 15, color: T.textMid, lineHeight: 1.75, fontWeight: 500, margin: 0 }}>{item.desc}</p>
                 <div style={{ marginTop: 18, height: 2, borderRadius: 1, background: `linear-gradient(90deg, ${T.gold}, transparent)`, width: "35%" }} />
               </motion.div>
@@ -1375,7 +1357,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           PRODUCT CATALOG
       ══════════════════════════════════════════ */}
-      <section id="product-matrix" style={{ background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="product-matrix" style={{ scrollMarginTop: 80, background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
 
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 20, marginBottom: 36 }}>
@@ -1383,7 +1365,7 @@ export default function ShrastiEnterprisesHome() {
               <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
                 Materials Architecture
               </div>
-            <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>Our Product Range</h2>
+            <h2 style={{ fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 700, color: T.navy, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>Our Product Range</h2>
               <p style={{ fontSize: 17, color: T.textMid, marginTop: 12, maxWidth: 520, lineHeight: 1.7, fontWeight: 400 }}>
                 Every product manufactured with strict gauge parameters, dispatched direct from our SIDCUL factory.
               </p>
@@ -1434,13 +1416,13 @@ export default function ShrastiEnterprisesHome() {
                     <div className="product-list-content" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", flex: 1, padding: "24px 28px", gap: 18 }}>
                       <div style={{ minWidth: 220 }}>
                         <span style={{ fontSize: 15, fontWeight: 800, color: T.gold, letterSpacing: "0.18em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>{p.category}</span>
-                        <h3 style={{ fontSize: 30, fontWeight: 900, color: T.navy, margin: 0, lineHeight: 1.2 }}>{p.title}</h3>
+                        <h3 style={{ fontSize: 30, fontWeight: 700, color: T.navy, margin: 0, lineHeight: 1.2 }}>{p.title}</h3>
                       </div>
                       <p style={{ fontSize: 16, color: T.textMid, flex: 1, minWidth: 220, lineHeight: 1.8, margin: 0 }}>{p.desc}</p>
                       <div className="product-list-quote" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12, flexShrink: 0 }}>
                         <span style={{ fontSize: 12, fontWeight: 700, color: T.textSoft, fontFamily: "var(--font-montserrat), sans-serif", letterSpacing: "0.08em" }}>{p.spec}</span>
                         <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} onClick={() => handleQuote(p.title)}
-                          style={{ padding: "12px 26px", borderRadius: 12, border: "none", background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontSize: 15, fontWeight: 900, letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", boxShadow: `0 6px 20px ${T.goldGlow}` }}>
+                          style={{ padding: "12px 26px", borderRadius: 12, border: "none", background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontSize: 15, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", boxShadow: `0 6px 20px ${T.goldGlow}` }}>
                           Request Quote
                         </motion.button>
                       </div>
@@ -1462,7 +1444,7 @@ export default function ShrastiEnterprisesHome() {
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
               Manufacturing
             </div>
-            <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800, color: T.navy, marginBottom: 12, letterSpacing: "-0.02em" }}>Production Controls</h2>
+            <h2 style={{ fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 700, color: T.navy, marginBottom: 12, letterSpacing: "-0.02em" }}>Production Controls</h2>
             <p style={{ fontSize: 16, color: T.textMid, lineHeight: 1.7, marginBottom: 28, fontWeight: 400 }}>
               Focused manufacturing metrics keep materials strong across multi-state shipping transits.
             </p>
@@ -1482,7 +1464,7 @@ export default function ShrastiEnterprisesHome() {
             <AnimatePresence mode="wait">
               {productionTabs.filter(t => t.id === activeTab).map(tab => (
                 <motion.div key={tab.id} variants={slideIn} initial="hidden" animate="visible" exit="exit">
-                  <h3 style={{ fontSize: 24, fontWeight: 900, color: T.navy, marginBottom: 14, letterSpacing: "-0.01em" }}>{tab.title}</h3>
+                  <h3 style={{ fontSize: 24, fontWeight: 700, color: T.navy, marginBottom: 14, letterSpacing: "-0.01em" }}>{tab.title}</h3>
                   <p style={{ fontSize: 16, color: T.textMid, lineHeight: 1.75, marginBottom: 24, fontWeight: 400 }}>{tab.body}</p>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 14 }}>
                     {tab.details.map(d => (
@@ -1502,13 +1484,13 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           LOGISTICS MAP
       ══════════════    ════════    ══════════════════ */}
-      <section id="logistics-grid" style={{ background: T.bgAlt, padding: "100px 24px 96px" }}>
+      <section id="logistics-grid" style={{ scrollMarginTop: 80, background: T.bgAlt, padding: "100px 24px 96px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 48 }}>
             <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}18`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
               Logistics Mapping
             </div>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>Regional Dispatch Map</h2>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 700, color: T.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>Regional Dispatch Map</h2>
             <p style={{ fontSize: 17, color: T.textMid, maxWidth: 520, lineHeight: 1.7, fontWeight: 400 }}>
               Structured commercial dispatches from our Haridwar factory to adjacent states with reliable transit times.
             </p>
@@ -1524,11 +1506,11 @@ export default function ShrastiEnterprisesHome() {
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = T.divider; }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                  <h4 style={{ fontSize: 17, fontWeight: 800, color: T.navy, margin: 0 }}>{r.region}</h4>
+                  <h4 style={{ fontSize: 17, fontWeight: 700, color: T.navy, margin: 0 }}>{r.region}</h4>
                   <span style={{ fontSize: 10, fontWeight: 700, color: T.blue, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, padding: "3px 10px", borderRadius: 999, letterSpacing: "0.08em", textTransform: "uppercase" }}>{r.tier}</span>
                 </div>
                 <p style={{ fontSize: 14, color: T.textSoft, lineHeight: 1.6, marginBottom: 16, fontWeight: 400 }}>{r.centers}</p>
-                <div style={{ borderTop: `1px solid ${T.divider}`, paddingTop: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ borderTop: `1px solid ${T.divider}`, paddingTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <span style={{ fontSize: 11, fontWeight: 700, color: T.textSoft, letterSpacing: "0.1em", textTransform: "uppercase" }}>Transit Time</span>
                   <span style={{ fontSize: 13, fontWeight: 800, color: T.gold, fontFamily: "var(--font-montserrat), sans-serif" }}>{r.leadTime}</span>
                 </div>
@@ -1551,7 +1533,7 @@ export default function ShrastiEnterprisesHome() {
           <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.gold}20`, border: `1px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 20 }}>
             Ready to Order?
           </div>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 900, color: "#fff", letterSpacing: "-0.02em", marginBottom: 16, lineHeight: 1.1 }}>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", marginBottom: 16, lineHeight: 1.1 }}>
             Get Factory-Direct Pricing<br />
             <span style={{ backgroundImage: `linear-gradient(90deg, ${T.gold}, ${T.goldLight})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>for Your Next Bulk Order</span>
           </h2>
@@ -1561,12 +1543,12 @@ export default function ShrastiEnterprisesHome() {
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}
               href="#quote-configurator"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 36px", borderRadius: 12, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 800, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 8px 32px ${T.goldGlow}` }}>
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 36px", borderRadius: 12, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontWeight: 600, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 8px 32px ${T.goldGlow}` }}>
               Configure a Quote →
             </motion.a>
             <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}
               href="tel:+918449350005"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 36px", borderRadius: 12, border: "2px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.07)", color: "#fff", fontWeight: 800, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none" }}>
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 36px", borderRadius: 12, border: "2px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.07)", color: "#fff", fontWeight: 600, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none" }}>
               <svg width={16} height={16} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
               Call +91 84493 50005
             </motion.a>
@@ -1577,7 +1559,7 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           RFQ FORM
       ══════════════════════════════════════════ */}
-      <section id="quote-configurator" style={{ background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
+      <section id="quote-configurator" style={{ scrollMarginTop: 80, background: T.bgAlt, padding: "100px 24px 96px", borderTop: `1px solid ${T.divider}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             style={{ background: T.bgSection, borderRadius: 20, padding: "clamp(28px,5vw,52px)", border: `1.5px solid ${T.divider}`, boxShadow: "0 8px 48px rgba(13,31,78,0.08)" }}>
@@ -1586,7 +1568,7 @@ export default function ShrastiEnterprisesHome() {
               <div style={{ display: "inline-block", padding: "5px 14px", borderRadius: 6, background: `${T.blue}12`, border: `1px solid ${T.blue}33`, color: T.blue, fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 14 }}>
                 Procurement Desk
               </div>
-              <h2 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 900, color: T.navy, margin: "0 0 8px" }}>Commercial RFQ Configurator</h2>
+              <h2 style={{ fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 700, color: T.navy, margin: "0 0 8px" }}>Commercial RFQ Configurator</h2>
               <p style={{ fontSize: 16, color: T.textMid, margin: 0, fontWeight: 400 }}>Configure your requirements to receive direct factory pricing.</p>
             </div>
 
@@ -1640,7 +1622,7 @@ export default function ShrastiEnterprisesHome() {
                   </p>
                   <div style={{ display: "flex", justifyContent: "flex-end", paddingTop: 8 }}>
                     <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} onClick={() => setQuoteStep(2)}
-                      style={{ padding: "13px 32px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${T.blue}, ${T.blueLight})`, color: "#fff", fontSize: 13, fontWeight: 800, letterSpacing: "0.07em", textTransform: "uppercase", cursor: "pointer", boxShadow: `0 6px 22px ${T.blueGlow}` }}>
+                      style={{ padding: "13px 32px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${T.blue}, ${T.blueLight})`, color: "#fff", fontSize: 13, fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", cursor: "pointer", boxShadow: `0 6px 22px ${T.blueGlow}` }}>
                       Next: Volume & Contact →
                     </motion.button>
                   </div>
@@ -1672,11 +1654,11 @@ export default function ShrastiEnterprisesHome() {
 
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: `1px solid ${T.divider}` }}>
                     <button onClick={() => setQuoteStep(1)}
-                      style={{ background: "none", border: "none", fontSize: 13, fontWeight: 700, color: T.textSoft, letterSpacing: "0.07em", textTransform: "uppercase", cursor: "pointer" }}>
+                      style={{ background: "none", border: "none", fontSize: 13, fontWeight: 600, color: T.textSoft, letterSpacing: "0.07em", textTransform: "uppercase", cursor: "pointer" }}>
                       ← Back
                     </button>
                     <motion.a whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} href={mailtoLink()}
-                      style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 32px", borderRadius: 10, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontSize: 13, fontWeight: 800, letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 6px 22px ${T.goldGlow}` }}>
+                      style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 32px", borderRadius: 10, background: `linear-gradient(135deg, ${T.gold}, ${T.goldLight})`, color: T.navy, fontSize: 13, fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", boxShadow: `0 6px 22px ${T.goldGlow}` }}>
                       <svg width={15} height={15} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                       Send RFQ via Email
                     </motion.a>
@@ -1691,13 +1673,13 @@ export default function ShrastiEnterprisesHome() {
       {/* ══════════════════════════════════════════
           TERMS & CONDITIONS
       ═════════════════════════════════════  ════ */}
-      <section id="terms-conditions" style={{ background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bgAlt} 100%)`, padding: "100px 24px 96px", borderTop: `2px solid ${T.gold}` }}>
+      <section id="terms-conditions" style={{ scrollMarginTop: 80, background: `linear-gradient(180deg, ${T.bg} 0%, ${T.bgAlt} 100%)`, padding: "100px 24px 96px", borderTop: `2px solid ${T.gold}` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52, textAlign: "center" }}>
             <motion.div initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 120, damping: 15 }} style={{ display: "inline-block", padding: "7px 16px", borderRadius: 8, background: `${T.gold}15`, border: `1.5px solid ${T.gold}44`, color: T.gold, fontSize: 11, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 16, boxShadow: `0 0 16px ${T.goldGlow}` }}>
               Legal & Transparency
             </motion.div>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 900, color: T.navy, letterSpacing: "-0.02em", marginBottom: 14, backgroundImage: `linear-gradient(135deg, ${T.navy}, ${T.blue})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Terms &amp; Conditions</h2>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 700, color: T.navy, letterSpacing: "-0.02em", marginBottom: 14, backgroundImage: `linear-gradient(135deg, ${T.navy}, ${T.blue})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Terms &amp; Conditions</h2>
             <p style={{ fontSize: "clamp(15px, 1.2vw, 16px)", color: T.textMid, maxWidth: 560, margin: "0 auto", lineHeight: 1.75, fontWeight: 400 }}>
               Please review these terms before placing orders with Shrasti Enterprises. Continued engagement implies full acceptance.
             </p>
@@ -1756,7 +1738,7 @@ export default function ShrastiEnterprisesHome() {
                     gap: 16, textAlign: "left", position: "relative", zIndex: 1,
                   }}
                 >
-                  <span style={{ fontSize: "clamp(15px, 1.1vw, 16px)", fontWeight: 800, color: T.navy, letterSpacing: "-0.01em" }}>{item.title}</span>
+                   <span style={{ fontSize: "clamp(15px, 1.1vw, 16px)", fontWeight: 700, color: T.navy, letterSpacing: "-0.01em" }}>{item.title}</span>
                   <motion.div animate={{ rotate: openTerm === i ? 45 : 0, scale: openTerm === i ? 1.2 : 1 }} transition={{ duration: 0.24, type: "spring", stiffness: 200, damping: 17 }}
                     style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: `${T.gold}11`, border: `1.5px solid ${T.gold}`, flexShrink: 0 }}>
                     <span style={{ fontSize: 18, color: T.gold, fontWeight: 800, lineHeight: 1, textAlign: "center" }}>+</span>
@@ -1809,7 +1791,7 @@ export default function ShrastiEnterprisesHome() {
           </div>
 
           <div>
-            <h4 style={{ fontSize: 14, fontWeight: 900, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Administrative HQ</h4>
+            <h4 style={{ fontSize: 14, fontWeight: 700, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Administrative HQ</h4>
             <p style={{ fontSize: 16, color: T.footerText, lineHeight: 1.8, fontWeight: 500 }}>
               Flat No. S-2, Rishabh Apartment,<br /> 
               Purushottam Vihar, Kankhal,<br />
@@ -1818,7 +1800,7 @@ export default function ShrastiEnterprisesHome() {
           </div>
 
           <div>
-            <h4 style={{ fontSize: 14, fontWeight: 900, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Manufacturing Center</h4>
+            <h4 style={{ fontSize: 14, fontWeight: 700, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Manufacturing Center</h4>
             <p style={{ fontSize: 16, color: T.footerText, lineHeight: 1.8, fontWeight: 500 }}>
               Near Prince Pipe & Fittings,<br />
               Industrial Park - 2, Denso Chowk,<br />
@@ -1827,7 +1809,7 @@ export default function ShrastiEnterprisesHome() {
           </div>
 
           <div>
-            <h4 style={{ fontSize: 14, fontWeight: 900, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Quick Links</h4>
+            <h4 style={{ fontSize: 14, fontWeight: 700, color: T.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 18 }}>Quick Links</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {navLinks.map(l => (
                 <a key={l.href} href={l.href}
